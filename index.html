@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moscatelli Studio — Internal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body data-section="home" class="preload gate-active">
+
+  <div id="intro-veil" aria-hidden="false">
+    <div class="veil-backdrop"></div>
+    <div class="veil-panel">
+      <span id="veil-mark" class="veil-mark">MOSCATELLI</span>
+      <span id="veil-submark" class="veil-submark">STUDIO</span>
+
+      <form id="veil-form" class="veil-form" autocomplete="off">
+        <input
+          id="veil-input"
+          class="veil-input"
+          type="password"
+          inputmode="text"
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          aria-label="Password"
+        />
+        <span class="veil-input-line" aria-hidden="true"></span>
+        <span id="veil-label" class="veil-label">password</span>
+      </form>
+    </div>
+  </div>
+
+  <div id="bg-ambient" aria-hidden="true">
+    <div class="ambient-noise"></div>
+    <div class="ambient-grid"></div>
+    <div class="ambient-vignette"></div>
+    <div class="ambient-spotlight"></div>
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-brown"></div>
+    <div class="orb orb-ash"></div>
+  </div>
+
+  <header id="site-header">
+    <button class="header-logo" data-action="go-home" aria-label="Return home">
+      <span class="logo-wordmark">MOSCATELLI</span>
+      <span class="logo-rule"></span>
+      <span class="logo-state">Studio</span>
+    </button>
+
+    <div class="header-right">
+      <div class="header-meta">
+        <span id="section-index" class="section-index">01</span>
+        <span id="section-label" class="section-label">Home</span>
+      </div>
+
+      <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <aside class="section-rail" aria-label="Section rail">
+    <button class="rail-dot active" data-action="go-section" data-target="home" data-index="01"><span>Home</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="briefing" data-index="02"><span>Briefing</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="atlas" data-index="03"><span>Atlas</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="vault" data-index="04"><span>Vault</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="studio" data-index="05"><span>Studio</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="signal" data-index="06"><span>Signal</span></button>
+  </aside>
+
+  <nav id="nav-overlay" class="nav-overlay" aria-hidden="true">
+    <div class="nav-bg-texture"></div>
+
+    <button class="nav-close" id="menu-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="18" y1="2" x2="2" y2="18" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </button>
+
+    <div class="nav-inner">
+      <div class="nav-panel nav-menu-panel">
+        <div class="nav-topline">Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item active" data-section="home" data-index="01" data-preview-title="Home" data-preview-copy="Primary entry point. Atmosphere first. Action second.">Home</li>
+          <li class="nav-item" data-section="briefing" data-index="02" data-preview-title="Briefing" data-preview-copy="Core direction, priorities, and current intent in a tighter internal format.">Briefing</li>
+          <li class="nav-item" data-section="atlas" data-index="03" data-preview-title="Atlas" data-preview-copy="Visual territories, references, fragments, and image-led navigation.">Atlas</li>
+          <li class="nav-item" data-section="vault" data-index="04" data-preview-title="Vault" data-preview-copy="Structured entries, versions, notes, and internal memory points.">Vault</li>
+          <li class="nav-item" data-section="studio" data-index="05" data-preview-title="Studio" data-preview-copy="Process, making, experiments, and authored development space.">Studio</li>
+          <li class="nav-item" data-section="signal" data-index="06" data-preview-title="Signal" data-preview-copy="Channels, contact paths, and outward connective points.">Signal</li>
+        </ul>
+      </div>
+
+      <div class="nav-panel nav-preview-panel">
+        <div class="nav-preview-shell">
+          <span id="nav-preview-index" class="nav-preview-index">01</span>
+          <span class="nav-preview-kicker">Selected</span>
+          <h2 id="nav-preview-title" class="nav-preview-title">Home</h2>
+          <p id="nav-preview-copy" class="nav-preview-copy">Primary entry point. Atmosphere first. Action second.</p>
+
+          <div class="nav-preview-meta">
+            <span>Arrows to move</span>
+            <span>Enter to open</span>
+            <span>Esc to close</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="stage">
+    <section id="section-home" class="section active" data-label="Home" data-index="01">
+      <div class="section-inner home-inner">
+        <div class="home-topline">
+          <span class="status-pill">Team Space</span>
+          <span class="status-copy">Built to focus, align, and move.</span>
+        </div>
+
+        <div class="home-headline">
+          <p class="eyebrow">Internal shell / dark mode</p>
+          <h1>Build the world<br /><em>before</em> the words.</h1>
+          <p class="sub">A cleaner, sharper internal space with stronger motion, better hierarchy, and more presence.</p>
+        </div>
+
+        <div class="home-actions">
+          <button class="btn-primary" data-action="go-section" data-target="briefing">Enter</button>
+          <button class="btn-ghost" data-action="open-menu">Open map</button>
+        </div>
+
+        <div class="home-bottom">
+          <div class="home-band">
+            <span>Immersive sections</span>
+            <span>Architectural navigation</span>
+            <span>Keyboard ready</span>
+          </div>
+          <div class="home-scroll-hint">
+            <span class="scroll-line"></span>
+            <span class="scroll-text">Use arrows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-briefing" class="section" data-label="Briefing" data-index="02">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2>Briefing</h2>
+        </div>
+
+        <div class="briefing-layout">
+          <div class="focus-panel">
+            <span class="panel-kicker">Current axis</span>
+            <h3>Direction held with clarity.</h3>
+            <p>Minimal copy now. Stronger framing first. Content can be injected later without redesigning the shell.</p>
+            <div class="panel-actions">
+              <button class="btn-ghost" data-action="go-section" data-target="atlas">Open Atlas</button>
+            </div>
+          </div>
+
+          <div class="overview-grid">
+            <article class="overview-card">
+              <span class="card-index">A</span>
+              <h3>Priority</h3>
+              <p>What matters now.</p>
+            </article>
+            <article class="overview-card">
+              <span class="card-index">B</span>
+              <h3>Focus</h3>
+              <p>Where attention goes.</p>
+            </article>
+            <article class="overview-card">
+              <span class="card-index">C</span>
+              <h3>Method</h3>
+              <p>How the work moves.</p>
+            </article>
+          </div>
+        </div>
+
+        <button class="btn-back" data-action="go-home">← Return</button>
+      </div>
+    </section>
+
+    <section id="section-atlas" class="section" data-label="Atlas" data-index="03">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2>Atlas</h2>
+        </div>
+
+        <div class="atlas-layout">
+          <div class="gallery-grid">
+            <div class="gallery-cell tall emphasis"><span class="cell-label">I</span></div>
+            <div class="gallery-cell"><span class="cell-label">II</span></div>
+            <div class="gallery-cell"><span class="cell-label">III</span></div>
+            <div class="gallery-cell wide"><span class="cell-label">IV</span></div>
+          </div>
+
+          <aside class="side-note">
+            <span class="panel-kicker">Visual field</span>
+            <p>Use this zone for references, mood fragments, image links, stills, or key visual categories.</p>
+          </aside>
+        </div>
+
+        <button class="btn-back" data-action="go-home">← Return</button>
+      </div>
+    </section>
+
+    <section id="section-vault" class="section" data-label="Vault" data-index="04">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2>Vault</h2>
+        </div>
+
+        <div class="vault-topline">
+          <span class="mini-tag">Entries</span>
+          <span class="mini-tag">Versions</span>
+          <span class="mini-tag">Notes</span>
+        </div>
+
+        <div class="archive-list">
+          <button class="archive-row">
+            <span class="archive-year">2026</span>
+            <span class="archive-title">Entry One</span>
+            <span class="archive-tag">Current</span>
+          </button>
+          <button class="archive-row">
+            <span class="archive-year">2026</span>
+            <span class="archive-title">Entry Two</span>
+            <span class="archive-tag">Review</span>
+          </button>
+          <button class="archive-row">
+            <span class="archive-year">2025</span>
+            <span class="archive-title">Entry Three</span>
+            <span class="archive-tag">Locked</span>
+          </button>
+          <button class="archive-row">
+            <span class="archive-year">2025</span>
+            <span class="archive-title">Entry Four</span>
+            <span class="archive-tag">Archive</span>
+          </button>
+        </div>
+
+        <button class="btn-back" data-action="go-home">← Return</button>
+      </div>
+    </section>
+
+    <section id="section-studio" class="section" data-label="Studio" data-index="05">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2>Studio</h2>
+        </div>
+
+        <div class="studio-layout">
+          <div class="studio-statement">
+            <blockquote>
+              Build with intent.<br />Refine without mercy.
+            </blockquote>
+            <p class="studio-sub">This area is ready for process notes, making logic, experiments, and internal development records.</p>
+          </div>
+
+          <div class="studio-metrics">
+            <div class="metric-card">
+              <span class="metric-value">01</span>
+              <span class="metric-label">Track</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">02</span>
+              <span class="metric-label">Review</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value">03</span>
+              <span class="metric-label">Refine</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-back" data-action="go-home">← Return</button>
+      </div>
+    </section>
+
+    <section id="section-signal" class="section" data-label="Signal" data-index="06">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-num">06</span>
+          <h2>Signal</h2>
+        </div>
+
+        <div class="contact-block">
+          <p class="contact-invite">When ready, route the signal.</p>
+          <a href="mailto:hello@example.com" class="contact-email">hello@example.com</a>
+          <div class="contact-links">
+            <a href="#" class="contact-link">Primary</a>
+            <a href="#" class="contact-link">Channel</a>
+            <a href="#" class="contact-link">Press</a>
+          </div>
+        </div>
+
+        <button class="btn-back" data-action="go-home">← Return</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="mc-pointer" aria-hidden="true">
+    <span class="mc-pointer-halo"></span>
+    <span class="mc-pointer-ring"></span>
+    <span class="mc-pointer-line"></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
