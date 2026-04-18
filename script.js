@@ -325,6 +325,20 @@ function bindSectionScrolls() {
 function persistLanguage(lang) { try { window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lang); } catch (error) {} }
 function getStoredLanguage() { try { return window.localStorage.getItem(LANGUAGE_STORAGE_KEY); } catch (error) { return null; } }
 
+function detectBrowserLanguage() {
+  const langs = Array.isArray(navigator.languages) && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language || navigator.userLanguage || 'en'];
+
+  const normalized = langs
+    .filter(Boolean)
+    .map(lang => String(lang).toLowerCase());
+
+  if (normalized.some(lang => lang.startsWith('it'))) return 'it';
+  if (normalized.some(lang => lang === 'pt-br' || lang.startsWith('pt'))) return 'pt';
+  return 'en';
+}
+
 function populateDetail() {
   if (!state.openDetailKey) return;
   const detail = t(`details.${state.openDetailKey}`);
@@ -509,7 +523,8 @@ window.addEventListener('resize', updateSectionSizing, { passive: true });
 
 (function init() {
   const storedLang = getStoredLanguage();
-  if (translations[storedLang]) state.currentLang = storedLang;
+  const initialLang = translations[storedLang] ? storedLang : detectBrowserLanguage();
+  if (translations[initialLang]) state.currentLang = initialLang;
   const homeSection = getSection('home');
   if (homeSection) { homeSection.classList.add('active'); state.currentSection = 'home'; state.currentIndex = 0; }
   enableCustomPointer();
