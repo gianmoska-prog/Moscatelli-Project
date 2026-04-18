@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moscatelli Studio — Internal</title>
+  <title>Moscatelli Studio — Internal Draft II</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
 </head>
-<body data-section="home" class="preload gate-active">
+<body data-section="home" data-lang="en" class="preload gate-active">
 
   <div id="intro-veil" aria-hidden="false">
     <div class="veil-backdrop"></div>
+
+    <div class="lang-switcher lang-switcher--veil" data-lang-switcher aria-label="Language selector">
+      <button type="button" class="lang-choice" data-lang="en">EN</button>
+      <button type="button" class="lang-choice" data-lang="it">IT</button>
+      <button type="button" class="lang-choice" data-lang="pt">PT</button>
+    </div>
+
     <div class="veil-panel">
       <span id="veil-mark" class="veil-mark">MOSCATELLI</span>
       <span id="veil-submark" class="veil-submark">STUDIO</span>
@@ -30,7 +37,7 @@
           aria-label="Password"
         />
         <span class="veil-input-line" aria-hidden="true"></span>
-        <span id="veil-label" class="veil-label">password</span>
+        <span id="veil-label" class="veil-label" data-i18n="veil.password">password</span>
       </form>
     </div>
   </div>
@@ -46,19 +53,25 @@
   </div>
 
   <header id="site-header">
-    <button class="header-logo" data-action="go-home" aria-label="Return home">
+    <button class="header-logo" data-action="go-home" aria-label="Return to threshold">
       <span class="logo-wordmark">MOSCATELLI</span>
       <span class="logo-rule"></span>
       <span class="logo-state">Studio</span>
     </button>
 
     <div class="header-right">
-      <div class="header-meta">
-        <span id="section-index" class="section-index">01</span>
-        <span id="section-label" class="section-label">Home</span>
+      <div class="lang-switcher lang-switcher--header" data-lang-switcher aria-label="Language selector">
+        <button type="button" class="lang-choice" data-lang="en">EN</button>
+        <button type="button" class="lang-choice" data-lang="it">IT</button>
+        <button type="button" class="lang-choice" data-lang="pt">PT</button>
       </div>
 
-      <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
+      <div class="header-meta">
+        <span id="section-index" class="section-index">01</span>
+        <span id="section-label" class="section-label">Threshold</span>
+      </div>
+
+      <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-overlay">
         <span></span>
         <span></span>
         <span></span>
@@ -67,12 +80,12 @@
   </header>
 
   <aside class="section-rail" aria-label="Section rail">
-    <button class="rail-dot active" data-action="go-section" data-target="home" data-index="01"><span>Home</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="briefing" data-index="02"><span>Briefing</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="atlas" data-index="03"><span>Atlas</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="vault" data-index="04"><span>Vault</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="studio" data-index="05"><span>Studio</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="signal" data-index="06"><span>Signal</span></button>
+    <button class="rail-dot active" data-action="go-section" data-target="home" data-index="01"><span data-i18n="sections.threshold">Threshold</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="briefing" data-index="02"><span data-i18n="sections.mandate">Mandate</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="atlas" data-index="03"><span data-i18n="sections.atlas">Atlas</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="vault" data-index="04"><span data-i18n="sections.codex">Codex</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="studio" data-index="05"><span data-i18n="sections.manufattura">Manufattura</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="signal" data-index="06"><span data-i18n="sections.circuit">Circuit</span></button>
   </aside>
 
   <nav id="nav-overlay" class="nav-overlay" aria-hidden="true">
@@ -87,28 +100,28 @@
 
     <div class="nav-inner">
       <div class="nav-panel nav-menu-panel">
-        <div class="nav-topline">Navigation</div>
+        <div class="nav-topline" data-i18n="nav.topline">Navigation</div>
         <ul class="nav-list">
-          <li class="nav-item active" data-section="home" data-index="01" data-preview-title="Home" data-preview-copy="Primary entry point. Atmosphere first. Action second.">Home</li>
-          <li class="nav-item" data-section="briefing" data-index="02" data-preview-title="Briefing" data-preview-copy="Core direction, priorities, and current intent in a tighter internal format.">Briefing</li>
-          <li class="nav-item" data-section="atlas" data-index="03" data-preview-title="Atlas" data-preview-copy="Visual territories, references, fragments, and image-led navigation.">Atlas</li>
-          <li class="nav-item" data-section="vault" data-index="04" data-preview-title="Vault" data-preview-copy="Structured entries, versions, notes, and internal memory points.">Vault</li>
-          <li class="nav-item" data-section="studio" data-index="05" data-preview-title="Studio" data-preview-copy="Process, making, experiments, and authored development space.">Studio</li>
-          <li class="nav-item" data-section="signal" data-index="06" data-preview-title="Signal" data-preview-copy="Channels, contact paths, and outward connective points.">Signal</li>
+          <li class="nav-item active" data-section="home" data-index="01" data-i18n="sections.threshold" data-preview-title-key="sections.threshold" data-preview-copy-key="preview.threshold">Threshold</li>
+          <li class="nav-item" data-section="briefing" data-index="02" data-i18n="sections.mandate" data-preview-title-key="sections.mandate" data-preview-copy-key="preview.mandate">Mandate</li>
+          <li class="nav-item" data-section="atlas" data-index="03" data-i18n="sections.atlas" data-preview-title-key="sections.atlas" data-preview-copy-key="preview.atlas">Atlas</li>
+          <li class="nav-item" data-section="vault" data-index="04" data-i18n="sections.codex" data-preview-title-key="sections.codex" data-preview-copy-key="preview.codex">Codex</li>
+          <li class="nav-item" data-section="studio" data-index="05" data-i18n="sections.manufattura" data-preview-title-key="sections.manufattura" data-preview-copy-key="preview.manufattura">Manufattura</li>
+          <li class="nav-item" data-section="signal" data-index="06" data-i18n="sections.circuit" data-preview-title-key="sections.circuit" data-preview-copy-key="preview.circuit">Circuit</li>
         </ul>
       </div>
 
       <div class="nav-panel nav-preview-panel">
         <div class="nav-preview-shell">
           <span id="nav-preview-index" class="nav-preview-index">01</span>
-          <span class="nav-preview-kicker">Selected</span>
-          <h2 id="nav-preview-title" class="nav-preview-title">Home</h2>
-          <p id="nav-preview-copy" class="nav-preview-copy">Primary entry point. Atmosphere first. Action second.</p>
+          <span class="nav-preview-kicker" data-i18n="nav.selected">Selected</span>
+          <h2 id="nav-preview-title" class="nav-preview-title">Threshold</h2>
+          <p id="nav-preview-copy" class="nav-preview-copy">Private entry point. A room for judgment, rhythm, and alignment before launch.</p>
 
           <div class="nav-preview-meta">
-            <span>Arrows to move</span>
-            <span>Enter to open</span>
-            <span>Esc to close</span>
+            <span data-i18n="nav.metaArrows">Arrows to move</span>
+            <span data-i18n="nav.metaEnter">Enter to open</span>
+            <span data-i18n="nav.metaEsc">Esc to close</span>
           </div>
         </div>
       </div>
@@ -116,199 +129,321 @@
   </nav>
 
   <main id="stage">
-    <section id="section-home" class="section active" data-label="Home" data-index="01">
+    <section id="section-home" class="section active" data-label-key="sections.threshold" data-index="01">
       <div class="section-inner home-inner">
         <div class="home-topline">
-          <span class="status-pill">Team Space</span>
-          <span class="status-copy">Built to focus, align, and move.</span>
+          <span class="status-pill" data-i18n="home.statusPill">Internal draft</span>
+          <span class="status-copy" data-i18n="home.statusCopy">One surface for judgment, rhythm, and alignment.</span>
         </div>
 
         <div class="home-headline">
-          <p class="eyebrow">Internal shell / dark mode</p>
-          <h1>Build the world<br /><em>before</em> the words.</h1>
-          <p class="sub">A cleaner, sharper internal space with stronger motion, better hierarchy, and more presence.</p>
+          <p class="eyebrow" data-i18n="home.eyebrow">Rome / internal studio / authorial control</p>
+          <h1 data-i18n-html="home.h1">Protect the standard.<br /><em>Advance only</em> what earns the name.</h1>
+          <p class="sub" data-i18n="home.sub">This room exists to keep Moscatelli coherent: image, material, ritual, people, and launch decisions held in one controlled surface.</p>
         </div>
 
         <div class="home-actions">
-          <button class="btn-primary" data-action="go-section" data-target="briefing">Enter</button>
-          <button class="btn-ghost" data-action="open-menu">Open map</button>
+          <button class="btn-primary" data-action="go-section" data-target="briefing" data-i18n="home.btnEnter">Open mandate</button>
+          <button class="btn-ghost" data-action="open-menu" data-i18n="home.btnMap">Open map</button>
         </div>
 
         <div class="home-bottom">
           <div class="home-band">
-            <span>Immersive sections</span>
-            <span>Architectural navigation</span>
-            <span>Keyboard ready</span>
+            <span data-i18n="home.band1">Roman restraint</span>
+            <span data-i18n="home.band2">Founder validation</span>
+            <span data-i18n="home.band3">Proof before scale</span>
           </div>
           <div class="home-scroll-hint">
             <span class="scroll-line"></span>
-            <span class="scroll-text">Use arrows</span>
+            <span class="scroll-text" data-i18n="home.hint">Use arrows</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="section-briefing" class="section" data-label="Briefing" data-index="02">
+    <section id="section-briefing" class="section" data-label-key="sections.mandate" data-index="02">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-num">02</span>
-          <h2>Briefing</h2>
+          <h2 data-i18n="mandate.title">Mandate</h2>
         </div>
 
         <div class="briefing-layout">
           <div class="focus-panel">
-            <span class="panel-kicker">Current axis</span>
-            <h3>Direction held with clarity.</h3>
-            <p>Minimal copy now. Stronger framing first. Content can be injected later without redesigning the shell.</p>
+            <div>
+              <span class="panel-kicker" data-i18n="mandate.kicker">House position</span>
+              <h3 data-i18n="mandate.h3">An ultra-luxury Roman house built on restraint, authorship, and ritual.</h3>
+              <p data-i18n="mandate.p">Launch must feel institutional, not promotional. The first task is not breadth but authority: a small capsule, exact packaging, disciplined imagery, and decisions that can survive scrutiny.</p>
+            </div>
             <div class="panel-actions">
-              <button class="btn-ghost" data-action="go-section" data-target="atlas">Open Atlas</button>
+              <button class="btn-ghost" data-action="go-section" data-target="atlas" data-i18n="mandate.btn">Open atlas</button>
             </div>
           </div>
 
           <div class="overview-grid">
             <article class="overview-card">
               <span class="card-index">A</span>
-              <h3>Priority</h3>
-              <p>What matters now.</p>
+              <h3 data-i18n="mandate.cardA.title">Launch priority</h3>
+              <p data-i18n="mandate.cardA.p">Scarf capsule first: Bianco Avorio and Terra Bruna, ivory rigid box, oxblood ritual kept discreet.</p>
             </article>
             <article class="overview-card">
               <span class="card-index">B</span>
-              <h3>Focus</h3>
-              <p>Where attention goes.</p>
+              <h3 data-i18n="mandate.cardB.title">Decision rule</h3>
+              <p data-i18n="mandate.cardB.p">Nothing advances without physical validation, founder sign-off, and evidence worth archiving.</p>
             </article>
             <article class="overview-card">
               <span class="card-index">C</span>
-              <h3>Method</h3>
-              <p>How the work moves.</p>
+              <h3 data-i18n="mandate.cardC.title">Growth discipline</h3>
+              <p data-i18n="mandate.cardC.p">Proof of sales before outside capital. Scale follows traction; it never substitutes for it.</p>
             </article>
           </div>
         </div>
 
-        <button class="btn-back" data-action="go-home">← Return</button>
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
 
-    <section id="section-atlas" class="section" data-label="Atlas" data-index="03">
+    <section id="section-atlas" class="section" data-label-key="sections.atlas" data-index="03">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-num">03</span>
-          <h2>Atlas</h2>
+          <h2 data-i18n="atlas.title">Atlas</h2>
         </div>
 
         <div class="atlas-layout">
           <div class="gallery-grid">
-            <div class="gallery-cell tall emphasis"><span class="cell-label">I</span></div>
-            <div class="gallery-cell"><span class="cell-label">II</span></div>
-            <div class="gallery-cell"><span class="cell-label">III</span></div>
-            <div class="gallery-cell wide"><span class="cell-label">IV</span></div>
+            <figure class="gallery-cell tall emphasis is-detail-trigger" data-detail="atlas1" tabindex="0" role="button" aria-label="Open Atlas item one">
+              <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
+              <figcaption class="gallery-meta">
+                <span class="cell-label">I</span>
+                <strong data-i18n="atlas.card1.title">Scarf / Bianco Avorio</strong>
+                <p data-i18n="atlas.card1.p">Calm exterior. Warm-stone light. Controlled fringe.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-cell is-detail-trigger" data-detail="atlas2" tabindex="0" role="button" aria-label="Open Atlas item two">
+              <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
+              <figcaption class="gallery-meta">
+                <span class="cell-label">II</span>
+                <strong data-i18n="atlas.card2.title">Scarf / Terra Bruna</strong>
+                <p data-i18n="atlas.card2.p">The darker counterweight: earth, depth, permanence.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-cell is-detail-trigger" data-detail="atlas3" tabindex="0" role="button" aria-label="Open Atlas item three">
+              <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
+              <figcaption class="gallery-meta">
+                <span class="cell-label">III</span>
+                <strong data-i18n="atlas.card3.title">Packaging / Bianco Avorio</strong>
+                <p data-i18n="atlas.card3.p">Institutional calm. Blind presence. No loud signature.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="gallery-cell wide is-detail-trigger" data-detail="atlas4" tabindex="0" role="button" aria-label="Open Atlas item four">
+              <img class="gallery-media" src="assets/images/ritual-oxblood.webp" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
+              <figcaption class="gallery-meta">
+                <span class="cell-label">IV</span>
+                <strong data-i18n="atlas.card4.title">Ritual / Oxblood reserve</strong>
+                <p data-i18n="atlas.card4.p">Oxblood appears as hidden gravity: wax, fold, and interior moment.</p>
+              </figcaption>
+            </figure>
           </div>
 
           <aside class="side-note">
-            <span class="panel-kicker">Visual field</span>
-            <p>Use this zone for references, mood fragments, image links, stills, or key visual categories.</p>
+            <span class="panel-kicker" data-i18n="atlas.sideKicker">Visual doctrine</span>
+            <p data-i18n="atlas.sideP">Keep surfaces matte, shadowed, and quiet. Ivory should feel like warm stone, never bridal white. Oxblood must lean brown, never bright. Every image should imply authority before explanation.</p>
+            <div class="doctrine-list">
+              <span class="mini-tag" data-i18n="atlas.rule1">Warm-stone ivory</span>
+              <span class="mini-tag" data-i18n="atlas.rule2">Brown-based oxblood</span>
+              <span class="mini-tag" data-i18n="atlas.rule3">Roman shadow</span>
+              <span class="mini-tag" data-i18n="atlas.rule4">No visual noise</span>
+            </div>
           </aside>
         </div>
 
-        <button class="btn-back" data-action="go-home">← Return</button>
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
 
-    <section id="section-vault" class="section" data-label="Vault" data-index="04">
+    <section id="section-vault" class="section" data-label-key="sections.codex" data-index="04">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-num">04</span>
-          <h2>Vault</h2>
+          <h2 data-i18n="codex.title">Codex</h2>
         </div>
 
-        <div class="vault-topline">
-          <span class="mini-tag">Entries</span>
-          <span class="mini-tag">Versions</span>
-          <span class="mini-tag">Notes</span>
+        <div class="vault-topline" role="toolbar" aria-label="Codex filters">
+          <button class="mini-tag vault-filter" type="button" data-codex-filter="material" data-i18n="codex.tag1" aria-pressed="false">Material</button>
+          <button class="mini-tag vault-filter" type="button" data-codex-filter="validation" data-i18n="codex.tag2" aria-pressed="false">Validation</button>
+          <button class="mini-tag vault-filter" type="button" data-codex-filter="commercial" data-i18n="codex.tag3" aria-pressed="false">Commercial</button>
         </div>
 
         <div class="archive-list">
-          <button class="archive-row">
+          <button class="archive-row is-detail-trigger" type="button" data-detail="codex1" data-categories="material validation" aria-label="Open Launch scarf">
             <span class="archive-year">2026</span>
-            <span class="archive-title">Entry One</span>
-            <span class="archive-tag">Current</span>
+            <span class="archive-main">
+              <span class="archive-title" data-i18n="codex.row1.title">Launch scarf</span>
+              <span class="archive-sub" data-i18n="codex.row1.sub">190 × 31 cm, baby alpaca, controlled drape, straight dense fringe.</span>
+            </span>
+            <span class="archive-tag" data-i18n="codex.row1.tag">Active</span>
           </button>
-          <button class="archive-row">
+
+          <button class="archive-row is-detail-trigger" type="button" data-detail="codex2" data-categories="validation commercial" aria-label="Open Packaging doctrine">
             <span class="archive-year">2026</span>
-            <span class="archive-title">Entry Two</span>
-            <span class="archive-tag">Review</span>
+            <span class="archive-main">
+              <span class="archive-title" data-i18n="codex.row2.title">Packaging doctrine</span>
+              <span class="archive-sub" data-i18n="codex.row2.sub">Ivory rigid box; oxblood reserved for wax seal, envelope, and hidden ritual.</span>
+            </span>
+            <span class="archive-tag" data-i18n="codex.row2.tag">Binding</span>
           </button>
-          <button class="archive-row">
-            <span class="archive-year">2025</span>
-            <span class="archive-title">Entry Three</span>
-            <span class="archive-tag">Locked</span>
+
+          <button class="archive-row is-detail-trigger" type="button" data-detail="codex3" data-categories="validation" aria-label="Open Colour approval">
+            <span class="archive-year">2026</span>
+            <span class="archive-main">
+              <span class="archive-title" data-i18n="codex.row3.title">Colour approval</span>
+              <span class="archive-sub" data-i18n="codex.row3.sub">Physical lab dips under D65 or agreed equivalent. No screen approvals.</span>
+            </span>
+            <span class="archive-tag" data-i18n="codex.row3.tag">Binding</span>
           </button>
-          <button class="archive-row">
-            <span class="archive-year">2025</span>
-            <span class="archive-title">Entry Four</span>
-            <span class="archive-tag">Archive</span>
+
+          <button class="archive-row is-detail-trigger" type="button" data-detail="codex4" data-categories="commercial" aria-label="Open Investor rule">
+            <span class="archive-year">2026</span>
+            <span class="archive-main">
+              <span class="archive-title" data-i18n="codex.row4.title">Investor rule</span>
+              <span class="archive-sub" data-i18n="codex.row4.sub">Angel capital only after proof of sales, even at modest initial volume.</span>
+            </span>
+            <span class="archive-tag" data-i18n="codex.row4.tag">Locked</span>
+          </button>
+
+          <button class="archive-row is-detail-trigger" type="button" data-detail="codex5" data-categories="validation" aria-label="Open Validation authority">
+            <span class="archive-year">2026</span>
+            <span class="archive-main">
+              <span class="archive-title" data-i18n="codex.row5.title">Validation authority</span>
+              <span class="archive-sub" data-i18n="codex.row5.sub">Final aesthetic approval remains with Gianluca alone.</span>
+            </span>
+            <span class="archive-tag" data-i18n="codex.row5.tag">Foundational</span>
           </button>
         </div>
 
-        <button class="btn-back" data-action="go-home">← Return</button>
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
 
-    <section id="section-studio" class="section" data-label="Studio" data-index="05">
+    <section id="section-studio" class="section" data-label-key="sections.manufattura" data-index="05">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-num">05</span>
-          <h2>Studio</h2>
+          <h2 data-i18n="manu.title">Manufattura</h2>
         </div>
 
         <div class="studio-layout">
           <div class="studio-statement">
-            <blockquote>
-              Build with intent.<br />Refine without mercy.
-            </blockquote>
-            <p class="studio-sub">This area is ready for process notes, making logic, experiments, and internal development records.</p>
+            <blockquote data-i18n-html="manu.quote">Quiet surfaces.<br />Exact edges.<br />Emotional authority at close range.</blockquote>
+            <p class="studio-sub" data-i18n="manu.sub">Current workstreams: scarf sampling, label language, box proportions, launch imagery, and the invisible details that make the house feel inevitable.</p>
           </div>
 
-          <div class="studio-metrics">
-            <div class="metric-card">
-              <span class="metric-value">01</span>
-              <span class="metric-label">Track</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value">02</span>
-              <span class="metric-label">Review</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value">03</span>
-              <span class="metric-label">Refine</span>
+          <div class="studio-side">
+            <figure class="studio-figure">
+              <img src="assets/images/label-study.webp" alt="Moscatelli label study" loading="lazy" />
+              <figcaption class="studio-figure-copy">
+                <span class="panel-kicker" data-i18n="manu.figureKicker">Label study</span>
+                <p data-i18n="manu.figureP">Soft interior label logic. Quiet typography. “Made in Italy” held with dignity, never noise.</p>
+              </figcaption>
+            </figure>
+
+            <div class="studio-metrics">
+              <article class="metric-card">
+                <span class="metric-value">01</span>
+                <span class="metric-label" data-i18n="manu.metric1.title">Material</span>
+                <p class="metric-copy" data-i18n="manu.metric1.copy">Baby alpaca with a compact matte surface and disciplined fall.</p>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">02</span>
+                <span class="metric-label" data-i18n="manu.metric2.title">Validation</span>
+                <p class="metric-copy" data-i18n="manu.metric2.copy">Founder-only final sign-off, archived evidence, no casual approvals.</p>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">03</span>
+                <span class="metric-label" data-i18n="manu.metric3.title">Ritual</span>
+                <p class="metric-copy" data-i18n="manu.metric3.copy">Ivory calm outside; oxblood gravity reserved for the interior moment.</p>
+              </article>
             </div>
           </div>
         </div>
 
-        <button class="btn-back" data-action="go-home">← Return</button>
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
 
-    <section id="section-signal" class="section" data-label="Signal" data-index="06">
+    <section id="section-signal" class="section" data-label-key="sections.circuit" data-index="06">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-num">06</span>
-          <h2>Signal</h2>
+          <h2 data-i18n="circuit.title">Circuit</h2>
         </div>
 
-        <div class="contact-block">
-          <p class="contact-invite">When ready, route the signal.</p>
-          <a href="mailto:hello@example.com" class="contact-email">hello@example.com</a>
-          <div class="contact-links">
-            <a href="#" class="contact-link">Primary</a>
-            <a href="#" class="contact-link">Channel</a>
-            <a href="#" class="contact-link">Press</a>
+        <div class="circuit-layout">
+          <div class="contact-block">
+            <p class="contact-invite" data-i18n="circuit.invite">Keep the circle small. Keep the standard absolute.</p>
+
+            <div class="team-grid">
+              <article class="team-card">
+                <span class="team-name" data-i18n="circuit.card1.name">Gianluca</span>
+                <span class="team-role" data-i18n="circuit.card1.role">Founder / Creative direction</span>
+                <p class="team-copy" data-i18n="circuit.card1.p">Final validation, institutional tone, and the non-negotiable standard.</p>
+              </article>
+
+              <article class="team-card">
+                <span class="team-name" data-i18n="circuit.card2.name">Gabriela</span>
+                <span class="team-role" data-i18n="circuit.card2.role">Strategy / Positioning</span>
+                <p class="team-copy" data-i18n="circuit.card2.p">Narrative discipline, market framing, and commercial alignment.</p>
+              </article>
+
+              <article class="team-card">
+                <span class="team-name" data-i18n="circuit.card3.name">Marcella</span>
+                <span class="team-role" data-i18n="circuit.card3.role">Chief of Staff / Coordination</span>
+                <p class="team-copy" data-i18n="circuit.card3.p">Task flow, follow-through, operational rhythm, and continuity across the team.</p>
+              </article>
+
+              <article class="team-card">
+                <span class="team-name" data-i18n="circuit.card4.name">Italian network</span>
+                <span class="team-role" data-i18n="circuit.card4.role">Production intelligence / External</span>
+                <p class="team-copy" data-i18n="circuit.card4.p">Prato mills, Biella intelligence, rigid-box partners, and the physical truth of materials on the ground.</p>
+              </article>
+            </div>
+
+            <div class="circuit-note">
+              <span class="panel-kicker" data-i18n="circuit.route">Route</span>
+              <p data-i18n="circuit.note">Rome as house gravity. Brazil as working extension. Prato first, Biella second. Proof before capital.</p>
+            </div>
           </div>
         </div>
 
-        <button class="btn-back" data-action="go-home">← Return</button>
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
   </main>
+
+
+  <div id="detail-overlay" class="detail-overlay" aria-hidden="true">
+    <div class="detail-overlay-backdrop" data-detail-close></div>
+    <div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="detail-close" type="button" aria-label="Close detail" data-detail-close>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="detail-media-shell">
+        <img id="detail-image" class="detail-image" alt="" />
+      </div>
+
+      <div class="detail-copy-shell">
+        <span id="detail-kicker" class="detail-kicker"></span>
+        <h3 id="detail-title" class="detail-title"></h3>
+        <div id="detail-body" class="detail-body"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="mc-pointer" aria-hidden="true">
     <span class="mc-pointer-halo"></span>
