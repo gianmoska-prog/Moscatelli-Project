@@ -34,9 +34,6 @@
       <div id="veil-emblem" class="veil-emblem" aria-hidden="true">
         <img src="assets/icons/icon.png" alt="" />
       </div>
-      <span id="veil-mark" class="veil-mark">MOSCATELLI</span>
-      <span id="veil-submark" class="veil-submark">STUDIO</span>
-
       <form id="veil-form" class="veil-form veil-pin-form" autocomplete="off">
         <div class="veil-pin-shell">
           <input
@@ -50,6 +47,8 @@
             autocomplete="one-time-code"
             autocorrect="off"
             spellcheck="false"
+            enterkeyhint="done"
+            autofocus
             aria-label="PIN"
           />
           <div class="veil-pin-slots" aria-hidden="true">
@@ -60,8 +59,6 @@
             <span class="veil-pin-slot" data-pin-slot="4"></span>
             <span class="veil-pin-slot" data-pin-slot="5"></span>
           </div>
-          <span class="veil-input-line" aria-hidden="true"></span>
-          <span id="veil-label" class="veil-label" data-i18n="veil.pin">PIN</span>
         </div>
       </form>
     </div>

@@ -5,13 +5,15 @@
 const EXIT_DURATION = 520;
 const ENTER_DELAY = 610;
 const TRANSITION_LOCK = 1450;
-const GATE_SUCCESS_DELAY = 760;
-const PANEL_REVEAL_DELAY = 220;
-const BACKGROUND_REVEAL_DELAY = 80;
-const EMBLEM_REVEAL_DELAY = 360;
-const WORDMARK_REVEAL_DELAY = 820;
-const SUBMARK_REVEAL_DELAY = 1240;
-const FORM_REVEAL_DELAY = 1820;
+const GATE_SUCCESS_DELAY = 920;
+const PANEL_REVEAL_DELAY = 3000;
+const BACKGROUND_REVEAL_DELAY = 120;
+const EMBLEM_REVEAL_DELAY = 540;
+const WORDMARK_REVEAL_DELAY = 999999;
+const SUBMARK_REVEAL_DELAY = 999999;
+const FORM_REVEAL_DELAY = 3680;
+const EMBLEM_FADE_DELAY = 2380;
+const THRESHOLD_REVEAL_DELAY = 2940;
 const FONT_REVEAL_FALLBACK = 3000;
 const LANG_FADE_OUT = 720;
 const LANG_FADE_IN_DELAY = 120;
@@ -199,23 +201,35 @@ function updatePinSlots(value = '') {
   });
 }
 
+function focusPinInput() {
+  if (!veilInput || !body.classList.contains('gate-active')) return;
+  try { veilInput.focus({ preventScroll: true }); } catch (error) {}
+  try { veilInput.click(); } catch (error) {}
+  try {
+    const len = veilInput.value.length;
+    veilInput.setSelectionRange(len, len);
+  } catch (error) {}
+}
+
+function requestPinKeyboard() {
+  [0, 90, 220, 420].forEach(delay => {
+    window.setTimeout(() => focusPinInput(), delay);
+  });
+}
+
 function resetPinFeedback() {
   veilForm?.classList.remove('is-error', 'is-success');
   veilLabel?.classList.remove('is-error');
 }
 
 function flashVeilError() {
-  if (!veilLabel) return;
   veilForm?.classList.remove('is-error');
-  veilLabel.classList.remove('is-error');
-  void veilLabel.offsetWidth;
   if (veilForm) void veilForm.offsetWidth;
   veilForm?.classList.add('is-error');
-  veilLabel.classList.add('is-error');
   window.setTimeout(() => {
-    veilLabel.classList.remove('is-error');
+    veilLabel?.classList.remove('is-error');
     veilForm?.classList.remove('is-error');
-  }, 1100);
+  }, 1200);
 }
 
 function unlockGate() {
@@ -241,23 +255,19 @@ function handleVeilSubmit(event) {
   veilInput.value = '';
   updatePinSlots('');
   flashVeilError();
-  veilInput.focus();
+  requestPinKeyboard();
 }
 
-function revealVeilSequence() {
-  const fontsReady = document.fonts?.ready
-    ? Promise.race([
-        document.fonts.ready.catch(() => undefined),
-        new Promise(resolve => window.setTimeout(resolve, FONT_REVEAL_FALLBACK)),
-      ])
-    : Promise.resolve();
 
+function revealVeilSequence() {
   window.setTimeout(() => body.classList.add('background-revealed'), BACKGROUND_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('panel-revealed'), PANEL_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('emblem-revealed'), EMBLEM_REVEAL_DELAY);
-  Promise.all([fontsReady, new Promise(resolve => window.setTimeout(resolve, WORDMARK_REVEAL_DELAY))]).then(() => body.classList.add('wordmark-revealed'));
-  window.setTimeout(() => body.classList.add('submark-revealed'), SUBMARK_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('form-revealed'), FORM_REVEAL_DELAY);
+  window.setTimeout(() => body.classList.add('emblem-fading'), EMBLEM_FADE_DELAY);
+  window.setTimeout(() => body.classList.add('threshold-revealed', 'panel-revealed'), THRESHOLD_REVEAL_DELAY);
+  window.setTimeout(() => {
+    body.classList.add('form-revealed');
+    requestPinKeyboard();
+  }, FORM_REVEAL_DELAY);
 }
 
 function goToSection(targetId) {
@@ -496,6 +506,8 @@ document.addEventListener('click', event => {
 });
 
 veilForm?.addEventListener('submit', handleVeilSubmit);
+introVeil?.addEventListener('pointerdown', () => { if (body.classList.contains('gate-active')) requestPinKeyboard(); }, { passive: true });
+introVeil?.addEventListener('touchstart', () => { if (body.classList.contains('gate-active')) requestPinKeyboard(); }, { passive: true });
 veilInput?.addEventListener('input', () => {
   if (!veilInput) return;
   const clean = sanitizePinValue(veilInput.value);
@@ -518,7 +530,7 @@ document.addEventListener('keydown', event => {
   if (body.classList.contains('gate-active') && event.target !== veilInput && !isLanguageControl) {
     if (event.key === 'Tab') return;
     event.preventDefault();
-    veilInput?.focus();
+    requestPinKeyboard();
     return;
   }
 
@@ -561,7 +573,7 @@ window.addEventListener('load', () => {
   body.classList.remove('preload');
   updateSectionSizing();
   revealVeilSequence();
-  if (body.classList.contains('gate-active') && veilInput) { window.setTimeout(() => veilInput.focus(), FORM_REVEAL_DELAY + 160); }
+  if (body.classList.contains('gate-active') && veilInput) { window.setTimeout(() => requestPinKeyboard(), FORM_REVEAL_DELAY + 80); }
 });
 window.addEventListener('resize', updateSectionSizing, { passive: true });
 
@@ -599,3 +611,10 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
 }
+
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && body.classList.contains('gate-active') && body.classList.contains('form-revealed')) {
+    requestPinKeyboard();
+  }
+});
