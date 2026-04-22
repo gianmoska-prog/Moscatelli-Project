@@ -26,3 +26,6 @@ Upload the entire folder contents to Netlify or GitHub Pages.
 
 ## Current scope
 This is the installable shell only. Authentication is still front-end only and should be replaced before real internal deployment.
+
+
+Version 18 adds a cinematic PIN threshold using access code 062026 for testing.
