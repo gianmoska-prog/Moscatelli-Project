@@ -29,3 +29,6 @@ This is the installable shell only. Authentication is still front-end only and s
 
 
 Version 18 adds a cinematic PIN threshold using access code 062026 for testing.
+
+
+Update note: v22 bumps the service-worker cache key and adds the veil monogram asset to the precache list.

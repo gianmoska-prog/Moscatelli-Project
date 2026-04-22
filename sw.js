@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v18';
+const CACHE_VERSION = 'moscatelli-studio-v22';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -12,6 +12,7 @@ const CORE_ASSETS = [
   './assets/icons/apple-touch-icon.png',
   './assets/icons/favicon-32.png',
   './assets/icons/favicon-16.png',
+  './assets/icons/monogram-veil.png',
   './assets/images/atlas-bianco-avorio.webp',
   './assets/images/atlas-terra-bruna.webp',
   './assets/images/packaging-bianco-avorio.webp',
@@ -31,11 +32,41 @@ self.addEventListener('activate', event => {
   );
 });
 
+const NETWORK_FIRST_PATHS = new Set([
+  './',
+  '/Moscatelli-Project/',
+  '/Moscatelli-Project/index.html',
+  '/Moscatelli-Project/style.css',
+  '/Moscatelli-Project/script.js',
+  '/Moscatelli-Project/manifest.webmanifest',
+  '/index.html',
+  '/style.css',
+  '/script.js',
+  '/manifest.webmanifest'
+]);
+
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+
+  const isShellAsset = NETWORK_FIRST_PATHS.has(url.pathname) || url.pathname.endsWith('/index.html');
+
+  if (isShellAsset) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200 && response.type === 'basic') {
+            const clone = response.clone();
+            caches.open(CACHE_VERSION).then(cache => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request).then(cached => cached || caches.match('./index.html')))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then(cached => {

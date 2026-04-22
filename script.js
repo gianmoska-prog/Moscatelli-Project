@@ -5,16 +5,15 @@
 const EXIT_DURATION = 520;
 const ENTER_DELAY = 610;
 const TRANSITION_LOCK = 1450;
-const GATE_SUCCESS_DELAY = 920;
-const PANEL_REVEAL_DELAY = 3000;
-const BACKGROUND_REVEAL_DELAY = 120;
-const EMBLEM_REVEAL_DELAY = 540;
-const WORDMARK_REVEAL_DELAY = 999999;
-const SUBMARK_REVEAL_DELAY = 999999;
-const FORM_REVEAL_DELAY = 3680;
-const EMBLEM_FADE_DELAY = 2380;
-const THRESHOLD_REVEAL_DELAY = 2940;
-const FONT_REVEAL_FALLBACK = 3000;
+const GATE_SUCCESS_DELAY = 1180;
+const PANEL_REVEAL_DELAY = 4300;
+const BACKGROUND_REVEAL_DELAY = 180;
+const EMBLEM_REVEAL_DELAY = 980;
+const WORDMARK_REVEAL_DELAY = 4950;
+const SUBMARK_REVEAL_DELAY = 5480;
+const FORM_REVEAL_DELAY = 6180;
+const EMBLEM_FADE_DELAY = 3660;
+const THRESHOLD_REVEAL_DELAY = 4300;
 const LANG_FADE_OUT = 720;
 const LANG_FADE_IN_DELAY = 120;
 const LANGUAGE_STORAGE_KEY = 'moscatelli-studio-lang';
@@ -50,7 +49,6 @@ const previewCopy = document.getElementById('nav-preview-copy');
 const introVeil = document.getElementById('intro-veil');
 const veilForm = document.getElementById('veil-form');
 const veilInput = document.getElementById('veil-input');
-const veilLabel = document.getElementById('veil-label');
 const veilPinSlots = Array.from(document.querySelectorAll('.veil-pin-slot'));
 const pointer = document.querySelector('.mc-pointer');
 const langSwitchers = Array.from(document.querySelectorAll('[data-lang-switcher]'));
@@ -127,7 +125,7 @@ function updateStaticTranslations() {
   });
 
   document.title = t('page.title');
-  if (veilInput) veilInput.setAttribute('aria-label', t('veil.password'));
+  if (veilInput) veilInput.setAttribute('aria-label', t('veil.pin'));
   detailCloseButtons.forEach(button => {
     if (button.tagName === 'BUTTON') button.setAttribute('aria-label', t('detail.close'));
   });
@@ -203,17 +201,34 @@ function updatePinSlots(value = '') {
 
 function focusPinInput() {
   if (!veilInput || !body.classList.contains('gate-active')) return;
-  try { veilInput.focus({ preventScroll: true }); } catch (error) {}
-  try { veilInput.click(); } catch (error) {}
+  try { veilInput.removeAttribute('readonly'); } catch (error) {}
+  try { veilInput.focus({ preventScroll: true }); } catch (error) { try { veilInput.focus(); } catch (error2) {} }
   try {
     const len = veilInput.value.length;
-    veilInput.setSelectionRange(len, len);
+    if (typeof veilInput.setSelectionRange === 'function') veilInput.setSelectionRange(len, len);
   } catch (error) {}
 }
 
+
 function requestPinKeyboard() {
-  [0, 90, 220, 420].forEach(delay => {
+  focusPinInput();
+  [80, 180, 320].forEach(delay => {
     window.setTimeout(() => focusPinInput(), delay);
+  });
+}
+
+
+
+function bindVeilFocusInteractions() {
+  const focusHandler = () => {
+    if (!body.classList.contains('gate-active')) return;
+    focusPinInput();
+  };
+  [introVeil, veilForm, document.querySelector('.veil-panel'), document.querySelector('.veil-pin-shell'), document.querySelector('.veil-pin-slots')].forEach(node => {
+    if (!node) return;
+    node.addEventListener('click', focusHandler);
+    node.addEventListener('touchend', focusHandler);
+    node.addEventListener('pointerup', focusHandler);
   });
 }
 
@@ -259,16 +274,17 @@ function handleVeilSubmit(event) {
 }
 
 
+
 function revealVeilSequence() {
   window.setTimeout(() => body.classList.add('background-revealed'), BACKGROUND_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('emblem-revealed'), EMBLEM_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('emblem-fading'), EMBLEM_FADE_DELAY);
   window.setTimeout(() => body.classList.add('threshold-revealed', 'panel-revealed'), THRESHOLD_REVEAL_DELAY);
-  window.setTimeout(() => {
-    body.classList.add('form-revealed');
-    requestPinKeyboard();
-  }, FORM_REVEAL_DELAY);
+  window.setTimeout(() => body.classList.add('wordmark-revealed'), WORDMARK_REVEAL_DELAY);
+  window.setTimeout(() => body.classList.add('submark-revealed'), SUBMARK_REVEAL_DELAY);
+  window.setTimeout(() => body.classList.add('form-revealed'), FORM_REVEAL_DELAY);
 }
+
 
 function goToSection(targetId) {
   if (state.isTransitioning || targetId === state.currentSection || body.classList.contains('detail-open')) return;
@@ -573,7 +589,7 @@ window.addEventListener('load', () => {
   body.classList.remove('preload');
   updateSectionSizing();
   revealVeilSequence();
-  if (body.classList.contains('gate-active') && veilInput) { window.setTimeout(() => requestPinKeyboard(), FORM_REVEAL_DELAY + 80); }
+  if (body.classList.contains('gate-active') && veilInput) { [FORM_REVEAL_DELAY + 40, FORM_REVEAL_DELAY + 280, FORM_REVEAL_DELAY + 760, FORM_REVEAL_DELAY + 1400].forEach(delay => window.setTimeout(() => requestPinKeyboard(), delay)); }
 });
 window.addEventListener('resize', updateSectionSizing, { passive: true });
 
@@ -588,6 +604,7 @@ window.addEventListener('resize', updateSectionSizing, { passive: true });
   syncActiveNav('home');
   setBodySection('home');
   applyLanguage(true);
+  bindVeilFocusInteractions();
   updatePinSlots('');
   updateCodexFilter();
   updateSpotlight(window.innerWidth * 0.5, window.innerHeight * 0.5);
@@ -608,7 +625,9 @@ window.addEventListener('appinstalled', () => {
 });
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    navigator.serviceWorker.register('./sw.js').then(registration => {
+      registration.update().catch(() => {});
+    }).catch(() => {});
   });
 }
 
