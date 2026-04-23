@@ -2825,14 +2825,14 @@ body.gate-cleared #intro-veil {
 body.emblem-revealed #intro-veil .veil-emblem {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1);
+  transform: translate(-50%, -50%) scale(1) !important;
   filter: blur(0);
 }
 
 body.emblem-fading #intro-veil .veil-emblem {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-8px) scale(0.97);
+  transform: translate(-50%, -54%) scale(0.965) !important;
   filter: blur(10px);
 }
 
@@ -2846,10 +2846,10 @@ body.emblem-fading #intro-veil .veil-emblem {
   color: rgba(240, 233, 221, 0.94);
   text-align: center;
   transition:
-    opacity 1.65s var(--ease-luxury),
-    visibility 1.65s var(--ease-luxury),
-    transform 1.65s var(--ease-luxury),
-    filter 1.65s var(--ease-luxury);
+    opacity 0.82s var(--ease-luxury),
+    visibility 0.82s var(--ease-luxury),
+    transform 0.82s var(--ease-luxury),
+    filter 0.82s var(--ease-luxury);
 }
 
 #intro-veil .veil-submark {
@@ -2864,10 +2864,10 @@ body.emblem-fading #intro-veil .veil-emblem {
   color: rgba(235, 226, 210, 0.56);
   text-align: center;
   transition:
-    opacity 1.45s var(--ease-luxury),
-    visibility 1.45s var(--ease-luxury),
-    transform 1.45s var(--ease-luxury),
-    filter 1.45s var(--ease-luxury);
+    opacity 0.72s var(--ease-luxury),
+    visibility 0.72s var(--ease-luxury),
+    transform 0.72s var(--ease-luxury),
+    filter 0.72s var(--ease-luxury);
 }
 
 body.wordmark-revealed #intro-veil .veil-mark,
@@ -2951,9 +2951,10 @@ body.pin-focused #intro-veil .veil-pin-slots,
 }
 
 #intro-veil .veil-pin-slot::after {
-  width: 10px;
-  height: 10px;
-  box-shadow: 0 0 16px rgba(245, 238, 226, 0.15);
+  width: 13px;
+  height: 13px;
+  background: rgba(245, 238, 226, 0.98);
+  box-shadow: 0 0 22px rgba(245, 238, 226, 0.28);
 }
 
 #intro-veil .veil-form.is-error .veil-pin-slots {
@@ -3051,6 +3052,7 @@ body.gate-cleared #stage {
   padding: 34px 26px 30px !important;
   border-radius: 34px !important;
   text-align: center !important;
+  margin: 0 auto !important;
 }
 
 #intro-veil .veil-emblem,
@@ -3062,8 +3064,13 @@ body.gate-cleared #stage {
 }
 
 #intro-veil .veil-emblem {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
   width: clamp(104px, 20vw, 146px) !important;
-  margin: 0 auto 8px !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) scale(0.985) !important;
+  pointer-events: none !important;
 }
 
 #intro-veil .veil-emblem img {
@@ -3192,5 +3199,79 @@ body.gate-cleared #stage {
     right: 10px !important;
     transform: scale(0.88) !important;
     transform-origin: top right !important;
+  }
+}
+
+
+/* V24 — threshold centering, faster timings, stronger PIN feedback */
+#intro-veil {
+  place-items: center !important;
+  align-items: center !important;
+  justify-items: center !important;
+}
+
+#intro-veil .veil-form {
+  width: min(448px, 100%) !important;
+}
+
+#intro-veil .veil-pin-slot.is-filled {
+  border-color: rgba(235, 226, 210, 0.34) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.022)) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 0 12px rgba(245, 238, 226, 0.04) !important;
+}
+
+#intro-veil .veil-pin-slot.is-current {
+  box-shadow: inset 0 0 0 1px rgba(235, 226, 210, 0.14), 0 0 22px rgba(235, 226, 210, 0.07) !important;
+}
+
+#intro-veil .veil-pin-slot.is-filled::after {
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+}
+
+@media (max-width: 640px) {
+  #intro-veil {
+    padding: max(14px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom)) !important;
+  }
+
+  #intro-veil .veil-panel {
+    width: min(470px, calc(100% - 18px)) !important;
+    padding: 26px 18px 22px !important;
+    margin-top: -3vh !important;
+  }
+
+  #intro-veil .veil-emblem {
+    width: 88px !important;
+  }
+
+  #intro-veil .veil-mark {
+    font-size: clamp(1.18rem, 6vw, 1.68rem) !important;
+    letter-spacing: 0.42em !important;
+    text-indent: 0.42em !important;
+  }
+
+  #intro-veil .veil-submark {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.42em !important;
+    text-indent: 0.42em !important;
+  }
+
+  #intro-veil .veil-form {
+    margin-top: 18px !important;
+  }
+
+  #intro-veil .veil-pin-input,
+  #intro-veil .veil-pin-slots {
+    min-height: 64px !important;
+    height: 64px !important;
+  }
+
+  #intro-veil .veil-pin-slots {
+    gap: 7px !important;
+    padding: 12px 12px !important;
+  }
+
+  #intro-veil .veil-pin-slot {
+    height: 30px !important;
   }
 }

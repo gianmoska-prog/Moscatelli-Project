@@ -5,15 +5,15 @@
 const EXIT_DURATION = 520;
 const ENTER_DELAY = 610;
 const TRANSITION_LOCK = 1450;
-const GATE_SUCCESS_DELAY = 1180;
-const PANEL_REVEAL_DELAY = 4300;
-const BACKGROUND_REVEAL_DELAY = 180;
-const EMBLEM_REVEAL_DELAY = 980;
-const WORDMARK_REVEAL_DELAY = 4950;
-const SUBMARK_REVEAL_DELAY = 5480;
-const FORM_REVEAL_DELAY = 6180;
-const EMBLEM_FADE_DELAY = 3660;
-const THRESHOLD_REVEAL_DELAY = 4300;
+const GATE_SUCCESS_DELAY = 1080;
+const PANEL_REVEAL_DELAY = 1750;
+const BACKGROUND_REVEAL_DELAY = 120;
+const EMBLEM_REVEAL_DELAY = 420;
+const WORDMARK_REVEAL_DELAY = 2050;
+const SUBMARK_REVEAL_DELAY = 2280;
+const FORM_REVEAL_DELAY = 2620;
+const EMBLEM_FADE_DELAY = 1500;
+const THRESHOLD_REVEAL_DELAY = 1750;
 const LANG_FADE_OUT = 720;
 const LANG_FADE_IN_DELAY = 120;
 const LANGUAGE_STORAGE_KEY = 'moscatelli-studio-lang';
@@ -49,6 +49,7 @@ const previewCopy = document.getElementById('nav-preview-copy');
 const introVeil = document.getElementById('intro-veil');
 const veilForm = document.getElementById('veil-form');
 const veilInput = document.getElementById('veil-input');
+const veilLabel = document.getElementById('veil-label');
 const veilPinSlots = Array.from(document.querySelectorAll('.veil-pin-slot'));
 const pointer = document.querySelector('.mc-pointer');
 const langSwitchers = Array.from(document.querySelectorAll('[data-lang-switcher]'));
@@ -196,6 +197,7 @@ function updatePinSlots(value = '') {
     const filled = index < clean.length;
     slot.classList.toggle('is-filled', filled);
     slot.classList.toggle('is-current', clean.length < 6 && index === clean.length);
+    slot.setAttribute('data-pin-bullet', filled ? '•' : '');
   });
 }
 
@@ -212,7 +214,7 @@ function focusPinInput() {
 
 function requestPinKeyboard() {
   focusPinInput();
-  [80, 180, 320].forEach(delay => {
+  [60, 140, 240, 420, 700].forEach(delay => {
     window.setTimeout(() => focusPinInput(), delay);
   });
 }
@@ -228,6 +230,8 @@ function bindVeilFocusInteractions() {
     if (!node) return;
     node.addEventListener('click', focusHandler);
     node.addEventListener('touchend', focusHandler);
+    node.addEventListener('touchstart', focusHandler, { passive: true });
+    node.addEventListener('pointerdown', focusHandler);
     node.addEventListener('pointerup', focusHandler);
   });
 }
@@ -589,7 +593,7 @@ window.addEventListener('load', () => {
   body.classList.remove('preload');
   updateSectionSizing();
   revealVeilSequence();
-  if (body.classList.contains('gate-active') && veilInput) { [FORM_REVEAL_DELAY + 40, FORM_REVEAL_DELAY + 280, FORM_REVEAL_DELAY + 760, FORM_REVEAL_DELAY + 1400].forEach(delay => window.setTimeout(() => requestPinKeyboard(), delay)); }
+  if (body.classList.contains('gate-active') && veilInput) { [FORM_REVEAL_DELAY + 2000, FORM_REVEAL_DELAY + 2240, FORM_REVEAL_DELAY + 2720].forEach(delay => window.setTimeout(() => requestPinKeyboard(), delay)); }
 });
 window.addEventListener('resize', updateSectionSizing, { passive: true });
 
