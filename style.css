@@ -6409,3 +6409,59 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .nav-overlay.open .nav-item:nth-child(6) { transition-delay: 0.23s !important; }
 .nav-overlay.open .nav-item:nth-child(7) { transition-delay: 0.26s !important; }
 
+
+
+/* v59 — menu close, anchored accent, iOS splash support, keyboard stability
+   Scoped to overlay mechanics and mobile keyboard safety. */
+
+.nav-overlay.is-closing {
+  transform: translateY(8px) !important;
+}
+
+.nav-list {
+  position: relative !important;
+  --nav-accent-y: 0px;
+  --nav-accent-height: 0px;
+  --nav-accent-scale: 0;
+}
+
+.nav-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--nav-accent-y);
+  width: 2px;
+  height: var(--nav-accent-height);
+  transform: translateY(-50%) scaleY(var(--nav-accent-scale));
+  transform-origin: center;
+  background: var(--ivory-soft);
+  opacity: 0.74;
+  pointer-events: none;
+  transition:
+    top 180ms ease-out,
+    height 180ms ease-out,
+    transform 180ms ease-out,
+    opacity 180ms ease-out;
+}
+
+.nav-item {
+  overflow: visible !important;
+}
+
+.nav-item::after,
+.nav-item:hover::after,
+.nav-item.active::after {
+  content: none !important;
+  display: none !important;
+  transform: none !important;
+  opacity: 0 !important;
+}
+
+.nav-overlay.open .nav-list.has-accent::before {
+  --nav-accent-scale: 1;
+}
+
+.nav-overlay:not(.open) .nav-list::before,
+.nav-overlay.is-closing .nav-list::before {
+  --nav-accent-scale: 0;
+}

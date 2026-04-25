@@ -41,6 +41,7 @@ const menuClose = document.getElementById('menu-close');
 const sectionLabel = document.getElementById('section-label');
 const sectionIndex = document.getElementById('section-index');
 const navItems = Array.from(document.querySelectorAll('.nav-item'));
+const navList = document.querySelector('.nav-list');
 const railDots = Array.from(document.querySelectorAll('.rail-dot'));
 const mobileNavBar = document.querySelector('.mobile-nav-bar');
 let mobileNavItems = Array.from(document.querySelectorAll('.mobile-nav-item'));
@@ -520,6 +521,22 @@ function syncActiveNav(id) {
   scrollMobileNavToTarget(id);
 }
 
+
+function updateNavListAccent(item) {
+  if (!navList || !item) return;
+  window.requestAnimationFrame(() => {
+    if (!navList || !item.isConnected) return;
+    const listRect = navList.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    const y = itemRect.top - listRect.top + (itemRect.height / 2);
+    const height = Math.max(24, itemRect.height * 0.60);
+    navList.style.setProperty('--nav-accent-y', `${y}px`);
+    navList.style.setProperty('--nav-accent-height', `${height}px`);
+    navList.style.setProperty('--nav-accent-scale', '1');
+    navList.classList.add('has-accent');
+  });
+}
+
 function setPreviewContentFromItem(item) {
   if (!item) return;
   previewIndex.textContent = item.dataset.index || '01';
@@ -539,6 +556,7 @@ function updatePreviewFromItem(item) {
 
   previewNodes.forEach(node => node.classList.add('is-swapping'));
   applyPreviewAmbientFromItem(item);
+  updateNavListAccent(item);
 
   requestAnimationFrame(() => {
     setPreviewContentFromItem(item);
@@ -858,21 +876,26 @@ function closeMenu() {
   state.menuOpen = false;
 
   if (navOverlay) {
-    navOverlay.style.setProperty('transform', 'translateY(8px)', 'important');
-    const clearExitTransform = event => {
-      if (event.propertyName !== 'opacity' && event.propertyName !== 'transform') return;
-      navOverlay.style.removeProperty('transform');
-      navOverlay.removeEventListener('transitionend', clearExitTransform);
+    navOverlay.classList.add('is-closing');
+    const clearClosingState = event => {
+      if (event && event.target !== navOverlay) return;
+      if (event && event.propertyName !== 'opacity' && event.propertyName !== 'transform') return;
+      navOverlay.classList.remove('is-closing');
+      navOverlay.removeEventListener('transitionend', clearClosingState);
     };
-    navOverlay.addEventListener('transitionend', clearExitTransform);
-    window.setTimeout(() => {
-      navOverlay.style.removeProperty('transform');
-      navOverlay.removeEventListener('transitionend', clearExitTransform);
-    }, 920);
+    navOverlay.addEventListener('transitionend', clearClosingState);
+    window.requestAnimationFrame(() => {
+      navOverlay.classList.remove('open');
+      navOverlay.setAttribute('aria-hidden', 'true');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      body.classList.remove('menu-open');
+    });
+    window.setTimeout(clearClosingState, 980);
+    return;
   }
 
-  navOverlay.classList.remove('open');
-  navOverlay.setAttribute('aria-hidden', 'true');
+  navOverlay?.classList.remove('open');
+  navOverlay?.setAttribute('aria-hidden', 'true');
   menuToggle?.setAttribute('aria-expanded', 'false');
   body.classList.remove('menu-open');
 }
@@ -1119,7 +1142,10 @@ veilInput?.addEventListener('input', () => {
     }, 120);
   }
 });
-veilInput?.addEventListener('focus', () => document.body.classList.add('pin-focused'));
+veilInput?.addEventListener('focus', () => {
+  document.body.classList.add('pin-focused');
+  window.setTimeout(() => window.scrollTo(0, 0), 0);
+});
 veilInput?.addEventListener('blur', () => document.body.classList.remove('pin-focused'));
 veilInput?.addEventListener('keydown', event => { if (event.key === 'Escape') event.stopPropagation(); });
 

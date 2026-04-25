@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v58-menu-overlay-weight';
+const CACHE_VERSION = 'moscatelli-studio-v59-menu-splash-keyboard';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,12 @@ const CORE_ASSETS = [
   './assets/icons/favicon-32.png',
   './assets/icons/apple-touch-icon.png',
   './assets/icons/monogram-veil.png',
+  './assets/startup/apple-splash-1290x2796.png',
+  './assets/startup/apple-splash-2796x1290.png',
+  './assets/startup/apple-splash-1170x2532.png',
+  './assets/startup/apple-splash-2532x1170.png',
+  './assets/startup/apple-splash-1080x2340.png',
+  './assets/startup/apple-splash-2340x1080.png',
   './assets/icons/icon-48-launch-mark-v45.png',
   './assets/icons/icon-72-launch-mark-v45.png',
   './assets/icons/icon-96-launch-mark-v45.png',
