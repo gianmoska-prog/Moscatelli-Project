@@ -1,9 +1,9 @@
 {
-  "id": "./?app-id=moscatelli-studio-v45-inset-launch-icon",
+  "id": "./?app-id=moscatelli-studio-v47-inset-launch-icon",
   "name": "Moscatelli Studio",
   "short_name": "Moscatelli Studio",
   "description": "Private internal archive and operating surface for Moscatelli.",
-  "start_url": "./?launch=45",
+  "start_url": "./?launch=47",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",

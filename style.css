@@ -237,6 +237,14 @@ label,
     background-color: rgba(255, 255, 255, 0.04);
   }
 
+  .mobile-nav-item:active {
+    transform: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
   .btn-primary:active {
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
     filter: brightness(0.98);
@@ -374,7 +382,6 @@ body.gate-cleared #intro-veil {
   visibility: hidden;
 }
 
-.veil-emblem,
 .veil-mark,
 .veil-submark,
 .veil-form {
@@ -2865,10 +2872,6 @@ body.detail-open #bg-ambient {
 
 
 @media (max-width: 640px) {
-  .veil-emblem {
-    width: 84px;
-    margin-bottom: 22px;
-  }
 
   .veil-pin-slots {
     gap: 8px;
@@ -2935,7 +2938,6 @@ body.gate-cleared #intro-veil {
   visibility: hidden;
 }
 
-#intro-veil .veil-emblem,
 #intro-veil .veil-mark,
 #intro-veil .veil-submark,
 #intro-veil .veil-form {
@@ -2947,37 +2949,9 @@ body.gate-cleared #intro-veil {
   filter: blur(1.8px);
 }
 
-#intro-veil .veil-emblem {
-  position: relative;
-  z-index: 2;
-  width: clamp(102px, 16vw, 144px);
-  transition:
-    opacity 2.9s var(--ease-luxury),
-    visibility 2.9s var(--ease-luxury),
-    transform 2.9s var(--ease-luxury),
-    filter 2.9s var(--ease-luxury);
-}
 
-#intro-veil .veil-emblem img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 12px 32px rgba(255, 255, 255, 0.04));
-}
 
-body.emblem-revealed #intro-veil .veil-emblem {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1) !important;
-  filter: blur(0);
-}
 
-body.emblem-fading #intro-veil .veil-emblem {
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, -54%) scale(0.965) !important;
-  filter: blur(10px);
-}
 
 #intro-veil .veil-mark {
   width: min(520px, 100%);
@@ -3136,9 +3110,6 @@ body.pin-focused #intro-veil .veil-pin-slots,
 }
 
 @media (max-width: 640px) {
-  #intro-veil .veil-emblem {
-    width: 92px;
-  }
 
   #intro-veil .veil-panel {
     width: min(500px, calc(100% - 26px));
@@ -3221,7 +3192,6 @@ body.gate-cleared #stage {
   margin: 0 auto !important;
 }
 
-#intro-veil .veil-emblem,
 #intro-veil .veil-mark,
 #intro-veil .veil-submark,
 #intro-veil .veil-form {
@@ -3229,25 +3199,7 @@ body.gate-cleared #stage {
   z-index: 4 !important;
 }
 
-#intro-veil .veil-emblem {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: clamp(104px, 20vw, 146px) !important;
-  margin: 0 !important;
-  transform: translate(-50%, -50%) scale(0.985) !important;
-  pointer-events: none !important;
-}
 
-#intro-veil .veil-emblem img {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  background: transparent !important;
-  mix-blend-mode: normal !important;
-  isolation: auto !important;
-  filter: drop-shadow(0 10px 28px rgba(255,255,255,0.04)) !important;
-}
 
 #intro-veil .veil-mark {
   width: 100% !important;
@@ -3323,10 +3275,6 @@ body.gate-cleared #stage {
     border-radius: 28px !important;
   }
 
-  #intro-veil .veil-emblem {
-    width: 92px !important;
-    margin-bottom: 10px !important;
-  }
 
   #intro-veil .veil-mark {
     font-size: clamp(1.14rem, 6.2vw, 1.66rem) !important;
@@ -3407,9 +3355,6 @@ body.gate-cleared #stage {
     margin-top: -3vh !important;
   }
 
-  #intro-veil .veil-emblem {
-    width: 88px !important;
-  }
 
   #intro-veil .veil-mark {
     font-size: clamp(1.18rem, 6vw, 1.68rem) !important;
@@ -4103,20 +4048,12 @@ body.gate-cleared #stage {
     cursor: pointer;
   }
 
-  .mobile-nav-item.active {
-    color: rgba(235, 226, 210, 0.92);
-  }
-
   .mobile-nav-dot {
     width: 3px;
     height: 3px;
     border-radius: 50%;
     background: currentColor;
     transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-
-  .mobile-nav-item.active .mobile-nav-dot {
-    transform: scale(1.8);
   }
 
   body.gate-active .mobile-nav-bar,
@@ -4418,14 +4355,6 @@ body {
     transition: color 220ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .mobile-nav-item.active {
-    color: rgba(235, 226, 210, 0.92);
-  }
-
-  .mobile-nav-item.near-active {
-    color: rgba(235, 226, 210, 0.46);
-  }
-
   .mobile-nav-dot {
     width: 3px;
     height: 3px;
@@ -4433,16 +4362,6 @@ body {
     background: currentColor;
     opacity: 0.72;
     transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms cubic-bezier(0.22, 1, 0.36, 1), background-color 220ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .mobile-nav-item.active .mobile-nav-dot {
-    transform: scale(1.8);
-    opacity: 1;
-  }
-
-  .mobile-nav-item.near-active .mobile-nav-dot {
-    transform: scale(1.32);
-    opacity: 0.88;
   }
 
   .nav-overlay {
@@ -4922,14 +4841,6 @@ body {
     color: rgba(235, 226, 210, 0.5) !important;
   }
 
-  .mobile-nav-item.near-active {
-    color: rgba(235, 226, 210, 0.5) !important;
-  }
-
-  .mobile-nav-item.active {
-    color: rgba(235, 226, 210, 0.92) !important;
-  }
-
   .mobile-nav-bar {
     height: calc(64px + env(safe-area-inset-bottom));
   }
@@ -4960,41 +4871,9 @@ body {
   will-change: opacity, transform, filter;
 }
 
-#intro-veil .veil-emblem {
-  width: clamp(86px, 17vw, 132px) !important;
-  filter: none !important;
-  transition:
-    opacity 1.55s var(--ease-luxury),
-    visibility 1.55s var(--ease-luxury),
-    transform 1.55s var(--ease-luxury) !important;
-}
 
-#intro-veil .veil-emblem img {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  background: transparent !important;
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  box-shadow: none !important;
-  isolation: auto !important;
-  backface-visibility: hidden !important;
-  image-rendering: auto;
-}
 
-body.emblem-revealed #intro-veil .veil-emblem {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translate(-50%, -50%) scale(1) !important;
-  filter: none !important;
-}
 
-body.emblem-fading #intro-veil .veil-emblem {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transform: translate(-50%, -50%) scale(0.986) !important;
-  filter: none !important;
-}
 
 #intro-veil .veil-mark {
   transition:
@@ -5070,49 +4949,6 @@ body.threshold-revealed #intro-veil .veil-panel {
     filter 1.25s var(--ease-luxury) !important;
 }
 
-#veil-emblem-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.972);
-  transition:
-    opacity 1.95s var(--ease-luxury),
-    visibility 1.95s var(--ease-luxury),
-    transform 1.95s var(--ease-luxury);
-}
-
-#veil-emblem-stage img {
-  display: block;
-  width: clamp(92px, 18vw, 142px);
-  height: auto;
-  background: transparent !important;
-  mix-blend-mode: normal !important;
-  filter: none !important;
-  box-shadow: none !important;
-  isolation: auto !important;
-  backface-visibility: hidden;
-}
-
-body.emblem-revealed #veil-emblem-stage {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-}
-
-body.emblem-fading #veil-emblem-stage {
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.988);
-  transition:
-    opacity 1.2s var(--ease-luxury),
-    visibility 1.2s var(--ease-luxury),
-    transform 1.2s var(--ease-luxury);
-}
 
 #intro-veil .veil-mark {
   transition:
@@ -5139,10 +4975,6 @@ body.emblem-fading #veil-emblem-stage {
 }
 
 @media (max-width: 768px) {
-  #veil-emblem-stage img {
-    width: clamp(88px, 24vw, 128px);
-  }
-
   #intro-veil .veil-panel {
     width: min(520px, calc(100% - 18px)) !important;
     min-height: 268px;
@@ -5151,13 +4983,15 @@ body.emblem-fading #veil-emblem-stage {
 }
 
 
-/* v42 veil + mobile-nav refinement */
-#intro-veil .veil-emblem {
-  display: none !important;
-}
+/* v49 authoritative veil emblem stage */
 
 #veil-emblem-stage {
+  position: absolute !important;
+  inset: 0 !important;
   z-index: 6 !important;
+  display: grid !important;
+  place-items: center !important;
+  pointer-events: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   transform: scale(0.972) !important;
@@ -5168,11 +5002,16 @@ body.emblem-fading #veil-emblem-stage {
 }
 
 #veil-emblem-stage img {
+  display: block !important;
   width: clamp(102px, 22vw, 156px) !important;
+  height: auto !important;
   opacity: 1 !important;
+  background: transparent !important;
   filter: brightness(1.22) contrast(1.06) !important;
   box-shadow: none !important;
   mix-blend-mode: normal !important;
+  isolation: auto !important;
+  backface-visibility: hidden !important;
   image-rendering: auto !important;
 }
 
@@ -5192,74 +5031,6 @@ body.emblem-fading #veil-emblem-stage {
     transform 1.8s var(--ease-luxury) !important;
 }
 
-@media (max-width: 768px) {
-  .mobile-nav-item {
-    position: relative;
-    isolation: isolate;
-    color: rgba(235, 226, 210, 0.30) !important;
-    transition:
-      color 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 180ms var(--ease-luxury) !important;
-  }
-
-  .mobile-nav-item::before {
-    content: '';
-    position: absolute;
-    inset: 6px 8px calc(env(safe-area-inset-bottom) * 0) 8px;
-    border-radius: 16px;
-    background: linear-gradient(180deg, rgba(244,236,220,0.12), rgba(244,236,220,0.04));
-    border: 1px solid rgba(235, 226, 210, 0.10);
-    opacity: 0;
-    transform: scale(0.92);
-    transition:
-      opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
-      background 260ms cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  .mobile-nav-item.active {
-    color: rgba(235, 226, 210, 0.94) !important;
-  }
-
-  .mobile-nav-item.active::before {
-    opacity: 1;
-    transform: scale(1);
-    border-color: rgba(235, 226, 210, 0.16);
-    background: linear-gradient(180deg, rgba(244,236,220,0.14), rgba(244,236,220,0.05));
-  }
-
-  .mobile-nav-item.near-active {
-    color: rgba(235, 226, 210, 0.47) !important;
-  }
-
-  .mobile-nav-item .mobile-nav-dot {
-    opacity: 0.50 !important;
-    transition:
-      transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      background-color 240ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .mobile-nav-item.active .mobile-nav-dot {
-    transform: scale(1.8);
-    opacity: 1 !important;
-  }
-
-  .mobile-nav-item.near-active .mobile-nav-dot {
-    transform: scale(1.28);
-    opacity: 0.5 !important;
-  }
-
-  .mobile-nav-item > span:last-child {
-    position: relative;
-    z-index: 1;
-    transition: opacity 240ms cubic-bezier(0.22, 1, 0.36, 1), color 240ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-}
 
 /* v45 — app icon compromise + mobile bottom navigation restraint
    Removes the rounded active frame and the pressed square flash.
@@ -5407,4 +5178,60 @@ body.emblem-fading #veil-emblem-stage {
     margin: 0 auto !important;
     padding-bottom: 34px !important;
   }
+}
+
+
+/* v47 — verified mobile scroll/nav hardening
+   Final defensive layer after third-party audit. Keeps the app icon compromise intact. */
+@media (max-width: 768px) {
+  .section.active,
+  .section.active.is-scrollable {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+  }
+
+  .section.active .section-inner,
+  .section.active.is-scrollable .section-inner {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .detail-dialog {
+    overscroll-behavior-y: contain !important;
+  }
+
+  .mobile-nav-item,
+  .mobile-nav-item:hover,
+  .mobile-nav-item:focus,
+  .mobile-nav-item:active {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    transform: none !important;
+    filter: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+  }
+
+  .mobile-nav-item::before,
+  .mobile-nav-item::after,
+  .mobile-nav-item.active::before,
+  .mobile-nav-item.active::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
 }

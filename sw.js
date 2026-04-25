@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v46-scroll';
+const CACHE_VERSION = 'moscatelli-studio-v49-cache-touch-veil-hygiene';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -76,13 +76,13 @@ self.addEventListener('fetch', event => {
           }
           return response;
         })
-        .catch(() => caches.match(event.request).then(cached => cached || caches.match('./index.html')))
+        .catch(() => caches.match(event.request, { ignoreSearch: true }).then(cached => cached || caches.match('./index.html')))
     );
     return;
   }
 
   event.respondWith(
-    caches.match(event.request).then(cached => {
+    caches.match(event.request, { ignoreSearch: true }).then(cached => {
       if (cached) return cached;
       return fetch(event.request).then(response => {
         if (response && response.ok) {
