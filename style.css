@@ -5371,3 +5371,40 @@ body.emblem-fading #veil-emblem-stage {
   }
 }
 
+
+
+/* v46 — vertical reading reliability
+   Ensures mobile sections can scroll as actual pages instead of clipping content inside the frame. */
+@media (max-width: 768px) {
+  .section {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    scrollbar-width: none !important;
+    padding: calc(66px + env(safe-area-inset-top)) 0 calc(92px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .section::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .section:not(.active) {
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .section.active .section-inner,
+  .section.active.is-scrollable .section-inner {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .section-inner {
+    margin: 0 auto !important;
+    padding-bottom: 34px !important;
+  }
+}

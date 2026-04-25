@@ -229,13 +229,46 @@ function bindGalleryTracking() {
   syncGalleryDots();
 }
 
+function getViewportHeight() {
+  return window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight || 0;
+}
+
+function getSectionAvailableHeight(section) {
+  const style = window.getComputedStyle(section);
+  const paddingTop = parseFloat(style.paddingTop) || 0;
+  const paddingBottom = parseFloat(style.paddingBottom) || 0;
+  return Math.max(0, getViewportHeight() - paddingTop - paddingBottom);
+}
+
+function measureNaturalSectionHeight(inner) {
+  const previousMaxHeight = inner.style.maxHeight;
+  const previousOverflow = inner.style.overflow;
+
+  inner.style.maxHeight = 'none';
+  inner.style.overflow = 'visible';
+
+  const naturalHeight = Math.ceil(Math.max(
+    inner.scrollHeight || 0,
+    inner.offsetHeight || 0,
+    inner.getBoundingClientRect().height || 0
+  ));
+
+  inner.style.maxHeight = previousMaxHeight;
+  inner.style.overflow = previousOverflow;
+
+  return naturalHeight;
+}
+
 function updateSectionSizing() {
   sections.forEach(section => {
     const inner = section.querySelector('.section-inner');
     if (!inner) return;
-    const style = window.getComputedStyle(section);
-    const availableHeight = window.innerHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-    const needsScroll = inner.scrollHeight > availableHeight - 2;
+
+    const availableHeight = getSectionAvailableHeight(section);
+    const naturalHeight = measureNaturalSectionHeight(inner);
+    const clippedByFrame = inner.scrollHeight > inner.clientHeight + 2;
+    const needsScroll = naturalHeight > availableHeight - 2 || clippedByFrame;
+
     section.classList.toggle('is-scrollable', needsScroll);
     if (!needsScroll) section.scrollTop = 0;
   });
@@ -465,6 +498,33 @@ function bindSectionScrolls() {
   });
 }
 
+let sectionSizingFrame = 0;
+function scheduleSectionSizing() {
+  if (sectionSizingFrame) cancelAnimationFrame(sectionSizingFrame);
+  sectionSizingFrame = requestAnimationFrame(() => {
+    sectionSizingFrame = 0;
+    updateSectionSizing();
+  });
+}
+
+function bindSectionSizingObservers() {
+  const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(scheduleSectionSizing) : null;
+
+  sections.forEach(section => {
+    const inner = section.querySelector('.section-inner');
+    if (inner && resizeObserver) resizeObserver.observe(inner);
+  });
+
+  document.querySelectorAll('img').forEach(image => {
+    if (!image.complete) image.addEventListener('load', scheduleSectionSizing, { once: true });
+  });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', scheduleSectionSizing, { passive: true });
+    window.visualViewport.addEventListener('scroll', scheduleSectionSizing, { passive: true });
+  }
+}
+
 function persistLanguage(lang) { try { window.localStorage.setItem(LANGUAGE_STORAGE_KEY, lang); } catch (error) {} }
 function getStoredLanguage() { try { return window.localStorage.getItem(LANGUAGE_STORAGE_KEY); } catch (error) { return null; } }
 
@@ -566,6 +626,8 @@ function applyLanguage(immediate = false) {
     const previewSource = state.menuOpen ? navItems[state.hoveredNavIndex] || getNavItemBySection(state.currentSection) : getNavItemBySection(state.currentSection);
     updatePreviewFromItem(previewSource);
     if (state.openDetailKey) populateDetail();
+    scheduleSectionSizing();
+    window.setTimeout(scheduleSectionSizing, 90);
   };
 
   if (immediate) {
@@ -698,7 +760,7 @@ window.addEventListener('load', () => {
   updateSectionSizing();
   revealVeilSequence();
 });
-window.addEventListener('resize', () => { updateSectionSizing(); syncGalleryDots(); }, { passive: true });
+window.addEventListener('resize', () => { scheduleSectionSizing(); syncGalleryDots(); }, { passive: true });
 
 (function init() {
   const storedLang = getStoredLanguage();
@@ -708,6 +770,7 @@ window.addEventListener('resize', () => { updateSectionSizing(); syncGalleryDots
   if (homeSection) { homeSection.classList.add('active'); state.currentSection = 'home'; state.currentIndex = 0; }
   enableCustomPointer();
   bindSectionScrolls();
+  bindSectionSizingObservers();
   syncActiveNav('home');
   setBodySection('home');
   applyLanguage(true);
@@ -748,7 +811,7 @@ document.addEventListener('visibilitychange', () => {
 });
 
 if (typeof mobileLayoutQuery.addEventListener === 'function') {
-  mobileLayoutQuery.addEventListener('change', () => { updateSectionSizing(); syncGalleryDots(); });
+  mobileLayoutQuery.addEventListener('change', () => { scheduleSectionSizing(); syncGalleryDots(); });
 } else if (typeof mobileLayoutQuery.addListener === 'function') {
-  mobileLayoutQuery.addListener(() => { updateSectionSizing(); syncGalleryDots(); });
+  mobileLayoutQuery.addListener(() => { scheduleSectionSizing(); syncGalleryDots(); });
 }
