@@ -3868,3 +3868,27 @@ body.gate-cleared #stage {
     transform: translateY(0);
   }
 }
+
+
+/* v32 mobile detail-open stability override */
+@media (max-width: 768px) {
+  body.detail-open #site-header,
+  body.detail-open .section-rail,
+  body.detail-open #stage {
+    visibility: hidden;
+    transition: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  body.detail-open #bg-ambient {
+    transition: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    filter: none !important;
+  }
+
+  body.detail-open .orb {
+    animation-play-state: paused !important;
+  }
+}

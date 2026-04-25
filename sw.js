@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v31';
+const CACHE_VERSION = 'moscatelli-studio-v32';
 const CORE_ASSETS = [
   './',
   './index.html',
