@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Moscatelli Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=53" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=53" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=53" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=53" />
+  <link rel="manifest" href="manifest.webmanifest?v=54" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=54" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=54" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=54" />
   <link rel="preload" as="image" href="assets/images/atlas-bianco-avorio.webp" type="image/webp" />
   <link rel="preload" as="image" href="assets/images/packaging-bianco-avorio.webp" type="image/webp" />
   <style>
@@ -121,6 +121,7 @@
     <button class="rail-dot" data-action="go-section" data-target="vault" data-index="04"><span data-i18n="sections.codex">Codex</span></button>
     <button class="rail-dot" data-action="go-section" data-target="studio" data-index="05"><span data-i18n="sections.manufattura">Manufattura</span></button>
     <button class="rail-dot" data-action="go-section" data-target="signal" data-index="06"><span data-i18n="sections.circuit">Circuit</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="links" data-index="07"><span data-i18n="sections.links">Links</span></button>
   </aside>
 
   <nav id="nav-overlay" class="nav-overlay" aria-hidden="true">
@@ -142,6 +143,7 @@
           <li class="nav-item" data-section="vault" data-index="04" data-i18n="sections.codex" data-preview-title-key="sections.codex" data-preview-copy-key="preview.codex">Codex</li>
           <li class="nav-item" data-section="studio" data-index="05" data-i18n="sections.manufattura" data-preview-title-key="sections.manufattura" data-preview-copy-key="preview.manufattura">Manufattura</li>
           <li class="nav-item" data-section="signal" data-index="06" data-i18n="sections.circuit" data-preview-title-key="sections.circuit" data-preview-copy-key="preview.circuit">Circuit</li>
+          <li class="nav-item" data-section="links" data-index="07" data-i18n="sections.links" data-preview-title-key="sections.links" data-preview-copy-key="preview.links">Links</li>
         </ul>
       </div>
 
@@ -466,6 +468,62 @@
         <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
+
+    <section id="section-links" class="section" data-label-key="sections.links" data-index="07">
+      <div class="section-inner links-inner">
+        <div class="section-header">
+          <span class="section-num">07</span>
+          <h2 data-i18n="links.title">Links</h2>
+        </div>
+
+        <div class="links-layout">
+          <div class="links-intro">
+            <span class="panel-kicker" data-i18n="links.kicker">External house surfaces</span>
+            <p data-i18n="links.intro">Reserved placeholders for connected Moscatelli websites, archives, and working environments.</p>
+          </div>
+
+          <div class="links-grid" aria-label="Moscatelli related websites">
+            <a class="link-card" href="#" data-placeholder-link aria-label="Website placeholder one">
+              <div class="link-card__image" aria-hidden="true"><span>TBC</span></div>
+              <div class="link-card__body">
+                <span class="link-card__kicker" data-i18n="links.card1.kicker">Surface I</span>
+                <strong data-i18n="links.card1.title">Moscatelli House</strong>
+                <small data-i18n="links.card1.note">Primary public website</small>
+              </div>
+            </a>
+
+            <a class="link-card" href="#" data-placeholder-link aria-label="Website placeholder two">
+              <div class="link-card__image" aria-hidden="true"><span>TBC</span></div>
+              <div class="link-card__body">
+                <span class="link-card__kicker" data-i18n="links.card2.kicker">Surface II</span>
+                <strong data-i18n="links.card2.title">Investor Room</strong>
+                <small data-i18n="links.card2.note">Private capital materials</small>
+              </div>
+            </a>
+
+            <a class="link-card" href="#" data-placeholder-link aria-label="Website placeholder three">
+              <div class="link-card__image" aria-hidden="true"><span>TBC</span></div>
+              <div class="link-card__body">
+                <span class="link-card__kicker" data-i18n="links.card3.kicker">Surface III</span>
+                <strong data-i18n="links.card3.title">Manufattura Archive</strong>
+                <small data-i18n="links.card3.note">Material and production references</small>
+              </div>
+            </a>
+
+            <a class="link-card" href="#" data-placeholder-link aria-label="Website placeholder four">
+              <div class="link-card__image" aria-hidden="true"><span>TBC</span></div>
+              <div class="link-card__body">
+                <span class="link-card__kicker" data-i18n="links.card4.kicker">Surface IV</span>
+                <strong data-i18n="links.card4.title">Studio Tools</strong>
+                <small data-i18n="links.card4.note">Operational links and internal utilities</small>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
+      </div>
+    </section>
   </main>
 
   <nav class="mobile-nav-bar" aria-label="Mobile section navigation">
@@ -475,6 +533,7 @@
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="vault"><span class="mobile-nav-dot"></span><span data-i18n="sections.codex">Codex</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="studio"><span class="mobile-nav-dot"></span><span data-i18n="sections.manufattura">Manufattura</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="signal"><span class="mobile-nav-dot"></span><span data-i18n="sections.circuit">Circuit</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="links"><span class="mobile-nav-dot"></span><span data-i18n="sections.links">Links</span></button>
   </nav>
 
   <div id="detail-overlay" class="detail-overlay" aria-hidden="true">
