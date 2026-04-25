@@ -6465,3 +6465,112 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .nav-overlay.is-closing .nav-list::before {
   --nav-accent-scale: 0;
 }
+
+/* v60 — discreet language control inside the sandwich menu
+   Allows language changes after the gate without exposing the full header switcher on mobile. */
+
+.nav-menu-language {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0 22px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.42s var(--ease-luxury),
+    transform 0.42s var(--ease-luxury);
+}
+
+.nav-overlay.open .nav-menu-language {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+
+.nav-menu-language__label {
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-style: italic;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(235, 226, 210, 0.38);
+  white-space: nowrap;
+}
+
+.lang-switcher--menu {
+  min-width: 126px;
+  padding: 3px;
+  transform: scale(0.88);
+  transform-origin: left center;
+  border-color: rgba(235, 226, 210, 0.10);
+  background: rgba(255,255,255,0.018);
+  box-shadow: none;
+}
+
+.lang-switcher--menu::before {
+  inset: 3px auto 3px 3px;
+  width: calc((100% - 6px) / 3);
+  background: linear-gradient(180deg, rgba(235,226,210,0.82), rgba(202,191,176,0.78));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 8px 20px rgba(0,0,0,0.16);
+}
+
+.lang-switcher--menu .lang-choice {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 0.54rem;
+  letter-spacing: 0.24em;
+}
+
+.nav-overlay.is-closing .nav-menu-language,
+.nav-overlay:not(.open) .nav-menu-language {
+  opacity: 0;
+  transform: translateY(10px);
+  transition-delay: 0s;
+}
+
+@media (max-width: 768px) {
+  .nav-menu-language {
+    margin: 10px 0 20px;
+    gap: 10px;
+  }
+
+  .nav-menu-language__label {
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+  }
+
+  .lang-switcher--menu {
+    min-width: 118px;
+    transform: scale(0.84);
+  }
+}
+
+/* v61 — menu close smoothing
+   Gives the closing overlay its own complete state so opacity, visibility, and transform no longer fight .open. */
+.nav-overlay.is-closing,
+.nav-overlay.open.is-closing {
+  opacity: 0 !important;
+  visibility: visible !important;
+  transform: translateY(8px) !important;
+  pointer-events: none !important;
+  transition:
+    opacity 0.74s var(--ease-luxury),
+    visibility 0.74s var(--ease-luxury),
+    transform 0.74s var(--ease-luxury) !important;
+}
+
+.nav-overlay.is-closing .nav-inner {
+  transform: translateY(5px) !important;
+  opacity: 0.96 !important;
+  transition:
+    opacity 0.58s var(--ease-luxury),
+    transform 0.58s var(--ease-luxury) !important;
+}
+
+.nav-overlay.is-closing .nav-item,
+.nav-overlay.is-closing .nav-preview-shell,
+.nav-overlay.is-closing .nav-menu-language {
+  transition-delay: 0s !important;
+}

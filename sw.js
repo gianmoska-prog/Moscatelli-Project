@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v59-menu-splash-keyboard';
+const CACHE_VERSION = 'moscatelli-studio-v61-menu-close-smoothing';
 const CORE_ASSETS = [
   './',
   './index.html',

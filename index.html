@@ -10,16 +10,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Moscatelli Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=59" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=59" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=59" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=59" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=59" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=59" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=59" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=59" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=59" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=59" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="manifest" href="manifest.webmanifest?v=61" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=61" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=61" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=61" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=61" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=61" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=61" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=61" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=61" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=61" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <link rel="preload" as="image" href="assets/images/atlas-bianco-avorio.webp" type="image/webp" />
   <link rel="preload" as="image" href="assets/images/packaging-bianco-avorio.webp" type="image/webp" />
   <style>
@@ -142,6 +142,14 @@
       </button>
       <div class="nav-panel nav-menu-panel">
         <div class="nav-topline" data-i18n="nav.topline">Navigation</div>
+        <div class="nav-menu-language" aria-label="Language selector inside menu">
+          <span class="nav-menu-language__label">Lingua</span>
+          <div class="lang-switcher lang-switcher--menu" data-lang-switcher aria-label="Language selector">
+            <button type="button" class="lang-choice" data-lang="en">EN</button>
+            <button type="button" class="lang-choice" data-lang="it">IT</button>
+            <button type="button" class="lang-choice" data-lang="pt">PT</button>
+          </div>
+        </div>
         <ul class="nav-list">
           <li class="nav-item active" data-section="home" data-index="01" data-i18n="sections.threshold" data-preview-title-key="sections.threshold" data-preview-copy-key="preview.threshold">Threshold</li>
           <li class="nav-item" data-section="briefing" data-index="02" data-i18n="sections.mandate" data-preview-title-key="sections.mandate" data-preview-copy-key="preview.mandate">Mandate</li>
