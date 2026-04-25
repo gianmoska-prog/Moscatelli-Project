@@ -5032,3 +5032,120 @@ body.emblem-fading #intro-veil .veil-emblem {
     justify-content: center;
   }
 }
+
+
+/* v41 veil isolation override — emblem fully separate from threshold */
+#intro-veil {
+  background: #02050a !important;
+}
+
+#intro-veil .veil-backdrop {
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255,255,255,0.012), transparent 18%),
+    radial-gradient(circle at 50% 52%, rgba(18,32,62,0.045), transparent 34%),
+    linear-gradient(180deg, #02050a 0%, #02050a 100%) !important;
+  opacity: 1 !important;
+}
+
+#intro-veil .veil-panel {
+  z-index: 4 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(24px) scale(0.988) !important;
+  filter: blur(10px) !important;
+  background: linear-gradient(180deg, rgba(12,14,20,0.94), rgba(8,10,16,0.98)) !important;
+  border-color: rgba(235,226,210,0.08) !important;
+  box-shadow: 0 20px 64px rgba(0,0,0,0.34) !important;
+}
+
+body.threshold-revealed #intro-veil .veil-panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
+  filter: blur(0) !important;
+  transition:
+    opacity 1.25s var(--ease-luxury),
+    visibility 1.25s var(--ease-luxury),
+    transform 1.25s var(--ease-luxury),
+    filter 1.25s var(--ease-luxury) !important;
+}
+
+#veil-emblem-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.972);
+  transition:
+    opacity 1.95s var(--ease-luxury),
+    visibility 1.95s var(--ease-luxury),
+    transform 1.95s var(--ease-luxury);
+}
+
+#veil-emblem-stage img {
+  display: block;
+  width: clamp(92px, 18vw, 142px);
+  height: auto;
+  background: transparent !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  box-shadow: none !important;
+  isolation: auto !important;
+  backface-visibility: hidden;
+}
+
+body.emblem-revealed #veil-emblem-stage {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+body.emblem-fading #veil-emblem-stage {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.988);
+  transition:
+    opacity 1.2s var(--ease-luxury),
+    visibility 1.2s var(--ease-luxury),
+    transform 1.2s var(--ease-luxury);
+}
+
+#intro-veil .veil-mark {
+  transition:
+    opacity 0.78s var(--ease-luxury),
+    visibility 0.78s var(--ease-luxury),
+    transform 0.78s var(--ease-luxury),
+    filter 0.78s var(--ease-luxury) !important;
+}
+
+#intro-veil .veil-submark {
+  transition:
+    opacity 0.72s var(--ease-luxury),
+    visibility 0.72s var(--ease-luxury),
+    transform 0.72s var(--ease-luxury),
+    filter 0.72s var(--ease-luxury) !important;
+}
+
+#intro-veil .veil-form {
+  transition:
+    opacity 0.92s var(--ease-luxury),
+    visibility 0.92s var(--ease-luxury),
+    transform 0.92s var(--ease-luxury),
+    filter 0.92s var(--ease-luxury) !important;
+}
+
+@media (max-width: 768px) {
+  #veil-emblem-stage img {
+    width: clamp(88px, 24vw, 128px);
+  }
+
+  #intro-veil .veil-panel {
+    width: min(520px, calc(100% - 18px)) !important;
+    min-height: 268px;
+    justify-content: center;
+  }
+}
