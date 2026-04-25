@@ -47,6 +47,23 @@ let mobileNavItems = Array.from(document.querySelectorAll('.mobile-nav-item'));
 let mobileNavBaseCount = mobileNavItems.length;
 let mobileNavLoopJumping = false;
 let mobileNavLoopRaf = 0;
+let mobileNavSmoothRaf = 0;
+let mobileNavSmoothScrolling = false;
+let mobileNavLastScrollLeft = 0;
+let mobileNavLastScrollTime = 0;
+let mobileNavAnticipationTimer = 0;
+let mobileNavLastSyncedId = null;
+const NAV_ANTICIPATION_VELOCITY = 2;
+const NAV_LOOP_RESISTANCE_DISTANCE = 40;
+const SECTION_AMBIENTS = {
+  home: 'rgba(182, 142, 88, 0.055)',
+  briefing: 'rgba(58, 88, 138, 0.055)',
+  atlas: 'rgba(48, 92, 150, 0.060)',
+  vault: 'rgba(118, 52, 38, 0.058)',
+  studio: 'rgba(136, 70, 36, 0.060)',
+  signal: 'rgba(78, 86, 112, 0.052)',
+  links: 'rgba(116, 48, 36, 0.055)'
+};
 const sections = Array.from(document.querySelectorAll('.section'));
 const previewIndex = document.getElementById('nav-preview-index');
 const previewTitle = document.getElementById('nav-preview-title');
@@ -204,6 +221,11 @@ function getMobileNavLoopMetrics() {
   };
 }
 
+function setMobileNavLoopResistance(active) {
+  if (!mobileNavBar) return;
+  mobileNavBar.classList.toggle('is-loop-resisting', Boolean(active));
+}
+
 function normalizeMobileNavLoopScroll() {
   if (!mobileNavBar || mobileNavLoopJumping) return;
   const metrics = getMobileNavLoopMetrics();
@@ -221,22 +243,117 @@ function normalizeMobileNavLoopScroll() {
   if (Math.abs(next - current) < 1) return;
 
   mobileNavLoopJumping = true;
+  setMobileNavLoopResistance(true);
   mobileNavBar.scrollLeft = next;
   requestAnimationFrame(() => {
     mobileNavLoopJumping = false;
+    setMobileNavLoopResistance(false);
   });
+}
+
+function updateMobileNavLoopResistance() {
+  if (!mobileNavBar) return;
+  const metrics = getMobileNavLoopMetrics();
+  if (!metrics || mobileNavLoopJumping) {
+    setMobileNavLoopResistance(false);
+    return;
+  }
+
+  const current = mobileNavBar.scrollLeft;
+  const approachingBoundary =
+    (current > metrics.lowerLimit && current < metrics.lowerLimit + NAV_LOOP_RESISTANCE_DISTANCE) ||
+    (current < metrics.upperLimit && current > metrics.upperLimit - NAV_LOOP_RESISTANCE_DISTANCE);
+
+  setMobileNavLoopResistance(approachingBoundary);
+}
+
+function clearMobileNavAnticipation() {
+  if (mobileNavAnticipationTimer) {
+    window.clearTimeout(mobileNavAnticipationTimer);
+    mobileNavAnticipationTimer = 0;
+  }
+  mobileNavItems.forEach(item => item.classList.remove('anticipating'));
+}
+
+function getCenteredMobileNavItem() {
+  if (!mobileNavBar || !mobileNavItems.length) return null;
+  const center = mobileNavBar.scrollLeft + (mobileNavBar.clientWidth / 2);
+  let selected = null;
+  let selectedDistance = Infinity;
+
+  mobileNavItems.forEach(item => {
+    const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
+    const distance = Math.abs(itemCenter - center);
+    if (distance < selectedDistance) {
+      selected = item;
+      selectedDistance = distance;
+    }
+  });
+
+  return selected;
+}
+
+function updateMobileNavAnticipation(velocity) {
+  if (!mobileNavBar || mobileNavSmoothScrolling || mobileNavLoopJumping) return;
+  if (Math.abs(velocity) < NAV_ANTICIPATION_VELOCITY) {
+    clearMobileNavAnticipation();
+    return;
+  }
+
+  const centered = getCenteredMobileNavItem();
+  if (!centered) return;
+
+  const index = mobileNavItems.indexOf(centered);
+  const nextIndex = velocity > 0 ? index + 1 : index - 1;
+  const nextItem = mobileNavItems[nextIndex];
+  if (!nextItem || nextItem.classList.contains('active')) {
+    clearMobileNavAnticipation();
+    return;
+  }
+
+  mobileNavItems.forEach(item => item.classList.toggle('anticipating', item === nextItem));
+
+  if (mobileNavAnticipationTimer) window.clearTimeout(mobileNavAnticipationTimer);
+  mobileNavAnticipationTimer = window.setTimeout(clearMobileNavAnticipation, 150);
+}
+
+function handleMobileNavScrollMotion() {
+  if (!mobileNavBar) return;
+  const now = performance.now();
+  const current = mobileNavBar.scrollLeft;
+  const delta = current - mobileNavLastScrollLeft;
+  const elapsed = Math.max(1, now - mobileNavLastScrollTime);
+  const velocity = delta / elapsed;
+
+  mobileNavLastScrollLeft = current;
+  mobileNavLastScrollTime = now;
+
+  updateMobileNavLoopResistance();
+  updateMobileNavAnticipation(velocity);
 }
 
 function bindMobileNavLoopScroll() {
   if (!mobileNavBar || mobileNavBar.dataset.loopScrollReady === 'true') return;
   mobileNavBar.dataset.loopScrollReady = 'true';
+  mobileNavLastScrollLeft = mobileNavBar.scrollLeft;
+  mobileNavLastScrollTime = performance.now();
+
   mobileNavBar.addEventListener('scroll', () => {
     if (mobileNavLoopRaf) return;
     mobileNavLoopRaf = requestAnimationFrame(() => {
       mobileNavLoopRaf = 0;
+      handleMobileNavScrollMotion();
       normalizeMobileNavLoopScroll();
     });
   }, { passive: true });
+
+  if ('onscrollend' in window) {
+    mobileNavBar.addEventListener('scrollend', () => {
+      clearMobileNavAnticipation();
+      setMobileNavLoopResistance(false);
+      normalizeMobileNavLoopScroll();
+    }, { passive: true });
+  }
 }
 
 function getCircularNavDistance(indexA, indexB, total) {
@@ -245,24 +362,102 @@ function getCircularNavDistance(indexA, indexB, total) {
   return Math.min(direct, total - direct);
 }
 
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function getMobileNavTargetScroll(item) {
+  if (!mobileNavBar || !item) return null;
+  return item.offsetLeft - ((mobileNavBar.clientWidth - item.offsetWidth) / 2);
+}
+
 function scrollMobileNavToActive() {
-  if (!mobileNavItems.length) return;
+  if (!mobileNavBar || !mobileNavItems.length) return;
   const activeCandidates = mobileNavItems.filter(item => item.classList.contains('active'));
   const activeItem = activeCandidates.find(item => item.dataset.loopSet === 'base') || activeCandidates[0];
   if (!activeItem) return;
 
   requestAnimationFrame(() => {
     normalizeMobileNavLoopScroll();
-    activeItem.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
-    });
-    window.setTimeout(normalizeMobileNavLoopScroll, 420);
+
+    const target = getMobileNavTargetScroll(activeItem);
+    if (!Number.isFinite(target)) return;
+
+    if (mobileNavSmoothRaf) cancelAnimationFrame(mobileNavSmoothRaf);
+
+    const start = mobileNavBar.scrollLeft;
+    const distance = target - start;
+    const duration = 320;
+    const startTime = performance.now();
+
+    if (Math.abs(distance) < 1) {
+      normalizeMobileNavLoopScroll();
+      return;
+    }
+
+    mobileNavSmoothScrolling = true;
+    clearMobileNavAnticipation();
+
+    const step = now => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = easeOutCubic(progress);
+      mobileNavBar.scrollLeft = start + (distance * eased);
+
+      if (progress < 1) {
+        mobileNavSmoothRaf = requestAnimationFrame(step);
+      } else {
+        mobileNavSmoothRaf = 0;
+        mobileNavSmoothScrolling = false;
+        normalizeMobileNavLoopScroll();
+        setMobileNavLoopResistance(false);
+      }
+    };
+
+    mobileNavSmoothRaf = requestAnimationFrame(step);
   });
 }
 
+function prepareMobileNavLabelTransition(id) {
+  if (!mobileNavItems.length || mobileNavLastSyncedId === null || mobileNavLastSyncedId === id) {
+    mobileNavLastSyncedId = id;
+    return;
+  }
+
+  const outgoingLabels = mobileNavItems
+    .filter(item => item.dataset.target === mobileNavLastSyncedId)
+    .map(item => item.querySelector('span:last-child'))
+    .filter(Boolean);
+
+  const incomingLabels = mobileNavItems
+    .filter(item => item.dataset.target === id)
+    .map(item => item.querySelector('span:last-child'))
+    .filter(Boolean);
+
+  outgoingLabels.forEach(label => label.classList.add('is-exiting'));
+  incomingLabels.forEach(label => label.classList.add('is-entering'));
+
+  requestAnimationFrame(() => {
+    incomingLabels.forEach(label => label.classList.remove('is-entering'));
+  });
+
+  window.setTimeout(() => {
+    outgoingLabels.forEach(label => label.classList.remove('is-exiting'));
+    incomingLabels.forEach(label => label.classList.remove('is-entering'));
+  }, 220);
+
+  mobileNavLastSyncedId = id;
+}
+
+function applySectionAmbientToNav(id) {
+  const ambient = SECTION_AMBIENTS[id] || 'rgba(235, 226, 210, 0.045)';
+  if (mobileNavBar) mobileNavBar.style.setProperty('--nav-ambient', ambient);
+  body.style.setProperty('--body-ambient', ambient);
+}
+
 function syncActiveNav(id) {
+  prepareMobileNavLabelTransition(id);
+
   navItems.forEach(item => item.classList.toggle('active', item.dataset.section === id));
   railDots.forEach(dot => dot.classList.toggle('active', dot.dataset.target === id));
 
@@ -275,8 +470,10 @@ function syncActiveNav(id) {
     item.classList.toggle('active', isActive);
     item.classList.toggle('near-active', distance === 1 && !isActive);
     item.classList.toggle('far-active', distance === 2 && !isActive);
+    item.classList.remove('anticipating');
   });
 
+  applySectionAmbientToNav(id);
   scrollMobileNavToActive();
 }
 
