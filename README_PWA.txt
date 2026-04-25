@@ -36,3 +36,10 @@ Update note: v22 bumps the service-worker cache key and adds the veil monogram a
 Update note: v43 replaces the manifest launch icons with neutral dark launch icons so Android's generated PWA splash screen cannot show the Moscatelli monogram before the in-app veil sequence. The visible favicon and Apple touch icon files remain untouched. Existing Android installs may need removal/reinstallation because Chrome/Android can retain installed-app splash metadata outside the service-worker cache.
 
 Update note: v44 is a stricter launch-splash isolation patch. It neutralises every pre-launch icon asset path, adds a fresh manifest id/start_url, updates all head icon links, removes the monogram preload, and lazy-loads the in-app veil monogram only shortly before its intended reveal. This sacrifices the monogram launcher/favicon temporarily to prove whether the remaining first monogram is native Android/WebAPK metadata or still inside the HTML render path.
+
+
+v45 notes:
+- Restores a visible app icon using an inset mark compromise.
+- Keeps the native launch splash subdued by avoiding a full-size monogram icon.
+- Removes the mobile bottom-nav rounded active frame; dot and word now glow softly with active/adjacent/rest sizing.
+- Service worker cache bumped to moscatelli-studio-v45.
