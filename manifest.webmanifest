@@ -1,8 +1,9 @@
 {
+  "id": "./?app-id=moscatelli-studio-v44-neutral-launch",
   "name": "Moscatelli Studio",
   "short_name": "Moscatelli Studio",
   "description": "Private internal archive and operating surface for Moscatelli.",
-  "start_url": "./",
+  "start_url": "./?launch=44",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
@@ -12,25 +13,73 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "assets/icons/icon-192-launch-neutral.png",
+      "src": "assets/icons/icon-48-launch-neutral-v44.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-72-launch-neutral-v44.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-96-launch-neutral-v44.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-128-launch-neutral-v44.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-144-launch-neutral-v44.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-192-launch-neutral-v44.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/icons/icon-512-launch-neutral.png",
+      "src": "assets/icons/icon-256-launch-neutral-v44.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-384-launch-neutral-v44.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512-launch-neutral-v44.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/icons/icon-192-launch-neutral-maskable.png",
+      "src": "assets/icons/icon-192-launch-neutral-v44-maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "assets/icons/icon-512-launch-neutral-maskable.png",
+      "src": "assets/icons/icon-384-launch-neutral-v44-maskable.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/icon-512-launch-neutral-v44-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

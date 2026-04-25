@@ -343,8 +343,19 @@ function handleVeilSubmit(event) {
 
 function revealVeilSequence() {
   const emblemStage = document.getElementById('veil-emblem-stage');
+  const emblemImage = emblemStage?.querySelector('img[data-src]');
+  const primeEmblemImage = () => {
+    if (!emblemStage || !emblemImage) return;
+    if (!emblemImage.getAttribute('src')) {
+      emblemImage.setAttribute('src', emblemImage.dataset.src);
+    }
+    emblemStage.classList.add('image-primed');
+  };
+
   window.setTimeout(() => body.classList.add('background-revealed'), BACKGROUND_REVEAL_DELAY);
+  window.setTimeout(primeEmblemImage, Math.max(0, EMBLEM_REVEAL_DELAY - 280));
   window.setTimeout(() => {
+    primeEmblemImage();
     if (emblemStage) emblemStage.removeAttribute('style');
     body.classList.add('emblem-revealed');
   }, EMBLEM_REVEAL_DELAY);
