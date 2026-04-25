@@ -5908,3 +5908,82 @@ body[data-section='links'] {
       0 0 18px rgba(235, 226, 210, 0.12) !important;
   }
 }
+
+/* v55 — true looped film-strip navigation + fixed DOM vignettes
+   Fixes clone-zone dead ends and keeps edge shadows pinned to viewport, not the scroll container. */
+.mobile-nav-edge-vignette {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-bar {
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: auto !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    background: rgba(4, 7, 16, 0.94) !important;
+  }
+
+  .mobile-nav-bar::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+
+  .mobile-nav-bar::before,
+  .mobile-nav-bar::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    background: transparent !important;
+  }
+
+  .mobile-nav-item,
+  .mobile-nav-item:hover,
+  .mobile-nav-item:focus,
+  .mobile-nav-item:active {
+    scroll-snap-align: center !important;
+    scroll-snap-stop: normal !important;
+    flex: 0 0 118px !important;
+    width: 118px !important;
+    min-width: 118px !important;
+    max-width: 118px !important;
+  }
+
+  .mobile-nav-edge-vignette {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    z-index: 306;
+    width: max(78px, 18vw);
+    height: calc(68px + env(safe-area-inset-bottom));
+    pointer-events: none;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 420ms var(--ease-luxury), visibility 420ms var(--ease-luxury);
+  }
+
+  .mobile-nav-edge-vignette--left {
+    left: 0;
+    background: linear-gradient(90deg, rgba(2, 4, 9, 1) 0%, rgba(2, 4, 9, 0.94) 28%, rgba(2, 4, 9, 0.68) 58%, transparent 100%);
+  }
+
+  .mobile-nav-edge-vignette--right {
+    right: 0;
+    background: linear-gradient(270deg, rgba(2, 4, 9, 1) 0%, rgba(2, 4, 9, 0.94) 28%, rgba(2, 4, 9, 0.68) 58%, transparent 100%);
+  }
+
+  body.gate-active .mobile-nav-edge-vignette,
+  body.menu-open .mobile-nav-edge-vignette,
+  body.detail-open .mobile-nav-edge-vignette {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

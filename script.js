@@ -45,6 +45,8 @@ const railDots = Array.from(document.querySelectorAll('.rail-dot'));
 const mobileNavBar = document.querySelector('.mobile-nav-bar');
 let mobileNavItems = Array.from(document.querySelectorAll('.mobile-nav-item'));
 let mobileNavBaseCount = mobileNavItems.length;
+let mobileNavLoopJumping = false;
+let mobileNavLoopRaf = 0;
 const sections = Array.from(document.querySelectorAll('.section'));
 const previewIndex = document.getElementById('nav-preview-index');
 const previewTitle = document.getElementById('nav-preview-title');
@@ -183,6 +185,58 @@ function initializeMobileNavLoop() {
   mobileNavBar.appendChild(fragment);
   mobileNavBar.dataset.loopReady = 'true';
   mobileNavItems = Array.from(mobileNavBar.querySelectorAll('.mobile-nav-item'));
+  bindMobileNavLoopScroll();
+}
+
+function getMobileNavLoopMetrics() {
+  if (!mobileNavBar || mobileNavBaseCount <= 0) return null;
+  const firstBase = mobileNavBar.querySelector('.mobile-nav-item[data-loop-set="base"]');
+  const firstNext = mobileNavBar.querySelector('.mobile-nav-item[data-loop-set="next"]');
+  if (!firstBase || !firstNext) return null;
+
+  const setWidth = firstNext.offsetLeft - firstBase.offsetLeft;
+  if (!Number.isFinite(setWidth) || setWidth <= 0) return null;
+
+  return {
+    setWidth,
+    lowerLimit: setWidth,
+    upperLimit: setWidth * 2
+  };
+}
+
+function normalizeMobileNavLoopScroll() {
+  if (!mobileNavBar || mobileNavLoopJumping) return;
+  const metrics = getMobileNavLoopMetrics();
+  if (!metrics) return;
+
+  const current = mobileNavBar.scrollLeft;
+  let next = current;
+
+  if (current < metrics.lowerLimit) {
+    next = current + metrics.setWidth;
+  } else if (current >= metrics.upperLimit) {
+    next = current - metrics.setWidth;
+  }
+
+  if (Math.abs(next - current) < 1) return;
+
+  mobileNavLoopJumping = true;
+  mobileNavBar.scrollLeft = next;
+  requestAnimationFrame(() => {
+    mobileNavLoopJumping = false;
+  });
+}
+
+function bindMobileNavLoopScroll() {
+  if (!mobileNavBar || mobileNavBar.dataset.loopScrollReady === 'true') return;
+  mobileNavBar.dataset.loopScrollReady = 'true';
+  mobileNavBar.addEventListener('scroll', () => {
+    if (mobileNavLoopRaf) return;
+    mobileNavLoopRaf = requestAnimationFrame(() => {
+      mobileNavLoopRaf = 0;
+      normalizeMobileNavLoopScroll();
+    });
+  }, { passive: true });
 }
 
 function getCircularNavDistance(indexA, indexB, total) {
@@ -198,11 +252,13 @@ function scrollMobileNavToActive() {
   if (!activeItem) return;
 
   requestAnimationFrame(() => {
+    normalizeMobileNavLoopScroll();
     activeItem.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
+    window.setTimeout(normalizeMobileNavLoopScroll, 420);
   });
 }
 
@@ -850,6 +906,7 @@ window.addEventListener('resize', () => { scheduleSectionSizing(); syncGalleryDo
   const homeSection = getSection('home');
   if (homeSection) { homeSection.classList.add('active'); state.currentSection = 'home'; state.currentIndex = 0; }
   enableCustomPointer();
+  initializeMobileNavLoop();
   bindSectionScrolls();
   bindSectionSizingObservers();
   syncActiveNav('home');

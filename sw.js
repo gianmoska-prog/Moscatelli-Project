@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v54-links-loop-nav';
+const CACHE_VERSION = 'moscatelli-studio-v55-loop-vignette-fix';
 const CORE_ASSETS = [
   './',
   './index.html',
