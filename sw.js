@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v61-menu-close-smoothing';
+const CACHE_VERSION = 'moscatelli-studio-v62-live-links';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -31,7 +31,9 @@ const CORE_ASSETS = [
   './assets/images/atlas-terra-bruna.webp',
   './assets/images/packaging-bianco-avorio.webp',
   './assets/images/ritual-oxblood.webp',
-  './assets/images/label-study.webp'
+  './assets/images/label-study.webp',
+  './assets/images/link-moscatelli-website.webp',
+  './assets/images/link-pitch-deck.webp'
 ];
 const GOOGLE_FONT_HOSTS = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
 const SHELL_SUFFIXES = ['/','/index.html','/style.css','/script.js','/manifest.webmanifest'];
