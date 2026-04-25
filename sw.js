@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v51-material-ritual';
+const CACHE_VERSION = 'moscatelli-studio-v52-threshold-clarity';
 const CORE_ASSETS = [
   './',
   './index.html',
