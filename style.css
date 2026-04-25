@@ -3930,3 +3930,35 @@ body.gate-cleared #stage {
     animation-play-state: paused !important;
   }
 }
+
+
+/* v34 mobile menu-overlay stability override */
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  body.menu-open #site-header,
+  body.menu-open .section-rail,
+  body.menu-open #stage {
+    visibility: hidden !important;
+    transition: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    pointer-events: none !important;
+  }
+
+  body.menu-open #bg-ambient {
+    transition: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    filter: none !important;
+  }
+
+  .nav-overlay,
+  .nav-overlay.open,
+  .nav-inner,
+  .nav-panel,
+  .nav-bg-texture {
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    transform: translateZ(0) !important;
+  }
+}
