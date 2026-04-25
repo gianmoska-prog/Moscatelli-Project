@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Moscatelli Studio — Internal Draft II</title>
   <meta name="description" content="Moscatelli Studio — private internal archive and operating surface." />
   <meta name="theme-color" content="#02050a" />
@@ -54,6 +54,7 @@
             spellcheck="false"
             enterkeyhint="done"
             aria-label="PIN"
+            autofocus
           />
           <div class="veil-pin-slots" aria-hidden="true">
             <span class="veil-pin-slot" data-pin-slot="0"></span>
@@ -238,42 +239,50 @@
         </div>
 
         <div class="atlas-layout">
-          <div class="gallery-grid">
-            <figure class="gallery-cell tall emphasis is-detail-trigger" data-detail="atlas1" tabindex="0" role="button" aria-label="Open Atlas item one">
-              <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
-              <figcaption class="gallery-meta">
-                <span class="cell-label">I</span>
-                <strong data-i18n="atlas.card1.title">Scarf / Bianco Avorio</strong>
-                <p data-i18n="atlas.card1.p">Calm exterior. Warm-stone light. Controlled fringe.</p>
-              </figcaption>
-            </figure>
+          <div class="gallery-wrap">
+            <div class="gallery-grid" id="gallery-grid">
+              <figure class="gallery-cell tall emphasis is-detail-trigger" data-detail="atlas1" tabindex="0" role="button" aria-label="Open Atlas item one">
+                <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
+                <figcaption class="gallery-meta">
+                  <span class="cell-label">I</span>
+                  <strong data-i18n="atlas.card1.title">Scarf / Bianco Avorio</strong>
+                  <p data-i18n="atlas.card1.p">Calm exterior. Warm-stone light. Controlled fringe.</p>
+                </figcaption>
+              </figure>
 
-            <figure class="gallery-cell is-detail-trigger" data-detail="atlas2" tabindex="0" role="button" aria-label="Open Atlas item two">
-              <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
-              <figcaption class="gallery-meta">
-                <span class="cell-label">II</span>
-                <strong data-i18n="atlas.card2.title">Scarf / Terra Bruna</strong>
-                <p data-i18n="atlas.card2.p">The darker counterweight: earth, depth, permanence.</p>
-              </figcaption>
-            </figure>
+              <figure class="gallery-cell is-detail-trigger" data-detail="atlas2" tabindex="0" role="button" aria-label="Open Atlas item two">
+                <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
+                <figcaption class="gallery-meta">
+                  <span class="cell-label">II</span>
+                  <strong data-i18n="atlas.card2.title">Scarf / Terra Bruna</strong>
+                  <p data-i18n="atlas.card2.p">The darker counterweight: earth, depth, permanence.</p>
+                </figcaption>
+              </figure>
 
-            <figure class="gallery-cell is-detail-trigger" data-detail="atlas3" tabindex="0" role="button" aria-label="Open Atlas item three">
-              <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
-              <figcaption class="gallery-meta">
-                <span class="cell-label">III</span>
-                <strong data-i18n="atlas.card3.title">Packaging / Bianco Avorio</strong>
-                <p data-i18n="atlas.card3.p">Institutional calm. Blind presence. No loud signature.</p>
-              </figcaption>
-            </figure>
+              <figure class="gallery-cell is-detail-trigger" data-detail="atlas3" tabindex="0" role="button" aria-label="Open Atlas item three">
+                <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
+                <figcaption class="gallery-meta">
+                  <span class="cell-label">III</span>
+                  <strong data-i18n="atlas.card3.title">Packaging / Bianco Avorio</strong>
+                  <p data-i18n="atlas.card3.p">Institutional calm. Blind presence. No loud signature.</p>
+                </figcaption>
+              </figure>
 
-            <figure class="gallery-cell wide is-detail-trigger" data-detail="atlas4" tabindex="0" role="button" aria-label="Open Atlas item four">
-              <img class="gallery-media" src="assets/images/ritual-oxblood.webp" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
-              <figcaption class="gallery-meta">
-                <span class="cell-label">IV</span>
-                <strong data-i18n="atlas.card4.title">Ritual / Oxblood reserve</strong>
-                <p data-i18n="atlas.card4.p">Oxblood appears as hidden gravity: wax, fold, and interior moment.</p>
-              </figcaption>
-            </figure>
+              <figure class="gallery-cell wide is-detail-trigger" data-detail="atlas4" tabindex="0" role="button" aria-label="Open Atlas item four">
+                <img class="gallery-media" src="assets/images/ritual-oxblood.webp" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
+                <figcaption class="gallery-meta">
+                  <span class="cell-label">IV</span>
+                  <strong data-i18n="atlas.card4.title">Ritual / Oxblood reserve</strong>
+                  <p data-i18n="atlas.card4.p">Oxblood appears as hidden gravity: wax, fold, and interior moment.</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="gallery-dot-row" id="gallery-dots" aria-hidden="true">
+              <span class="gallery-dot active"></span>
+              <span class="gallery-dot"></span>
+              <span class="gallery-dot"></span>
+              <span class="gallery-dot"></span>
+            </div>
           </div>
 
           <aside class="side-note">
@@ -374,7 +383,7 @@
               <img src="assets/images/label-study.webp" alt="Moscatelli label study" loading="lazy" />
               <figcaption class="studio-figure-copy">
                 <span class="panel-kicker" data-i18n="manu.figureKicker">Label study</span>
-                <p data-i18n="manu.figureP">Soft interior label logic. Quiet typography. “Made in Italy” held with dignity, never noise.</p>
+                <p data-i18n="manu.figureP">Soft interior label logic. Quiet typography. &quot;Made in Italy&quot; held with dignity, never noise.</p>
               </figcaption>
             </figure>
 
@@ -451,6 +460,14 @@
     </section>
   </main>
 
+  <nav class="mobile-nav-bar" aria-label="Mobile section navigation">
+    <button class="mobile-nav-item active" type="button" data-action="go-section" data-target="home"><span class="mobile-nav-dot"></span><span data-i18n="sections.threshold">Threshold</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="briefing"><span class="mobile-nav-dot"></span><span data-i18n="sections.mandate">Mandate</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="atlas"><span class="mobile-nav-dot"></span><span data-i18n="sections.atlas">Atlas</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="vault"><span class="mobile-nav-dot"></span><span data-i18n="sections.codex">Codex</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="studio"><span class="mobile-nav-dot"></span><span data-i18n="sections.manufattura">Manufattura</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="signal"><span class="mobile-nav-dot"></span><span data-i18n="sections.circuit">Circuit</span></button>
+  </nav>
 
   <div id="detail-overlay" class="detail-overlay" aria-hidden="true">
     <div class="detail-overlay-backdrop" data-detail-close></div>

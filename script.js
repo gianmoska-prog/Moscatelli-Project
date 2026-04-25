@@ -42,6 +42,7 @@ const sectionLabel = document.getElementById('section-label');
 const sectionIndex = document.getElementById('section-index');
 const navItems = Array.from(document.querySelectorAll('.nav-item'));
 const railDots = Array.from(document.querySelectorAll('.rail-dot'));
+const mobileNavItems = Array.from(document.querySelectorAll('.mobile-nav-item'));
 const sections = Array.from(document.querySelectorAll('.section'));
 const previewIndex = document.getElementById('nav-preview-index');
 const previewTitle = document.getElementById('nav-preview-title');
@@ -66,6 +67,9 @@ const detailBody = document.getElementById('detail-body');
 const detailCloseButtons = Array.from(document.querySelectorAll('[data-detail-close]'));
 const codexFilters = Array.from(document.querySelectorAll('[data-codex-filter]'));
 const codexRows = Array.from(document.querySelectorAll('.archive-row'));
+const galleryGrid = document.getElementById('gallery-grid');
+const galleryDots = Array.from(document.querySelectorAll('.gallery-dot'));
+const mobileLayoutQuery = window.matchMedia('(max-width: 768px)');
 
 const sectionIds = sections.map(section => section.id.replace('section-', ''));
 const pointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -155,6 +159,7 @@ function setBodySection(id) {
 function syncActiveNav(id) {
   navItems.forEach(item => item.classList.toggle('active', item.dataset.section === id));
   railDots.forEach(dot => dot.classList.toggle('active', dot.dataset.target === id));
+  mobileNavItems.forEach(item => item.classList.toggle('active', item.dataset.target === id));
 }
 
 function updatePreviewFromItem(item) {
@@ -167,6 +172,54 @@ function updatePreviewFromItem(item) {
     const isActive = state.menuOpen ? entry === item : entry.dataset.section === state.currentSection;
     entry.classList.toggle('active', isActive);
   });
+}
+
+function isMobileLayout() { return mobileLayoutQuery.matches; }
+
+function getTransitionTiming() {
+  return isMobileLayout()
+    ? { exit: 220, enter: 120, lock: 360 }
+    : { exit: 520, enter: 610, lock: 900 };
+}
+
+function syncGalleryDots() {
+  if (!galleryGrid || !galleryDots.length) return;
+  const cards = Array.from(galleryGrid.querySelectorAll('.gallery-cell'));
+  if (!cards.length) return;
+
+  if (!isMobileLayout()) {
+    galleryDots.forEach((dot, index) => dot.classList.toggle('active', index === 0));
+    return;
+  }
+
+  const center = galleryGrid.scrollLeft + (galleryGrid.clientWidth * 0.5);
+  let activeIndex = 0;
+  let smallestDistance = Number.POSITIVE_INFINITY;
+
+  cards.forEach((card, index) => {
+    const cardCenter = card.offsetLeft + (card.offsetWidth * 0.5);
+    const distance = Math.abs(center - cardCenter);
+    if (distance < smallestDistance) {
+      smallestDistance = distance;
+      activeIndex = index;
+    }
+  });
+
+  galleryDots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+}
+
+function bindGalleryTracking() {
+  if (!galleryGrid || !galleryDots.length) return;
+  let rafId = 0;
+  const onScroll = () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      syncGalleryDots();
+      rafId = 0;
+    });
+  };
+  galleryGrid.addEventListener('scroll', onScroll, { passive: true });
+  syncGalleryDots();
 }
 
 function updateSectionSizing() {
@@ -301,6 +354,7 @@ function goToSection(targetId) {
   const next = getSection(targetId);
   if (!next) return;
 
+  const timing = getTransitionTiming();
   state.isTransitioning = true;
   const fromIndex = getSectionPosition(state.currentSection);
   const toIndex = getSectionPosition(targetId);
@@ -311,7 +365,7 @@ function goToSection(targetId) {
   if (current) {
     current.classList.remove('active');
     current.classList.add('exiting');
-    window.setTimeout(() => { current.classList.remove('exiting'); current.scrollTop = 0; }, EXIT_DURATION);
+    window.setTimeout(() => { current.classList.remove('exiting'); current.scrollTop = 0; }, timing.exit);
   }
 
   state.currentSection = targetId;
@@ -325,13 +379,15 @@ function goToSection(targetId) {
     next.classList.add('active');
     next.scrollTop = 0;
     updateHeaderScrolled();
-  }, ENTER_DELAY);
+    syncGalleryDots();
+  }, timing.enter);
 
   window.setTimeout(() => {
     state.isTransitioning = false;
     body.classList.remove('is-transitioning', 'transition-forward', 'transition-backward');
     updateSectionSizing();
-  }, TRANSITION_LOCK);
+    syncGalleryDots();
+  }, timing.lock);
 }
 
 function goHome() { goToSection('home'); }
@@ -371,7 +427,7 @@ function movePointer(x, y) { if (!pointerState.enabled || !pointer) return; poin
 
 function classifyPointerTarget(target) {
   if (!pointer) return;
-  const isAction = !!target.closest('a, button, [role="button"], [data-action], .nav-item, .rail-dot, .archive-row, .gallery-cell, .header-logo, .menu-toggle, .contact-link, .contact-email, .btn-primary, .btn-ghost, .btn-back, .lang-choice, .detail-close, .vault-filter');
+  const isAction = !!target.closest('a, button, [role="button"], [data-action], .nav-item, .rail-dot, .mobile-nav-item, .archive-row, .gallery-cell, .header-logo, .menu-toggle, .contact-link, .contact-email, .btn-primary, .btn-ghost, .btn-back, .lang-choice, .detail-close, .vault-filter');
   const isInput = !!target.closest('input, textarea, select, [contenteditable="true"]');
   const isMedia = !!target.closest('.gallery-cell, .focus-panel, .side-note, .veil-panel, .studio-figure, .team-card, .circuit-note, .detail-dialog');
   const isText = !isAction && (!!target.closest('p, h1, h2, h3, blockquote, .sub, .studio-sub, .contact-invite, .archive-sub, .detail-body, .gallery-meta') || isInput);
@@ -620,7 +676,7 @@ window.addEventListener('load', () => {
   updateSectionSizing();
   revealVeilSequence();
 });
-window.addEventListener('resize', updateSectionSizing, { passive: true });
+window.addEventListener('resize', () => { updateSectionSizing(); syncGalleryDots(); }, { passive: true });
 
 (function init() {
   const storedLang = getStoredLanguage();
@@ -634,10 +690,12 @@ window.addEventListener('resize', updateSectionSizing, { passive: true });
   setBodySection('home');
   applyLanguage(true);
   bindVeilFocusInteractions();
+  bindGalleryTracking();
   updatePinSlots('');
   updateCodexFilter();
   updateSpotlight(window.innerWidth * 0.5, window.innerHeight * 0.5);
   updateSectionSizing();
+  syncGalleryDots();
 })();
 
 
@@ -666,3 +724,9 @@ document.addEventListener('visibilitychange', () => {
     requestPinKeyboard();
   }
 });
+
+if (typeof mobileLayoutQuery.addEventListener === 'function') {
+  mobileLayoutQuery.addEventListener('change', () => { updateSectionSizing(); syncGalleryDots(); });
+} else if (typeof mobileLayoutQuery.addListener === 'function') {
+  mobileLayoutQuery.addListener(() => { updateSectionSizing(); syncGalleryDots(); });
+}
