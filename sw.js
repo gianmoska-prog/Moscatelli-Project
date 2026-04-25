@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v52-threshold-clarity';
+const CACHE_VERSION = 'moscatelli-studio-v53-filmstrip-nav';
 const CORE_ASSETS = [
   './',
   './index.html',

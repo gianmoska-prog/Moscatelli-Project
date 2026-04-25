@@ -5576,3 +5576,77 @@ body.pin-focused #intro-veil .veil-pin-slots,
     letter-spacing: 0.22em !important;
   }
 }
+
+/* v53 — mobile bottom navigation film-strip selector
+   Controlled carousel behaviour only. No threshold/PIN/veil changes in this patch. */
+@media (max-width: 768px) {
+  .mobile-nav-bar {
+    height: calc(68px + env(safe-area-inset-bottom)) !important;
+    padding: 4px max(18px, calc(50vw - 52px)) env(safe-area-inset-bottom) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-inline: max(18px, calc(50vw - 52px)) !important;
+    overscroll-behavior-x: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    touch-action: pan-x !important;
+    mask-image: linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%) !important;
+  }
+
+  .mobile-nav-bar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .mobile-nav-item,
+  .mobile-nav-item:hover,
+  .mobile-nav-item:focus,
+  .mobile-nav-item:active {
+    flex: 0 0 104px !important;
+    width: 104px !important;
+    min-width: 104px !important;
+    max-width: 104px !important;
+    min-height: 58px !important;
+    padding: 7px 8px 6px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: normal !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    transform: none !important;
+    filter: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+  }
+
+  .mobile-nav-item > span:last-child {
+    display: block !important;
+    max-width: 92px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: center !important;
+  }
+
+  .mobile-nav-item::before,
+  .mobile-nav-item::after,
+  .mobile-nav-item.active::before,
+  .mobile-nav-item.active::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}

@@ -156,6 +156,20 @@ function setBodySection(id) {
   body.dataset.section = id;
 }
 
+function scrollMobileNavToActive() {
+  if (!mobileNavItems.length) return;
+  const activeItem = mobileNavItems.find(item => item.classList.contains('active'));
+  if (!activeItem) return;
+
+  requestAnimationFrame(() => {
+    activeItem.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
+  });
+}
+
 function syncActiveNav(id) {
   navItems.forEach(item => item.classList.toggle('active', item.dataset.section === id));
   railDots.forEach(dot => dot.classList.toggle('active', dot.dataset.target === id));
@@ -167,6 +181,8 @@ function syncActiveNav(id) {
     item.classList.toggle('active', isActive);
     item.classList.toggle('near-active', isAdjacent && !isActive);
   });
+
+  scrollMobileNavToActive();
 }
 
 function updatePreviewFromItem(item) {
@@ -657,6 +673,7 @@ function applyLanguage(immediate = false) {
   window.setTimeout(() => {
     body.classList.remove('lang-switching');
     scheduleSectionSizing();
+    scrollMobileNavToActive();
   }, LANG_FADE_OUT + LANG_FADE_IN_DELAY);
 }
 
