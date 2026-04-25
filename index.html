@@ -17,6 +17,10 @@
   <link rel="preload" as="image" href="assets/images/atlas-bianco-avorio.webp" type="image/webp" />
   <link rel="preload" as="image" href="assets/images/packaging-bianco-avorio.webp" type="image/webp" />
   <link rel="preload" as="image" fetchpriority="high" href="assets/icons/monogram-veil.png" />
+  <style>
+    /* Critical veil guard to prevent emblem FOUC before stylesheet loads */
+    #veil-emblem-stage { opacity: 0; visibility: hidden; transform: scale(0.972); }
+  </style>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,7 +37,7 @@
       <button type="button" class="lang-choice" data-lang="pt">PT</button>
     </div>
 
-    <div id="veil-emblem-stage" class="veil-emblem-stage" aria-hidden="true">
+    <div id="veil-emblem-stage" class="veil-emblem-stage" aria-hidden="true" style="opacity:0;visibility:hidden;transform:scale(0.972)">
       <img src="assets/icons/monogram-veil.png" alt="" decoding="sync" fetchpriority="high" />
     </div>
 

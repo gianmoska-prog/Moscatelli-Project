@@ -8,12 +8,12 @@ const TRANSITION_LOCK = 900;
 const GATE_SUCCESS_DELAY = 1080;
 const PANEL_REVEAL_DELAY = 1750;
 const BACKGROUND_REVEAL_DELAY = 120;
-const EMBLEM_REVEAL_DELAY = 420;
-const WORDMARK_REVEAL_DELAY = 4660;
-const SUBMARK_REVEAL_DELAY = 4860;
-const FORM_REVEAL_DELAY = 5280;
-const EMBLEM_FADE_DELAY = 3120;
-const THRESHOLD_REVEAL_DELAY = 4300;
+const EMBLEM_REVEAL_DELAY = 1180;
+const WORDMARK_REVEAL_DELAY = 4740;
+const SUBMARK_REVEAL_DELAY = 4940;
+const FORM_REVEAL_DELAY = 5360;
+const EMBLEM_FADE_DELAY = 3320;
+const THRESHOLD_REVEAL_DELAY = 4480;
 const LANG_FADE_OUT = 720;
 const LANG_FADE_IN_DELAY = 120;
 const LANGUAGE_STORAGE_KEY = 'moscatelli-studio-lang';
@@ -342,8 +342,12 @@ function handleVeilSubmit(event) {
 
 
 function revealVeilSequence() {
+  const emblemStage = document.getElementById('veil-emblem-stage');
   window.setTimeout(() => body.classList.add('background-revealed'), BACKGROUND_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('emblem-revealed'), EMBLEM_REVEAL_DELAY);
+  window.setTimeout(() => {
+    if (emblemStage) emblemStage.removeAttribute('style');
+    body.classList.add('emblem-revealed');
+  }, EMBLEM_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('emblem-fading'), EMBLEM_FADE_DELAY);
   window.setTimeout(() => body.classList.add('threshold-revealed', 'panel-revealed'), THRESHOLD_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('wordmark-revealed'), WORDMARK_REVEAL_DELAY);
