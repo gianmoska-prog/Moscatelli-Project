@@ -2413,6 +2413,7 @@ body.detail-open #stage {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  will-change: opacity, transform;
   transition: opacity 0.52s var(--ease-luxury), visibility 0.52s var(--ease-luxury);
 }
 
@@ -2426,11 +2427,9 @@ body.detail-open #stage {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 22% 20%, rgba(58,18,30,0.18), transparent 30%),
-    radial-gradient(circle at 82% 76%, rgba(24,48,95,0.20), transparent 34%),
-    rgba(3, 5, 11, 0.56);
-  backdrop-filter: blur(22px) saturate(118%);
-  -webkit-backdrop-filter: blur(22px) saturate(118%);
+    radial-gradient(circle at 22% 20%, rgba(58,18,30,0.12), transparent 28%),
+    radial-gradient(circle at 82% 76%, rgba(24,48,95,0.14), transparent 30%),
+    rgba(2, 5, 10, 0.88);
 }
 
 .detail-dialog {
@@ -2612,6 +2611,11 @@ body.detail-open #bg-ambient {
   body.detail-open #bg-ambient,
   body.detail-open::before {
     filter: none;
+  }
+
+  body.detail-open #bg-ambient,
+  body.detail-open .orb {
+    animation-play-state: paused !important;
   }
 
   .detail-overlay-backdrop {
