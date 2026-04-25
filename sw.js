@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v49-cache-touch-veil-hygiene';
+const CACHE_VERSION = 'moscatelli-studio-v51-material-ritual';
 const CORE_ASSETS = [
   './',
   './index.html',
