@@ -53,6 +53,7 @@ let mobileNavLastScrollLeft = 0;
 let mobileNavLastScrollTime = 0;
 let mobileNavAnticipationTimer = 0;
 let mobileNavLastSyncedId = null;
+let mobileNavFocusedTargetId = null;
 const NAV_ANTICIPATION_VELOCITY = 2;
 const NAV_LOOP_RESISTANCE_DISTANCE = 40;
 const SECTION_AMBIENTS = {
@@ -68,6 +69,7 @@ const sections = Array.from(document.querySelectorAll('.section'));
 const previewIndex = document.getElementById('nav-preview-index');
 const previewTitle = document.getElementById('nav-preview-title');
 const previewCopy = document.getElementById('nav-preview-copy');
+const navPreviewShell = document.querySelector('.nav-preview-shell');
 const introVeil = document.getElementById('intro-veil');
 const veilForm = document.getElementById('veil-form');
 const veilPanel = document.querySelector('.veil-panel');
@@ -192,7 +194,7 @@ function initializeMobileNavLoop() {
       const node = setName === 'base' ? item : item.cloneNode(true);
       node.dataset.loopSet = setName;
       node.dataset.loopIndex = String(index);
-      node.classList.remove('active', 'near-active', 'far-active');
+      node.classList.remove('active', 'near-active', 'far-active', 'current-page', 'anticipating');
       if (setName !== 'base') node.setAttribute('tabindex', '-1');
       fragment.appendChild(node);
     });
@@ -344,6 +346,7 @@ function bindMobileNavLoopScroll() {
       mobileNavLoopRaf = 0;
       handleMobileNavScrollMotion();
       normalizeMobileNavLoopScroll();
+      updateMobileNavFocusFromCenter();
     });
   }, { passive: true });
 
@@ -352,6 +355,7 @@ function bindMobileNavLoopScroll() {
       clearMobileNavAnticipation();
       setMobileNavLoopResistance(false);
       normalizeMobileNavLoopScroll();
+      updateMobileNavFocusFromCenter();
     }, { passive: true });
   }
 }
@@ -360,6 +364,31 @@ function getCircularNavDistance(indexA, indexB, total) {
   if (indexA < 0 || indexB < 0 || total <= 0) return Infinity;
   const direct = Math.abs(indexA - indexB);
   return Math.min(direct, total - direct);
+}
+
+function updateMobileNavFocusByTarget(targetId) {
+  if (!targetId || !mobileNavItems.length) return;
+  const focusIndex = sectionIds.indexOf(targetId);
+  const total = sectionIds.length;
+  if (focusIndex < 0 || total <= 0) return;
+
+  mobileNavFocusedTargetId = targetId;
+  mobileNavItems.forEach(item => {
+    const itemIndex = sectionIds.indexOf(item.dataset.target);
+    const distance = getCircularNavDistance(itemIndex, focusIndex, total);
+    const isFocused = item.dataset.target === targetId;
+    const isCurrentPage = item.dataset.target === state.currentSection;
+    item.classList.toggle('active', isFocused);
+    item.classList.toggle('near-active', distance === 1 && !isFocused);
+    item.classList.toggle('far-active', distance === 2 && !isFocused);
+    item.classList.toggle('current-page', isCurrentPage);
+  });
+}
+
+function updateMobileNavFocusFromCenter() {
+  const centered = getCenteredMobileNavItem();
+  if (!centered?.dataset?.target) return;
+  updateMobileNavFocusByTarget(centered.dataset.target);
 }
 
 function easeOutCubic(t) {
@@ -371,16 +400,29 @@ function getMobileNavTargetScroll(item) {
   return item.offsetLeft - ((mobileNavBar.clientWidth - item.offsetWidth) / 2);
 }
 
-function scrollMobileNavToActive() {
-  if (!mobileNavBar || !mobileNavItems.length) return;
-  const activeCandidates = mobileNavItems.filter(item => item.classList.contains('active'));
-  const activeItem = activeCandidates.find(item => item.dataset.loopSet === 'base') || activeCandidates[0];
-  if (!activeItem) return;
+function getBestMobileNavItemForTarget(targetId) {
+  if (!mobileNavBar || !targetId) return null;
+  const candidates = mobileNavItems.filter(item => item.dataset.target === targetId);
+  if (!candidates.length) return null;
+
+  const center = mobileNavBar.scrollLeft + (mobileNavBar.clientWidth / 2);
+  return candidates.reduce((best, item) => {
+    const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
+    const bestCenter = best.offsetLeft + (best.offsetWidth / 2);
+    return Math.abs(itemCenter - center) < Math.abs(bestCenter - center) ? item : best;
+  }, candidates[0]);
+}
+
+function scrollMobileNavToTarget(targetId) {
+  if (!mobileNavBar || !mobileNavItems.length || !targetId) return;
+  const targetItem = getBestMobileNavItemForTarget(targetId);
+  if (!targetItem) return;
 
   requestAnimationFrame(() => {
     normalizeMobileNavLoopScroll();
 
-    const target = getMobileNavTargetScroll(activeItem);
+    const refreshedTarget = getBestMobileNavItemForTarget(targetId) || targetItem;
+    const target = getMobileNavTargetScroll(refreshedTarget);
     if (!Number.isFinite(target)) return;
 
     if (mobileNavSmoothRaf) cancelAnimationFrame(mobileNavSmoothRaf);
@@ -391,6 +433,7 @@ function scrollMobileNavToActive() {
     const startTime = performance.now();
 
     if (Math.abs(distance) < 1) {
+      updateMobileNavFocusByTarget(targetId);
       normalizeMobileNavLoopScroll();
       return;
     }
@@ -403,6 +446,7 @@ function scrollMobileNavToActive() {
       const progress = Math.min(1, elapsed / duration);
       const eased = easeOutCubic(progress);
       mobileNavBar.scrollLeft = start + (distance * eased);
+      updateMobileNavFocusFromCenter();
 
       if (progress < 1) {
         mobileNavSmoothRaf = requestAnimationFrame(step);
@@ -410,12 +454,17 @@ function scrollMobileNavToActive() {
         mobileNavSmoothRaf = 0;
         mobileNavSmoothScrolling = false;
         normalizeMobileNavLoopScroll();
+        updateMobileNavFocusByTarget(targetId);
         setMobileNavLoopResistance(false);
       }
     };
 
     mobileNavSmoothRaf = requestAnimationFrame(step);
   });
+}
+
+function scrollMobileNavToActive() {
+  scrollMobileNavToTarget(state.currentSection);
 }
 
 function prepareMobileNavLabelTransition(id) {
@@ -461,27 +510,42 @@ function syncActiveNav(id) {
   navItems.forEach(item => item.classList.toggle('active', item.dataset.section === id));
   railDots.forEach(dot => dot.classList.toggle('active', dot.dataset.target === id));
 
-  const activeMobileIndex = sectionIds.indexOf(id);
-  const totalMobileSections = sectionIds.length;
   mobileNavItems.forEach(item => {
-    const itemIndex = sectionIds.indexOf(item.dataset.target);
-    const distance = getCircularNavDistance(itemIndex, activeMobileIndex, totalMobileSections);
-    const isActive = item.dataset.target === id;
-    item.classList.toggle('active', isActive);
-    item.classList.toggle('near-active', distance === 1 && !isActive);
-    item.classList.toggle('far-active', distance === 2 && !isActive);
+    item.classList.toggle('current-page', item.dataset.target === id);
     item.classList.remove('anticipating');
   });
 
+  updateMobileNavFocusByTarget(id);
   applySectionAmbientToNav(id);
-  scrollMobileNavToActive();
+  scrollMobileNavToTarget(id);
 }
 
-function updatePreviewFromItem(item) {
+function setPreviewContentFromItem(item) {
   if (!item) return;
   previewIndex.textContent = item.dataset.index || '01';
   previewTitle.textContent = t(item.dataset.previewTitleKey || 'sections.threshold');
   previewCopy.textContent = t(item.dataset.previewCopyKey || 'preview.threshold');
+}
+
+function applyPreviewAmbientFromItem(item) {
+  if (!navPreviewShell || !item) return;
+  const ambient = SECTION_AMBIENTS[item.dataset.section] || 'rgba(235, 226, 210, 0.045)';
+  navPreviewShell.style.setProperty('--preview-ambient', ambient);
+}
+
+function updatePreviewFromItem(item) {
+  if (!item) return;
+  const previewNodes = [previewIndex, previewTitle, previewCopy].filter(Boolean);
+
+  previewNodes.forEach(node => node.classList.add('is-swapping'));
+  applyPreviewAmbientFromItem(item);
+
+  requestAnimationFrame(() => {
+    setPreviewContentFromItem(item);
+    requestAnimationFrame(() => {
+      previewNodes.forEach(node => node.classList.remove('is-swapping'));
+    });
+  });
 
   navItems.forEach(entry => {
     const isActive = state.menuOpen ? entry === item : entry.dataset.section === state.currentSection;
@@ -792,6 +856,21 @@ function openMenu() {
 function closeMenu() {
   if (!state.menuOpen) return;
   state.menuOpen = false;
+
+  if (navOverlay) {
+    navOverlay.style.setProperty('transform', 'translateY(8px)', 'important');
+    const clearExitTransform = event => {
+      if (event.propertyName !== 'opacity' && event.propertyName !== 'transform') return;
+      navOverlay.style.removeProperty('transform');
+      navOverlay.removeEventListener('transitionend', clearExitTransform);
+    };
+    navOverlay.addEventListener('transitionend', clearExitTransform);
+    window.setTimeout(() => {
+      navOverlay.style.removeProperty('transform');
+      navOverlay.removeEventListener('transitionend', clearExitTransform);
+    }, 920);
+  }
+
   navOverlay.classList.remove('open');
   navOverlay.setAttribute('aria-hidden', 'true');
   menuToggle?.setAttribute('aria-expanded', 'false');

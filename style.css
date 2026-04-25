@@ -6152,3 +6152,260 @@ body::before {
     letter-spacing: 0.095em !important;
   }
 }
+
+/* v57 — pull-to-refresh suppression + centre-focused film-strip nav
+   Keeps the carousel readable while decoupling centred focus from the actual active page. */
+html,
+body {
+  overscroll-behavior-y: none !important;
+  overscroll-behavior-x: none !important;
+}
+
+#intro-veil,
+.section,
+.detail-dialog,
+.mobile-nav-bar {
+  overscroll-behavior-y: contain !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-bar {
+    overscroll-behavior-x: contain !important;
+  }
+
+  .mobile-nav-item,
+  .mobile-nav-item:hover,
+  .mobile-nav-item:focus,
+  .mobile-nav-item:active {
+    opacity: 0.54 !important;
+    color: rgba(235, 226, 210, 0.62) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    filter: none !important;
+  }
+
+  .mobile-nav-item > span:last-child {
+    font-weight: 400 !important;
+    letter-spacing: 0.055em !important;
+  }
+
+  .mobile-nav-item .mobile-nav-dot {
+    width: 2.2px !important;
+    height: 2.2px !important;
+    min-width: 2.2px !important;
+    min-height: 2.2px !important;
+    opacity: 0.52 !important;
+    box-shadow: none !important;
+  }
+
+  .mobile-nav-item.far-active {
+    opacity: 0.68 !important;
+    color: rgba(235, 226, 210, 0.70) !important;
+  }
+
+  .mobile-nav-item.far-active .mobile-nav-dot {
+    width: 2.65px !important;
+    height: 2.65px !important;
+    min-width: 2.65px !important;
+    min-height: 2.65px !important;
+    opacity: 0.66 !important;
+    box-shadow: 0 0 6px rgba(235, 226, 210, 0.08) !important;
+  }
+
+  .mobile-nav-item.near-active {
+    opacity: 0.84 !important;
+    color: rgba(235, 226, 210, 0.82) !important;
+  }
+
+  .mobile-nav-item.near-active .mobile-nav-dot {
+    width: 3.25px !important;
+    height: 3.25px !important;
+    min-width: 3.25px !important;
+    min-height: 3.25px !important;
+    opacity: 0.82 !important;
+    box-shadow:
+      0 0 8px rgba(235, 226, 210, 0.16),
+      0 0 14px rgba(235, 226, 210, 0.06) !important;
+  }
+
+  /* The centred item in the film-strip. This is visual focus, not necessarily the open page. */
+  .mobile-nav-item.active {
+    opacity: 1 !important;
+    color: rgba(246, 240, 230, 0.98) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.012em !important;
+  }
+
+  .mobile-nav-item.active > span:last-child {
+    font-weight: 500 !important;
+    letter-spacing: 0.095em !important;
+    text-shadow:
+      0 0 10px rgba(235, 226, 210, 0.15),
+      0 0 18px rgba(235, 226, 210, 0.07) !important;
+  }
+
+  .mobile-nav-item.active .mobile-nav-dot {
+    width: 4.45px !important;
+    height: 4.45px !important;
+    min-width: 4.45px !important;
+    min-height: 4.45px !important;
+    opacity: 1 !important;
+    background: rgba(246, 240, 230, 0.98) !important;
+    box-shadow:
+      0 0 9px rgba(235, 226, 210, 0.32),
+      0 0 18px rgba(235, 226, 210, 0.13) !important;
+  }
+
+  /* The page that is actually open. It remains identifiable even when the strip is browsed elsewhere. */
+  .mobile-nav-item.current-page:not(.active) {
+    opacity: 0.88 !important;
+    color: rgba(226, 198, 146, 0.88) !important;
+    font-weight: 500 !important;
+  }
+
+  .mobile-nav-item.current-page:not(.active) > span:last-child {
+    font-weight: 500 !important;
+    letter-spacing: 0.082em !important;
+    text-shadow: 0 0 10px rgba(146, 86, 52, 0.10) !important;
+  }
+
+  .mobile-nav-item.current-page:not(.active) .mobile-nav-dot {
+    background: rgba(226, 198, 146, 0.95) !important;
+    opacity: 0.9 !important;
+    box-shadow:
+      0 0 7px rgba(226, 198, 146, 0.16),
+      0 0 13px rgba(108, 31, 31, 0.08) !important;
+  }
+
+  .mobile-nav-item.current-page.active {
+    color: rgba(248, 242, 232, 1) !important;
+  }
+
+  .mobile-nav-item.current-page.active .mobile-nav-dot {
+    background: rgba(248, 242, 232, 1) !important;
+  }
+}
+
+/* v58 — weighted full-screen menu overlay refinement
+   Scoped to sandwich menu overlay. Preserves bottom carousel, threshold, monogram, and app content. */
+
+.menu-toggle span {
+  transform-origin: center center !important;
+}
+
+body.menu-open .menu-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) !important;
+}
+
+body.menu-open .menu-toggle span:nth-child(2) {
+  opacity: 0 !important;
+  width: 0 !important;
+}
+
+body.menu-open .menu-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg) !important;
+}
+
+.nav-overlay {
+  transform: translateY(-16px) !important;
+  transition:
+    opacity var(--dur-slow) var(--ease-luxury),
+    visibility var(--dur-slow) var(--ease-luxury),
+    transform var(--dur-slow) var(--ease-luxury) !important;
+}
+
+.nav-overlay.open {
+  transform: translateY(0) !important;
+}
+
+.nav-preview-shell {
+  --preview-ambient: transparent;
+  background:
+    radial-gradient(circle at 30% 30%, var(--preview-ambient), transparent 60%),
+    radial-gradient(circle at 30% 24%, rgba(20, 42, 88, 0.25), transparent 54%),
+    radial-gradient(circle at 78% 80%, rgba(84, 38, 20, 0.22), transparent 50%),
+    rgba(255,255,255,0.02) !important;
+  transition:
+    background 600ms ease,
+    border-color 600ms ease,
+    box-shadow 600ms ease !important;
+}
+
+.nav-preview-index,
+.nav-preview-title,
+.nav-preview-copy {
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease !important;
+}
+
+.nav-preview-index.is-swapping,
+.nav-preview-title.is-swapping,
+.nav-preview-copy.is-swapping {
+  opacity: 0 !important;
+  transform: translateY(6px) !important;
+}
+
+.nav-item {
+  position: relative !important;
+  padding-left: 0 !important;
+  overflow: hidden;
+  transition:
+    color 180ms ease-out,
+    opacity var(--dur-slow) var(--ease-luxury),
+    transform var(--dur-slow) var(--ease-luxury),
+    border-color 180ms ease-out !important;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  padding-left: 0 !important;
+  transform: translateX(8px) !important;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 60%;
+  transform: translateY(-50%) scaleY(0);
+  transform-origin: center;
+  background: var(--ivory-soft);
+  opacity: 0.72;
+  transition: transform 180ms ease-out, opacity 180ms ease-out;
+  pointer-events: none;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  transform: translateY(-50%) scaleY(1);
+}
+
+.nav-overlay:not(.open) .nav-item:nth-child(1) { transform: translateY(38px) !important; transition-delay: 0.04s !important; }
+.nav-overlay:not(.open) .nav-item:nth-child(2) { transform: translateY(30px) !important; transition-delay: 0.09s !important; }
+.nav-overlay:not(.open) .nav-item:nth-child(3) { transform: translateY(22px) !important; transition-delay: 0.13s !important; }
+.nav-overlay:not(.open) .nav-item:nth-child(4) { transform: translateY(16px) !important; transition-delay: 0.17s !important; }
+.nav-overlay:not(.open) .nav-item:nth-child(5) { transform: translateY(10px) !important; transition-delay: 0.20s !important; }
+.nav-overlay:not(.open) .nav-item:nth-child(6) { transform: translateY(6px) !important; transition-delay: 0.23s !important; }
+.nav-overlay:not(.open) .nav-item:nth-child(7) { transform: translateY(4px) !important; transition-delay: 0.26s !important; }
+
+.nav-overlay.open .nav-item {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.nav-overlay.open .nav-item:hover,
+.nav-overlay.open .nav-item.active {
+  transform: translateX(8px) !important;
+}
+
+.nav-overlay.open .nav-item:nth-child(1) { transition-delay: 0.04s !important; }
+.nav-overlay.open .nav-item:nth-child(2) { transition-delay: 0.09s !important; }
+.nav-overlay.open .nav-item:nth-child(3) { transition-delay: 0.13s !important; }
+.nav-overlay.open .nav-item:nth-child(4) { transition-delay: 0.17s !important; }
+.nav-overlay.open .nav-item:nth-child(5) { transition-delay: 0.20s !important; }
+.nav-overlay.open .nav-item:nth-child(6) { transition-delay: 0.23s !important; }
+.nav-overlay.open .nav-item:nth-child(7) { transition-delay: 0.26s !important; }
+

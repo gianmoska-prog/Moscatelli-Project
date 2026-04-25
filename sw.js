@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v56-nav-motion-ambient';
+const CACHE_VERSION = 'moscatelli-studio-v58-menu-overlay-weight';
 const CORE_ASSETS = [
   './',
   './index.html',
