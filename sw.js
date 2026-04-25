@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v42';
+const CACHE_VERSION = 'moscatelli-studio-v43';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,10 @@ const CORE_ASSETS = [
   './assets/icons/icon-512.png',
   './assets/icons/icon-192-maskable.png',
   './assets/icons/icon-512-maskable.png',
+  './assets/icons/icon-192-launch-neutral.png',
+  './assets/icons/icon-512-launch-neutral.png',
+  './assets/icons/icon-192-launch-neutral-maskable.png',
+  './assets/icons/icon-512-launch-neutral-maskable.png',
   './assets/icons/apple-touch-icon.png',
   './assets/icons/favicon-32.png',
   './assets/icons/favicon-16.png',

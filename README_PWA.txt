@@ -32,3 +32,5 @@ Version 18 adds a cinematic PIN threshold using access code 062026 for testing.
 
 
 Update note: v22 bumps the service-worker cache key and adds the veil monogram asset to the precache list.
+
+Update note: v43 replaces the manifest launch icons with neutral dark launch icons so Android's generated PWA splash screen cannot show the Moscatelli monogram before the in-app veil sequence. The visible favicon and Apple touch icon files remain untouched. Existing Android installs may need removal/reinstallation because Chrome/Android can retain installed-app splash metadata outside the service-worker cache.
