@@ -411,13 +411,32 @@ function populateDetail() {
   detailKicker.textContent = detail.kicker || '';
   detailTitle.textContent = detail.title || '';
   detailBody.innerHTML = detail.body || '';
+
   if (detail.image) {
-    detailImage.src = detail.image;
+    detailImage.style.opacity = '0';
+    detailImage.style.transition = '';
+    detailImage.onload = null;
     detailImage.alt = detail.alt || '';
     detailOverlay.classList.remove('no-media');
+
+    detailImage.onload = () => {
+      detailImage.style.transition = 'opacity 380ms ease';
+      detailImage.style.opacity = '1';
+      detailImage.onload = null;
+    };
+
+    detailImage.src = detail.image;
+
+    if (detailImage.complete) {
+      detailImage.style.transition = 'opacity 380ms ease';
+      detailImage.style.opacity = '1';
+      detailImage.onload = null;
+    }
   } else {
+    detailImage.onload = null;
     detailImage.removeAttribute('src');
     detailImage.alt = '';
+    detailImage.style.opacity = '1';
     detailOverlay.classList.add('no-media');
   }
 }
@@ -429,7 +448,7 @@ function openDetail(key) {
   body.classList.add('detail-open');
   detailOverlay.classList.add('open');
   detailOverlay.setAttribute('aria-hidden', 'false');
-  updateHeaderScrolled();
+  requestAnimationFrame(() => updateHeaderScrolled());
 }
 
 function closeDetail() {
@@ -438,7 +457,7 @@ function closeDetail() {
   body.classList.remove('detail-open');
   detailOverlay.classList.remove('open');
   detailOverlay.setAttribute('aria-hidden', 'true');
-  updateHeaderScrolled();
+  requestAnimationFrame(() => updateHeaderScrolled());
 }
 
 function updateCodexFilter() {

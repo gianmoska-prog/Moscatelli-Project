@@ -2487,7 +2487,9 @@ body.detail-open #stage {
 
 .detail-media-shell {
   min-height: 100%;
-  background: rgba(0,0,0,0.18);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: rgba(4, 7, 16, 0.4);
   border-right: 1px solid rgba(235, 226, 210, 0.08);
 }
 
