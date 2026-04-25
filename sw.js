@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v25';
+const CACHE_VERSION = 'moscatelli-studio-v29';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -19,6 +19,8 @@ const CORE_ASSETS = [
   './assets/images/ritual-oxblood.webp',
   './assets/images/label-study.webp'
 ];
+const GOOGLE_FONT_HOSTS = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
+const SHELL_SUFFIXES = ['/','/index.html','/style.css','/script.js','/manifest.webmanifest'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(CORE_ASSETS)));
@@ -32,32 +34,35 @@ self.addEventListener('activate', event => {
   );
 });
 
-const NETWORK_FIRST_PATHS = new Set([
-  './',
-  '/Moscatelli-Project/',
-  '/Moscatelli-Project/index.html',
-  '/Moscatelli-Project/style.css',
-  '/Moscatelli-Project/script.js',
-  '/Moscatelli-Project/manifest.webmanifest',
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/manifest.webmanifest'
-]);
+function isShellAsset(url) {
+  return SHELL_SUFFIXES.some(suffix => url.pathname === suffix || url.pathname.endsWith(suffix));
+}
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-
   const url = new URL(event.request.url);
+
+  if (GOOGLE_FONT_HOSTS.has(url.hostname)) {
+    event.respondWith(
+      caches.open(CACHE_VERSION).then(cache =>
+        cache.match(event.request).then(cached =>
+          cached || fetch(event.request).then(response => {
+            if (response && response.ok) cache.put(event.request, response.clone());
+            return response;
+          })
+        )
+      )
+    );
+    return;
+  }
+
   if (url.origin !== self.location.origin) return;
 
-  const isShellAsset = NETWORK_FIRST_PATHS.has(url.pathname) || url.pathname.endsWith('/index.html');
-
-  if (isShellAsset) {
+  if (isShellAsset(url)) {
     event.respondWith(
       fetch(event.request)
         .then(response => {
-          if (response && response.status === 200 && response.type === 'basic') {
+          if (response && response.ok) {
             const clone = response.clone();
             caches.open(CACHE_VERSION).then(cache => cache.put(event.request, clone));
           }
@@ -72,9 +77,10 @@ self.addEventListener('fetch', event => {
     caches.match(event.request).then(cached => {
       if (cached) return cached;
       return fetch(event.request).then(response => {
-        if (!response || response.status !== 200 || response.type !== 'basic') return response;
-        const clone = response.clone();
-        caches.open(CACHE_VERSION).then(cache => cache.put(event.request, clone));
+        if (response && response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_VERSION).then(cache => cache.put(event.request, clone));
+        }
         return response;
       }).catch(() => caches.match('./index.html'));
     })

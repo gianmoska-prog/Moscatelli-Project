@@ -4,7 +4,7 @@
 
 const EXIT_DURATION = 520;
 const ENTER_DELAY = 610;
-const TRANSITION_LOCK = 1450;
+const TRANSITION_LOCK = 900;
 const GATE_SUCCESS_DELAY = 1080;
 const PANEL_REVEAL_DELAY = 1750;
 const BACKGROUND_REVEAL_DELAY = 120;
@@ -48,6 +48,7 @@ const previewTitle = document.getElementById('nav-preview-title');
 const previewCopy = document.getElementById('nav-preview-copy');
 const introVeil = document.getElementById('intro-veil');
 const veilForm = document.getElementById('veil-form');
+const veilPanel = document.querySelector('.veil-panel');
 const veilInput = document.getElementById('veil-input');
 const veilLabel = document.getElementById('veil-label');
 const veilPinSlots = Array.from(document.querySelectorAll('.veil-pin-slot'));
@@ -214,9 +215,6 @@ function focusPinInput() {
 
 function requestPinKeyboard() {
   focusPinInput();
-  [60, 140, 240, 420, 700].forEach(delay => {
-    window.setTimeout(() => focusPinInput(), delay);
-  });
 }
 
 
@@ -243,11 +241,15 @@ function resetPinFeedback() {
 
 function flashVeilError() {
   veilForm?.classList.remove('is-error');
+  veilPanel?.classList.remove('is-error');
   if (veilForm) void veilForm.offsetWidth;
+  if (veilPanel) void veilPanel.offsetWidth;
   veilForm?.classList.add('is-error');
+  veilPanel?.classList.add('is-error');
   window.setTimeout(() => {
     veilLabel?.classList.remove('is-error');
     veilForm?.classList.remove('is-error');
+    veilPanel?.classList.remove('is-error');
   }, 1200);
 }
 
@@ -286,7 +288,10 @@ function revealVeilSequence() {
   window.setTimeout(() => body.classList.add('threshold-revealed', 'panel-revealed'), THRESHOLD_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('wordmark-revealed'), WORDMARK_REVEAL_DELAY);
   window.setTimeout(() => body.classList.add('submark-revealed'), SUBMARK_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('form-revealed'), FORM_REVEAL_DELAY);
+  window.setTimeout(() => {
+    body.classList.add('form-revealed');
+    focusPinInput();
+  }, FORM_REVEAL_DELAY);
 }
 
 
@@ -536,7 +541,9 @@ veilInput?.addEventListener('input', () => {
   updatePinSlots(clean);
   if (clean.length === 6) {
     window.setTimeout(() => {
-      if (sanitizePinValue(veilInput.value).length === 6) veilForm?.requestSubmit();
+      if (sanitizePinValue(veilInput.value).length === 6) {
+        handleVeilSubmit({ preventDefault: () => {} });
+      }
     }, 120);
   }
 });
@@ -593,7 +600,6 @@ window.addEventListener('load', () => {
   body.classList.remove('preload');
   updateSectionSizing();
   revealVeilSequence();
-  if (body.classList.contains('gate-active') && veilInput) { [FORM_REVEAL_DELAY + 2000, FORM_REVEAL_DELAY + 2240, FORM_REVEAL_DELAY + 2720].forEach(delay => window.setTimeout(() => requestPinKeyboard(), delay)); }
 });
 window.addEventListener('resize', updateSectionSizing, { passive: true });
 
