@@ -5032,7 +5032,7 @@ body.emblem-fading #veil-emblem-stage {
 }
 
 
-/* v45 — app icon compromise + mobile bottom navigation restraint
+/* App icon compromise + mobile bottom navigation restraint
    Removes the rounded active frame and the pressed square flash.
    Keeps only the word and dot visible, with tiered soft illumination. */
 @media (max-width: 768px) {
@@ -5181,7 +5181,7 @@ body.emblem-fading #veil-emblem-stage {
 }
 
 
-/* v47 — verified mobile scroll/nav hardening
+/* Verified mobile scroll/nav hardening
    Final defensive layer after third-party audit. Keeps the app icon compromise intact. */
 @media (max-width: 768px) {
   .section.active,
@@ -6575,7 +6575,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
   transition-delay: 0s !important;
 }
 
-/* v62 — live link thumbnails and external link affordance */
+/* v63 — live link thumbnails, Financial Suite card, and external link affordance */
 .link-card--external {
   cursor: pointer;
 }

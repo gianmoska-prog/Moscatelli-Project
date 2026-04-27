@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v62-live-links';
+const CACHE_VERSION = 'moscatelli-studio-v63-financial-suite';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -15,25 +15,26 @@ const CORE_ASSETS = [
   './assets/startup/apple-splash-2532x1170.png',
   './assets/startup/apple-splash-1080x2340.png',
   './assets/startup/apple-splash-2340x1080.png',
-  './assets/icons/icon-48-launch-mark-v45.png',
-  './assets/icons/icon-72-launch-mark-v45.png',
-  './assets/icons/icon-96-launch-mark-v45.png',
-  './assets/icons/icon-128-launch-mark-v45.png',
-  './assets/icons/icon-144-launch-mark-v45.png',
-  './assets/icons/icon-192-launch-mark-v45.png',
-  './assets/icons/icon-256-launch-mark-v45.png',
-  './assets/icons/icon-384-launch-mark-v45.png',
-  './assets/icons/icon-512-launch-mark-v45.png',
-  './assets/icons/icon-192-launch-mark-v45-maskable.png',
-  './assets/icons/icon-384-launch-mark-v45-maskable.png',
-  './assets/icons/icon-512-launch-mark-v45-maskable.png',
+  './assets/icons/icon-48-launch-mark.png',
+  './assets/icons/icon-72-launch-mark.png',
+  './assets/icons/icon-96-launch-mark.png',
+  './assets/icons/icon-128-launch-mark.png',
+  './assets/icons/icon-144-launch-mark.png',
+  './assets/icons/icon-192-launch-mark.png',
+  './assets/icons/icon-256-launch-mark.png',
+  './assets/icons/icon-384-launch-mark.png',
+  './assets/icons/icon-512-launch-mark.png',
+  './assets/icons/icon-192-launch-mark-maskable.png',
+  './assets/icons/icon-384-launch-mark-maskable.png',
+  './assets/icons/icon-512-launch-mark-maskable.png',
   './assets/images/atlas-bianco-avorio.webp',
   './assets/images/atlas-terra-bruna.webp',
   './assets/images/packaging-bianco-avorio.webp',
   './assets/images/ritual-oxblood.webp',
   './assets/images/label-study.webp',
   './assets/images/link-moscatelli-website.webp',
-  './assets/images/link-pitch-deck.webp'
+  './assets/images/link-pitch-deck.webp',
+  './assets/images/link-financial-suite.webp'
 ];
 const GOOGLE_FONT_HOSTS = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
 const SHELL_SUFFIXES = ['/','/index.html','/style.css','/script.js','/manifest.webmanifest'];
