@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v77  
-Last updated: 02 May 2026, 18:08 CEST  
+Version: v78  
+Last updated: 02 May 2026, 18:58 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -136,6 +136,19 @@ Important structural choices:
 - Kept the patch visual-only and static; no new UI features or content areas were introduced.
 
 
+
+### v78 — Translation coverage and pointer responsiveness
+
+Patch XV corrected visible untranslated fragments and improved the custom desktop pointer response without adding interface weight.
+
+Confirmed refinements:
+- Replaced remaining English operational labels in Italian and Portuguese/Brazilian where they read as untranslated UI rather than intentional MOSCATELLI terminology.
+- Added translation coverage for the menu language label and localized ARIA labels used by navigation, detail triggers, directories, and controls.
+- Kept MOSCATELLI-specific terms stable where appropriate: Lotto, Manufattura, Studio, Bianco Avorio, Terra Bruna, Rosso Essenza / oxblood, GSM, MOQ, and URL strings.
+- Changed the custom pointer movement from left/top layout updates to transform-based requestAnimationFrame updates.
+- Throttled the ambient spotlight update so pointer movement remains smoother and does not repaint the interface on every movement event.
+- Added no assets, no libraries, and no new UI modules.
+
 ### v77 — Translation accuracy and contextual language audit
 
 Patch XIV audited the in-app language system across English, Italian, and Portuguese/Brazilian. The patch corrected contextual translation issues without adding UI, assets, libraries, or runtime weight.
@@ -238,6 +251,6 @@ Before delivering a ZIP:
 
 ## 8. Current Delivery Notes
 
-v77 is a translation accuracy and contextual language patch. It keeps the app visually and structurally unchanged while improving Italian and Portuguese/Brazilian wording so the language reflects approved decisions, sourcing context, launch discipline, and MOSCATELLI tone more accurately.
+v78 is a translation coverage and pointer responsiveness patch. It keeps the app visually and structurally unchanged while correcting visible untranslated English fragments in Italian and Portuguese/Brazilian, localizing accessibility labels, and making the custom desktop pointer smoother through transform-based movement and throttled spotlight repainting.
 
 The correct principle remains: polish must not add weight. Prefer fewer effects, shorter transitions, restrained shadows, and delayed settlement over live class churn during gestures.

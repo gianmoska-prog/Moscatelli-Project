@@ -10,16 +10,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MOSCATELLI Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=77" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=77" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=77" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=77" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=77" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=77" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=77" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=77" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=77" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=77" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="manifest" href="manifest.webmanifest?v=78" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=78" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=78" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=78" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=78" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=78" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=78" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=78" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=78" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=78" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <style>
     /* Critical launch/veil guards before stylesheet loads */
     html, body { background: #02050a; }
@@ -27,7 +27,7 @@
     #veil-emblem-stage { opacity: 0; visibility: hidden; transform: scale(0.972); }
     #veil-emblem-stage:not(.image-primed) img { opacity: 0; visibility: hidden; }
   </style>
-  <link rel="stylesheet" href="style.css?v=77" />
+  <link rel="stylesheet" href="style.css?v=78" />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
@@ -37,7 +37,7 @@
   <div id="intro-veil" aria-hidden="false">
     <div class="veil-backdrop"></div>
 
-    <div class="lang-switcher lang-switcher--veil" data-lang-switcher aria-label="Language selector">
+    <div class="lang-switcher lang-switcher--veil" data-lang-switcher aria-label="Language selector" data-i18n-aria-label="aria.languageSelector">
       <button type="button" class="lang-choice" data-lang="en">EN</button>
       <button type="button" class="lang-choice" data-lang="it">IT</button>
       <button type="button" class="lang-choice" data-lang="pt">PT</button>
@@ -92,14 +92,14 @@
   </div>
 
   <header id="site-header">
-    <button class="header-logo" data-action="go-home" aria-label="Return to threshold">
+    <button class="header-logo" data-action="go-home" aria-label="Return to threshold" data-i18n-aria-label="aria.returnThreshold">
       <span class="logo-wordmark">MOSCATELLI</span>
       <span class="logo-rule"></span>
       <span class="logo-state">Studio</span>
     </button>
 
     <div class="header-right">
-      <div class="lang-switcher lang-switcher--header" data-lang-switcher aria-label="Language selector">
+      <div class="lang-switcher lang-switcher--header" data-lang-switcher aria-label="Language selector" data-i18n-aria-label="aria.languageSelector">
         <button type="button" class="lang-choice" data-lang="en">EN</button>
         <button type="button" class="lang-choice" data-lang="it">IT</button>
         <button type="button" class="lang-choice" data-lang="pt">PT</button>
@@ -107,10 +107,10 @@
 
       <div class="header-meta">
         <span id="section-index" class="section-index">01</span>
-        <span id="section-label" class="section-label">Dashboard</span>
+        <span id="section-label" class="section-label" data-i18n="sections.threshold">Dashboard</span>
       </div>
 
-      <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-overlay">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" data-i18n-aria-label="aria.openNavigation" aria-expanded="false" aria-controls="nav-overlay">
         <span></span>
         <span></span>
         <span></span>
@@ -118,7 +118,7 @@
     </div>
   </header>
 
-  <aside class="section-rail" aria-label="Section rail">
+  <aside class="section-rail" aria-label="Section rail" data-i18n-aria-label="aria.sectionRail">
     <button class="rail-dot active" data-action="go-section" data-target="home" data-index="01"><span data-i18n="sections.threshold">Dashboard</span></button>
     <button class="rail-dot" data-action="go-section" data-target="briefing" data-index="02"><span data-i18n="sections.mandate">Mandate</span></button>
     <button class="rail-dot" data-action="go-section" data-target="atlas" data-index="03"><span data-i18n="sections.atlas">Atlas</span></button>
@@ -134,7 +134,7 @@
     <div class="nav-bg-texture"></div>
 
     <div class="nav-inner">
-      <button class="nav-close" id="menu-close" aria-label="Close menu">
+      <button class="nav-close" id="menu-close" aria-label="Close menu" data-i18n-aria-label="aria.closeMenu">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" stroke-width="1.2"/>
           <line x1="18" y1="2" x2="2" y2="18" stroke="currentColor" stroke-width="1.2"/>
@@ -142,9 +142,9 @@
       </button>
       <div class="nav-panel nav-menu-panel">
         <div class="nav-topline" data-i18n="nav.topline">Navigation</div>
-        <div class="nav-menu-language" aria-label="Language selector inside menu">
-          <span class="nav-menu-language__label">Lingua</span>
-          <div class="lang-switcher lang-switcher--menu" data-lang-switcher aria-label="Language selector">
+        <div class="nav-menu-language" aria-label="Language selector inside menu" data-i18n-aria-label="aria.languageSelectorMenu">
+          <span class="nav-menu-language__label" data-i18n="nav.languageLabel">Language</span>
+          <div class="lang-switcher lang-switcher--menu" data-lang-switcher aria-label="Language selector" data-i18n-aria-label="aria.languageSelector">
             <button type="button" class="lang-choice" data-lang="en">EN</button>
             <button type="button" class="lang-choice" data-lang="it">IT</button>
             <button type="button" class="lang-choice" data-lang="pt">PT</button>
@@ -167,8 +167,8 @@
         <div class="nav-preview-shell">
           <span id="nav-preview-index" class="nav-preview-index">01</span>
           <span class="nav-preview-kicker" data-i18n="nav.selected">Selected</span>
-          <h2 id="nav-preview-title" class="nav-preview-title">Dashboard</h2>
-          <p id="nav-preview-copy" class="nav-preview-copy">Operational surface for priorities, open decisions, launch signals, and current momentum.</p>
+          <h2 id="nav-preview-title" class="nav-preview-title" data-i18n="sections.threshold">Dashboard</h2>
+          <p id="nav-preview-copy" class="nav-preview-copy" data-i18n="preview.threshold">Operational surface for priorities, open decisions, launch signals, and current momentum.</p>
 
           <div class="nav-preview-meta">
             <span data-i18n="nav.metaArrows">Arrows to move</span>
@@ -185,8 +185,8 @@
   <div
     class="studio-version-label"
     data-last-change="Last changed: 02 May 2026, 17:25 CEST"
-    aria-label="MOSCATELLI Studio version v77. Last changed: 02 May 2026, 18:34 CEST"
-  >v77</div>
+    aria-label="MOSCATELLI Studio version v78. Last changed: 02 May 2026, 18:58 CEST" data-i18n-aria-label="aria.version"
+  >v78</div>
 
   <main id="stage">
     <section id="section-home" class="section active" data-label-key="sections.threshold" data-index="01">
@@ -197,13 +197,13 @@
             <h1 data-i18n="dashboard.title">Dashboard</h1>
             <p data-i18n="dashboard.intro">A compact operating view for Moscatelli’s current proof phase: priorities, open decisions, launch signals, and the next action to protect momentum.</p>
           </div>
-          <div class="dashboard-state" aria-label="Current Studio state">
+          <div class="dashboard-state" aria-label="Current Studio state" data-i18n-aria-label="aria.currentState">
             <span data-i18n="dashboard.stateLabel">Current state</span>
             <strong data-i18n="dashboard.stateValue">Structure in progress</strong>
           </div>
         </div>
 
-        <div class="dashboard-grid" aria-label="Moscatelli operational status">
+        <div class="dashboard-grid" aria-label="Moscatelli operational status" data-i18n-aria-label="aria.operationalStatus">
           <article class="dashboard-card" tabindex="0" data-dashboard-detail="The first static Lotto I workspace is now present: dimensions, material direction, GSM, fringe, colourways, packaging dependency, and open technical questions.">
             <span class="dashboard-card__label" data-i18n="dashboard.cards.lotto.label">Lotto I readiness</span>
             <strong data-i18n="dashboard.cards.lotto.value">Workspace established</strong>
@@ -251,7 +251,7 @@
             <span class="launch-readiness-seal" data-i18n="launchReadiness.seal">Static v1</span>
           </div>
 
-          <div class="launch-readiness-grid" aria-label="Launch readiness checklist">
+          <div class="launch-readiness-grid" aria-label="Launch readiness checklist" data-i18n-aria-label="aria.launchChecklist">
             <article class="launch-readiness-item">
               <div class="launch-readiness-item__topline">
                 <span data-i18n="launchReadiness.areas.product.label">Product</span>
@@ -459,7 +459,7 @@
           <h2 data-i18n="codex.title">Codex</h2>
         </div>
 
-        <div class="vault-topline" role="toolbar" aria-label="Codex filters">
+        <div class="vault-topline" role="toolbar" aria-label="Codex filters" data-i18n-aria-label="aria.codexFilters">
           <button class="mini-tag vault-filter" type="button" data-codex-filter="material" data-i18n="codex.tag1" aria-pressed="false">Material</button>
           <button class="mini-tag vault-filter" type="button" data-codex-filter="validation" data-i18n="codex.tag2" aria-pressed="false">Validation</button>
           <button class="mini-tag vault-filter" type="button" data-codex-filter="commercial" data-i18n="codex.tag3" aria-pressed="false">Commercial</button>
@@ -528,7 +528,7 @@
           <p data-i18n="decisions.intro">A first static register for locked, active, and pending decisions. This surface exists to prevent repeated debates and preserve the reasoning behind each standard.</p>
         </div>
 
-        <div class="decision-register-grid" aria-label="Moscatelli decision register entries">
+        <div class="decision-register-grid" aria-label="Moscatelli decision register entries" data-i18n-aria-label="aria.decisionRegister">
           <button class="decision-entry is-detail-trigger" type="button" data-detail="decision1" aria-label="Open decision: Ivory packaging confirmed">
             <span class="decision-entry__meta"><span data-i18n="decisions.entries.d1.date">2026</span> · <span data-i18n="decisions.entries.d1.category">Packaging</span></span>
             <strong data-i18n="decisions.entries.d1.title">Ivory packaging confirmed as primary direction</strong>
@@ -572,7 +572,7 @@
           </button>
         </div>
 
-        <aside class="decision-rejected-panel" aria-label="Rejected decision preview">
+        <aside class="decision-rejected-panel" aria-label="Rejected decision preview" data-i18n-aria-label="aria.rejectedPreview">
           <div class="decision-rejected-panel__copy">
             <span class="panel-kicker" data-i18n="decisions.rejected.kicker">Rejected entries</span>
             <p data-i18n="decisions.rejected.intro">Rejected ideas are kept separate so the house remembers what was refused without polluting the active register.</p>
@@ -608,7 +608,7 @@
           <p data-i18n="lotto.intro">A first static workspace for the proof object. Lotto I is active; Lotto II and III remain reserved until the first product earns expansion.</p>
         </div>
 
-        <div class="lotto-tabs" aria-label="Lotto workspaces">
+        <div class="lotto-tabs" aria-label="Lotto workspaces" data-i18n-aria-label="aria.lottoWorkspaces">
           <button class="lotto-tab is-active" type="button" aria-current="true">
             <span data-i18n="lotto.tabs.one.label">I</span>
             <small data-i18n="lotto.tabs.one.copy">Active</small>
@@ -630,7 +630,7 @@
             <p data-i18n="lotto.product.copy">The first Moscatelli proof object: narrow, disciplined, materially judged, and not allowed to expand before physical validation.</p>
           </div>
 
-          <div class="lotto-spec-grid" aria-label="Lotto I technical direction">
+          <div class="lotto-spec-grid" aria-label="Lotto I technical direction" data-i18n-aria-label="aria.lottoTechnical">
             <article class="lotto-spec-card">
               <span class="lotto-spec-label" data-i18n="lotto.specs.dimensions.label">Dimensions</span>
               <strong data-i18n="lotto.specs.dimensions.value">190 × 31 cm</strong>
@@ -767,7 +767,7 @@
             <button class="supplier-desk-close" type="button" data-action="toggle-supplier-desk" aria-controls="supplier-desk-panel" aria-expanded="true" data-i18n="supplierDesk.close">Close Supplier Desk</button>
           </div>
 
-          <div class="supplier-category-strip" aria-label="Supplier categories">
+          <div class="supplier-category-strip" aria-label="Supplier categories" data-i18n-aria-label="aria.supplierCategories">
             <span class="panel-kicker" data-i18n="supplierDesk.categories.kicker">Categories</span>
             <div class="supplier-category-list">
               <span data-i18n="supplierDesk.categories.mills">Mills</span>
@@ -886,14 +886,14 @@
             <p class="directory-warning" data-i18n="links.warning">Private MOSCATELLI links shouldn't be shared with third parties outside of the business.</p>
           </div>
 
-          <div class="directory-grid" aria-label="MOSCATELLI internal links directory">
+          <div class="directory-grid" aria-label="MOSCATELLI internal links directory" data-i18n-aria-label="aria.linksDirectory">
             <section class="directory-category" aria-labelledby="directory-public-title">
               <div class="directory-category__header">
                 <span data-i18n="links.categories.public.kicker">01</span>
                 <h3 id="directory-public-title" data-i18n="links.categories.public.title">Public Surfaces</h3>
               </div>
               <div class="directory-list">
-                <a class="directory-item directory-item--active" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser">
+                <a class="directory-item directory-item--active" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser" data-i18n-aria-label="aria.openWebsite">
                   <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
                   <strong data-i18n="links.items.website.title">MOSCATELLI Website</strong>
                   <small data-i18n="links.items.website.note">moscatelli-official.netlify.app</small>
@@ -935,7 +935,7 @@
                 <h3 id="directory-finance-title" data-i18n="links.categories.finance.title">Finance</h3>
               </div>
               <div class="directory-list">
-                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser">
+                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser" data-i18n-aria-label="aria.openFinance">
                   <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
                   <strong data-i18n="links.items.financeSuite.title">Financial Suite</strong>
                   <small data-i18n="links.items.financeSuite.note">gianmoska-prog.github.io/Finance-Suite</small>
@@ -956,7 +956,7 @@
                 <h3 id="directory-investor-title" data-i18n="links.categories.investor.title">Investor Materials</h3>
               </div>
               <div class="directory-list">
-                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Moscatelli/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli pitch deck in browser">
+                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Moscatelli/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli pitch deck in browser" data-i18n-aria-label="aria.openPitch">
                   <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
                   <strong data-i18n="links.items.pitchDeck.title">Pitch Deck</strong>
                   <small data-i18n="links.items.pitchDeck.note">gianmoska-prog.github.io/Moscatelli</small>
@@ -1041,7 +1041,7 @@
     </section>
   </main>
 
-  <nav class="mobile-nav-bar" aria-label="Mobile section navigation">
+  <nav class="mobile-nav-bar" aria-label="Mobile section navigation" data-i18n-aria-label="aria.mobileNavigation">
     <button class="mobile-nav-item active" type="button" data-action="go-section" data-target="home"><span class="mobile-nav-dot"></span><span data-i18n="sections.threshold">Dashboard</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="briefing"><span class="mobile-nav-dot"></span><span data-i18n="sections.mandate">Mandate</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="atlas"><span class="mobile-nav-dot"></span><span data-i18n="sections.atlas">Atlas</span></button>
@@ -1081,6 +1081,6 @@
     <span class="mc-pointer-line"></span>
   </div>
 
-  <script src="script.js?v=77"></script>
+  <script src="script.js?v=78"></script>
 </body>
 </html>

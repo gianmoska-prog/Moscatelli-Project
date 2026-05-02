@@ -1834,11 +1834,12 @@ body.transition-backward .section.exiting {
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  transform: translate(-50%, -50%);
+  transform: translate3d(50vw, 50vh, 0) translate(-50%, -50%);
   transform-origin: center;
-  will-change: left, top, opacity;
-  transition: opacity 160ms ease;
+  will-change: transform, opacity;
+  transition: opacity 120ms ease;
   filter: blur(0.2px);
+  contain: layout paint style;
 }
 
 .mc-pointer-ring,
