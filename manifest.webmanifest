@@ -1,7 +1,7 @@
 {
   "id": "./?app-id=moscatelli-studio",
-  "name": "Moscatelli Studio",
-  "short_name": "Moscatelli Studio",
+  "name": "MOSCATELLI Studio",
+  "short_name": "MOSCATELLI Studio",
   "description": "Private internal archive and operating surface for Moscatelli.",
   "start_url": "./",
   "scope": "./",

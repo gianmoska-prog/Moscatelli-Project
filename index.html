@@ -3,25 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual" />
-  <title>Moscatelli Studio — Internal Draft II</title>
-  <meta name="description" content="Moscatelli Studio — private internal archive and operating surface." />
+  <title>MOSCATELLI Studio</title>
+  <meta name="description" content="MOSCATELLI Studio — private internal archive and operating surface." />
   <meta name="theme-color" content="#02050a" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Moscatelli Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=63" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=63" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=63" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=63" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=63" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=63" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=63" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=63" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=63" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=63" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="preload" as="image" href="assets/images/atlas-bianco-avorio.webp" type="image/webp" />
-  <link rel="preload" as="image" href="assets/images/packaging-bianco-avorio.webp" type="image/webp" />
+  <meta name="apple-mobile-web-app-title" content="MOSCATELLI Studio" />
+  <link rel="manifest" href="manifest.webmanifest?v=77" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=77" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=77" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=77" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=77" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=77" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=77" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=77" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=77" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=77" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <style>
     /* Critical launch/veil guards before stylesheet loads */
     html, body { background: #02050a; }
@@ -29,7 +27,7 @@
     #veil-emblem-stage { opacity: 0; visibility: hidden; transform: scale(0.972); }
     #veil-emblem-stage:not(.image-primed) img { opacity: 0; visibility: hidden; }
   </style>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=77" />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
@@ -109,7 +107,7 @@
 
       <div class="header-meta">
         <span id="section-index" class="section-index">01</span>
-        <span id="section-label" class="section-label">Threshold</span>
+        <span id="section-label" class="section-label">Dashboard</span>
       </div>
 
       <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-overlay">
@@ -121,13 +119,15 @@
   </header>
 
   <aside class="section-rail" aria-label="Section rail">
-    <button class="rail-dot active" data-action="go-section" data-target="home" data-index="01"><span data-i18n="sections.threshold">Threshold</span></button>
+    <button class="rail-dot active" data-action="go-section" data-target="home" data-index="01"><span data-i18n="sections.threshold">Dashboard</span></button>
     <button class="rail-dot" data-action="go-section" data-target="briefing" data-index="02"><span data-i18n="sections.mandate">Mandate</span></button>
     <button class="rail-dot" data-action="go-section" data-target="atlas" data-index="03"><span data-i18n="sections.atlas">Atlas</span></button>
     <button class="rail-dot" data-action="go-section" data-target="vault" data-index="04"><span data-i18n="sections.codex">Codex</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="studio" data-index="05"><span data-i18n="sections.manufattura">Manufattura</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="signal" data-index="06"><span data-i18n="sections.circuit">Circuit</span></button>
-    <button class="rail-dot" data-action="go-section" data-target="links" data-index="07"><span data-i18n="sections.links">Links</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="decisions" data-index="05"><span data-i18n="sections.decisions">Decision Register</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="lotto" data-index="06"><span data-i18n="sections.lotto">Lotto (I - II - III)</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="studio" data-index="07"><span data-i18n="sections.manufattura">Manufattura</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="signal" data-index="08"><span data-i18n="sections.circuit">Circuit</span></button>
+    <button class="rail-dot" data-action="go-section" data-target="links" data-index="09"><span data-i18n="sections.links">Links</span></button>
   </aside>
 
   <nav id="nav-overlay" class="nav-overlay" aria-hidden="true">
@@ -151,13 +151,15 @@
           </div>
         </div>
         <ul class="nav-list">
-          <li class="nav-item active" data-section="home" data-index="01" data-i18n="sections.threshold" data-preview-title-key="sections.threshold" data-preview-copy-key="preview.threshold">Threshold</li>
+          <li class="nav-item active" data-section="home" data-index="01" data-i18n="sections.threshold" data-preview-title-key="sections.threshold" data-preview-copy-key="preview.threshold">Dashboard</li>
           <li class="nav-item" data-section="briefing" data-index="02" data-i18n="sections.mandate" data-preview-title-key="sections.mandate" data-preview-copy-key="preview.mandate">Mandate</li>
           <li class="nav-item" data-section="atlas" data-index="03" data-i18n="sections.atlas" data-preview-title-key="sections.atlas" data-preview-copy-key="preview.atlas">Atlas</li>
           <li class="nav-item" data-section="vault" data-index="04" data-i18n="sections.codex" data-preview-title-key="sections.codex" data-preview-copy-key="preview.codex">Codex</li>
-          <li class="nav-item" data-section="studio" data-index="05" data-i18n="sections.manufattura" data-preview-title-key="sections.manufattura" data-preview-copy-key="preview.manufattura">Manufattura</li>
-          <li class="nav-item" data-section="signal" data-index="06" data-i18n="sections.circuit" data-preview-title-key="sections.circuit" data-preview-copy-key="preview.circuit">Circuit</li>
-          <li class="nav-item" data-section="links" data-index="07" data-i18n="sections.links" data-preview-title-key="sections.links" data-preview-copy-key="preview.links">Links</li>
+          <li class="nav-item" data-section="decisions" data-index="05" data-i18n="sections.decisions" data-preview-title-key="sections.decisions" data-preview-copy-key="preview.decisions">Decision Register</li>
+          <li class="nav-item" data-section="lotto" data-index="06" data-i18n="sections.lotto" data-preview-title-key="sections.lotto" data-preview-copy-key="preview.lotto">Lotto (I - II - III)</li>
+          <li class="nav-item" data-section="studio" data-index="07" data-i18n="sections.manufattura" data-preview-title-key="sections.manufattura" data-preview-copy-key="preview.manufattura">Manufattura</li>
+          <li class="nav-item" data-section="signal" data-index="08" data-i18n="sections.circuit" data-preview-title-key="sections.circuit" data-preview-copy-key="preview.circuit">Circuit</li>
+          <li class="nav-item" data-section="links" data-index="09" data-i18n="sections.links" data-preview-title-key="sections.links" data-preview-copy-key="preview.links">Links</li>
         </ul>
       </div>
 
@@ -165,8 +167,8 @@
         <div class="nav-preview-shell">
           <span id="nav-preview-index" class="nav-preview-index">01</span>
           <span class="nav-preview-kicker" data-i18n="nav.selected">Selected</span>
-          <h2 id="nav-preview-title" class="nav-preview-title">Threshold</h2>
-          <p id="nav-preview-copy" class="nav-preview-copy">Private entry point. A room for judgment, rhythm, and alignment before launch.</p>
+          <h2 id="nav-preview-title" class="nav-preview-title">Dashboard</h2>
+          <p id="nav-preview-copy" class="nav-preview-copy">Operational surface for priorities, open decisions, launch signals, and current momentum.</p>
 
           <div class="nav-preview-meta">
             <span data-i18n="nav.metaArrows">Arrows to move</span>
@@ -180,35 +182,160 @@
 
   <div class="internal-reserved-mark" aria-hidden="true">Riservato — Uso interno esclusivo</div>
 
+  <div
+    class="studio-version-label"
+    data-last-change="Last changed: 02 May 2026, 17:25 CEST"
+    aria-label="MOSCATELLI Studio version v77. Last changed: 02 May 2026, 18:34 CEST"
+  >v77</div>
+
   <main id="stage">
     <section id="section-home" class="section active" data-label-key="sections.threshold" data-index="01">
-      <div class="section-inner home-inner">
-        <div class="home-topline">
-          <span class="status-pill" data-i18n="home.statusPill">Internal draft</span>
-          <span class="status-copy" data-i18n="home.statusCopy">One surface for judgment, rhythm, and alignment.</span>
-        </div>
-
-        <div class="home-headline">
-          <p class="eyebrow" data-i18n="home.eyebrow">Rome / internal studio / authorial control</p>
-          <h1 data-i18n-html="home.h1">Protect the standard.<br /><em>Advance only</em> what earns the name.</h1>
-          <p class="sub" data-i18n="home.sub">This room exists to keep Moscatelli coherent: image, material, ritual, people, and launch decisions held in one controlled surface.</p>
-        </div>
-
-        <div class="home-actions">
-          <button class="btn-primary" data-action="go-section" data-target="briefing" data-i18n="home.btnEnter">Open mandate</button>
-          <button class="btn-ghost" data-action="open-menu" data-i18n="home.btnMap">Open map</button>
-        </div>
-
-        <div class="home-bottom">
-          <div class="home-band">
-            <span data-i18n="home.band1">Roman restraint</span>
-            <span data-i18n="home.band2">Founder validation</span>
-            <span data-i18n="home.band3">Proof before scale</span>
+      <div class="section-inner dashboard-inner">
+        <div class="dashboard-header">
+          <div>
+            <span class="dashboard-kicker" data-i18n="dashboard.kicker">Internal command surface</span>
+            <h1 data-i18n="dashboard.title">Dashboard</h1>
+            <p data-i18n="dashboard.intro">A compact operating view for Moscatelli’s current proof phase: priorities, open decisions, launch signals, and the next action to protect momentum.</p>
           </div>
-          <div class="home-scroll-hint">
-            <span class="scroll-line"></span>
-            <span class="scroll-text" data-i18n="home.hint">Use arrows</span>
+          <div class="dashboard-state" aria-label="Current Studio state">
+            <span data-i18n="dashboard.stateLabel">Current state</span>
+            <strong data-i18n="dashboard.stateValue">Structure in progress</strong>
           </div>
+        </div>
+
+        <div class="dashboard-grid" aria-label="Moscatelli operational status">
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="The first static Lotto I workspace is now present: dimensions, material direction, GSM, fringe, colourways, packaging dependency, and open technical questions.">
+            <span class="dashboard-card__label" data-i18n="dashboard.cards.lotto.label">Lotto I readiness</span>
+            <strong data-i18n="dashboard.cards.lotto.value">Workspace established</strong>
+            <p data-i18n="dashboard.cards.lotto.copy">The first static product workspace is now present inside Studio.</p>
+          </article>
+
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Decision Register is now active: locked, pending, active, and rejected entries are held as the first founder-validation ledger.">
+            <span class="dashboard-card__label" data-i18n="dashboard.cards.decisions.label">Open decisions</span>
+            <strong data-i18n="dashboard.cards.decisions.value">To be registered</strong>
+            <p data-i18n="dashboard.cards.decisions.copy">Decision Register is now active; pending items will continue to be refined as evidence appears.</p>
+          </article>
+
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now exists inside Manufattura. It is intentionally empty except for one example row until verified suppliers are added.">
+            <span class="dashboard-card__label" data-i18n="dashboard.cards.suppliers.label">Supplier outreach</span>
+            <strong data-i18n="dashboard.cards.suppliers.value">Not started in Studio</strong>
+            <p data-i18n="dashboard.cards.suppliers.copy">Supplier intelligence remains outside this dashboard for now.</p>
+          </article>
+
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Reserved for Finance Suite sync or manual KPI entry: budget, committed spend, remaining runway, and unit-economics warnings.">
+            <span class="dashboard-card__label" data-i18n="dashboard.cards.budget.label">Budget / runway</span>
+            <strong data-i18n="dashboard.cards.budget.value">Pending financial sync</strong>
+            <p data-i18n="dashboard.cards.budget.copy">Financial truth will be surfaced after the dashboard structure is expanded.</p>
+          </article>
+
+          <article class="dashboard-card dashboard-card--wide" tabindex="0" data-dashboard-detail="Launch Readiness is now embedded inside Dashboard as a compact checklist for product, production, packaging, website, finance, fulfilment, investor proof, and admin readiness.">
+            <span class="dashboard-card__label" data-i18n="dashboard.cards.launch.label">Launch readiness</span>
+            <strong data-i18n="dashboard.cards.launch.value">Checklist embedded</strong>
+            <p data-i18n="dashboard.cards.launch.copy">A first static readiness panel now sits inside Dashboard.</p>
+          </article>
+
+          <article class="dashboard-card dashboard-card--wide" tabindex="0" data-dashboard-detail="Reserved for the latest founder-approved decision with date, reasoning, and supporting evidence.">
+            <span class="dashboard-card__label" data-i18n="dashboard.cards.locked.label">Latest locked decision</span>
+            <strong data-i18n="dashboard.cards.locked.value">Ivory packaging confirmed</strong>
+            <p data-i18n="dashboard.cards.locked.copy">Primary exterior calm remains Bianco Avorio; oxblood stays reserved for the inner ritual.</p>
+          </article>
+        </div>
+
+        <section class="launch-readiness-panel" aria-labelledby="launch-readiness-title">
+          <div class="launch-readiness-header">
+            <div>
+              <span class="dashboard-kicker" data-i18n="launchReadiness.kicker">Dashboard module</span>
+              <h2 id="launch-readiness-title" data-i18n="launchReadiness.title">Launch Readiness</h2>
+              <p data-i18n="launchReadiness.intro">A first static checklist for the conditions that must exist before Lotto I can launch properly.</p>
+            </div>
+            <span class="launch-readiness-seal" data-i18n="launchReadiness.seal">Static v1</span>
+          </div>
+
+          <div class="launch-readiness-grid" aria-label="Launch readiness checklist">
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.product.label">Product</span>
+                <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means the area exists in Studio, but proof, evidence, or final approval remains incomplete." data-i18n="launchReadiness.status.progress">In progress</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.product.copy">Lotto I workspace exists; GSM, fringe, and final hand-feel still need physical validation.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.production.label">Supplier / production</span>
+                <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means the structure exists, but verified supplier records and outreach evidence are not yet present." data-i18n="launchReadiness.status.progress">In progress</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.production.copy">Supplier Desk exists inside Manufattura; verified supplier entries remain empty by design.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.packaging.label">Packaging</span>
+                <em class="launch-status launch-status--pending" tabindex="0" data-status-detail="Pending validation means the direction is accepted, but the physical test has not yet confirmed dimensions, fit, or finish." data-i18n="launchReadiness.status.pendingValidation">Pending validation</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.packaging.copy">Ivory primary direction is locked; exact box dimensions wait for real scarf folding tests.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.website.label">Website / checkout</span>
+                <em class="launch-status launch-status--structure" tabindex="0" data-status-detail="Pending structure means the area must be mapped before it can be judged ready or blocked." data-i18n="launchReadiness.status.pendingStructure">Pending structure</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.website.copy">The public site and checkout path still need a dedicated launch-readiness review.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.photography.label">Photography</span>
+                <em class="launch-status launch-status--not-started" tabindex="0" data-status-detail="Not started means no approved evidence, schedule, or deliverable has been recorded inside Studio yet." data-i18n="launchReadiness.status.notStarted">Not started</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.photography.copy">Editorial direction exists conceptually; no final product shoot package is recorded yet.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.finance.label">Finance</span>
+                <em class="launch-status launch-status--sync" tabindex="0" data-status-detail="Pending sync means the external tool or source exists, but Dashboard does not yet surface its current truth." data-i18n="launchReadiness.status.pendingSync">Pending sync</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.finance.copy">Finance Suite exists externally; Dashboard does not yet display live or manual KPI truth.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.fulfilment.label">Fulfilment</span>
+                <em class="launch-status launch-status--not-started" tabindex="0" data-status-detail="Not started means no approved evidence, schedule, or deliverable has been recorded inside Studio yet." data-i18n="launchReadiness.status.notStarted">Not started</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.fulfilment.copy">Handling, shipping, inserts, and final dispatch sequence are not yet mapped in Studio.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.investor.label">Investor proof</span>
+                <em class="launch-status launch-status--evidence" tabindex="0" data-status-detail="Pending evidence means the claim must wait for product, sale, document, or validation proof." data-i18n="launchReadiness.status.pendingEvidence">Pending evidence</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.investor.copy">Investor proof depends on real product, real sales evidence, and documented launch discipline.</p>
+            </article>
+
+            <article class="launch-readiness-item">
+              <div class="launch-readiness-item__topline">
+                <span data-i18n="launchReadiness.areas.admin.label">Legal / admin</span>
+                <em class="launch-status launch-status--review" tabindex="0" data-status-detail="Pending review means the area has not yet been audited enough to receive a serious status." data-i18n="launchReadiness.status.pendingReview">Pending review</em>
+              </div>
+              <p data-i18n="launchReadiness.areas.admin.copy">Legal and admin readiness need a dedicated later module before serious private data is added.</p>
+            </article>
+          </div>
+        </section>
+
+        <div class="dashboard-priorities">
+          <div class="dashboard-priorities__heading">
+            <span data-i18n="dashboard.priorities.kicker">Current priorities</span>
+            <p data-i18n="dashboard.priorities.copy">A restrained working list for the proof phase. Not a full task board yet.</p>
+          </div>
+          <ol class="priority-list">
+            <li><span data-i18n="dashboard.priorities.item1">Lock Lotto I technical variables</span></li>
+            <li><span data-i18n="dashboard.priorities.item2">Build supplier shortlist</span></li>
+            <li><span data-i18n="dashboard.priorities.item3">Prepare Prato outreach</span></li>
+          </ol>
         </div>
       </div>
     </section>
@@ -266,7 +393,7 @@
           <div class="gallery-wrap">
             <div class="gallery-grid" id="gallery-grid">
               <figure class="gallery-cell tall emphasis is-detail-trigger" data-detail="atlas1" tabindex="0" role="button" aria-label="Open Atlas item one">
-                <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
+                <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" decoding="async" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">I</span>
                   <strong data-i18n="atlas.card1.title">Scarf / Bianco Avorio</strong>
@@ -275,7 +402,7 @@
               </figure>
 
               <figure class="gallery-cell is-detail-trigger" data-detail="atlas2" tabindex="0" role="button" aria-label="Open Atlas item two">
-                <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
+                <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" decoding="async" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">II</span>
                   <strong data-i18n="atlas.card2.title">Scarf / Terra Bruna</strong>
@@ -284,7 +411,7 @@
               </figure>
 
               <figure class="gallery-cell is-detail-trigger" data-detail="atlas3" tabindex="0" role="button" aria-label="Open Atlas item three">
-                <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
+                <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" decoding="async" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">III</span>
                   <strong data-i18n="atlas.card3.title">Packaging / Bianco Avorio</strong>
@@ -293,7 +420,7 @@
               </figure>
 
               <figure class="gallery-cell wide is-detail-trigger" data-detail="atlas4" tabindex="0" role="button" aria-label="Open Atlas item four">
-                <img class="gallery-media" src="assets/images/ritual-oxblood.webp" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
+                <img class="gallery-media" src="assets/images/ritual-oxblood.webp" decoding="async" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">IV</span>
                   <strong data-i18n="atlas.card4.title">Ritual / Oxblood reserve</strong>
@@ -389,10 +516,203 @@
       </div>
     </section>
 
-    <section id="section-studio" class="section" data-label-key="sections.manufattura" data-index="05">
+    <section id="section-decisions" class="section" data-label-key="sections.decisions" data-index="05">
+      <div class="section-inner decision-inner">
+        <div class="section-header decision-header">
+          <span class="section-num">05</span>
+          <h2 data-i18n="decisions.title">Decision Register</h2>
+        </div>
+
+        <div class="decision-intro">
+          <span class="panel-kicker" data-i18n="decisions.kicker">Founder validation ledger</span>
+          <p data-i18n="decisions.intro">A first static register for locked, active, and pending decisions. This surface exists to prevent repeated debates and preserve the reasoning behind each standard.</p>
+        </div>
+
+        <div class="decision-register-grid" aria-label="Moscatelli decision register entries">
+          <button class="decision-entry is-detail-trigger" type="button" data-detail="decision1" aria-label="Open decision: Ivory packaging confirmed">
+            <span class="decision-entry__meta"><span data-i18n="decisions.entries.d1.date">2026</span> · <span data-i18n="decisions.entries.d1.category">Packaging</span></span>
+            <strong data-i18n="decisions.entries.d1.title">Ivory packaging confirmed as primary direction</strong>
+            <small data-i18n="decisions.entries.d1.rationale">Primary exterior calm remains Bianco Avorio.</small>
+            <span class="decision-status decision-status--locked" data-i18n="decisions.status.locked">Locked</span>
+          </button>
+
+          <button class="decision-entry is-detail-trigger" type="button" data-detail="decision2" aria-label="Open decision: Oxblood reserved for ritual accent">
+            <span class="decision-entry__meta"><span data-i18n="decisions.entries.d2.date">2026</span> · <span data-i18n="decisions.entries.d2.category">Colour / Ritual</span></span>
+            <strong data-i18n="decisions.entries.d2.title">Oxblood reserved as accent and ritual colour</strong>
+            <small data-i18n="decisions.entries.d2.rationale">Used for wax, envelope logic, and interior gravity — not the box body.</small>
+            <span class="decision-status decision-status--locked" data-i18n="decisions.status.locked">Locked</span>
+          </button>
+
+          <button class="decision-entry is-detail-trigger" type="button" data-detail="decision3" aria-label="Open decision: Lotto I remains proof event">
+            <span class="decision-entry__meta"><span data-i18n="decisions.entries.d3.date">2026</span> · <span data-i18n="decisions.entries.d3.category">Launch</span></span>
+            <strong data-i18n="decisions.entries.d3.title">Lotto I scarf launch remains the proof event</strong>
+            <small data-i18n="decisions.entries.d3.rationale">The launch must prove taste, discipline, and sales response before scale.</small>
+            <span class="decision-status decision-status--locked" data-i18n="decisions.status.locked">Locked</span>
+          </button>
+
+          <button class="decision-entry is-detail-trigger" type="button" data-detail="decision4" aria-label="Open decision: Fringe length pending validation">
+            <span class="decision-entry__meta"><span data-i18n="decisions.entries.d4.date">2026</span> · <span data-i18n="decisions.entries.d4.category">Product</span></span>
+            <strong data-i18n="decisions.entries.d4.title">Fringe length remains pending physical validation</strong>
+            <small data-i18n="decisions.entries.d4.rationale">Target discipline exists; final length waits for sample evidence.</small>
+            <span class="decision-status decision-status--pending" data-i18n="decisions.status.pending">Pending</span>
+          </button>
+
+          <button class="decision-entry is-detail-trigger" type="button" data-detail="decision5" aria-label="Open decision: GSM pending sample validation">
+            <span class="decision-entry__meta"><span data-i18n="decisions.entries.d5.date">2026</span> · <span data-i18n="decisions.entries.d5.category">Material</span></span>
+            <strong data-i18n="decisions.entries.d5.title">GSM remains pending sample validation</strong>
+            <small data-i18n="decisions.entries.d5.rationale">The target range must be proven by hand, drape, compactness, and surface.</small>
+            <span class="decision-status decision-status--pending" data-i18n="decisions.status.pending">Pending</span>
+          </button>
+
+          <button class="decision-entry is-detail-trigger" type="button" data-detail="decision6" aria-label="Open decision: Prato first Biella second">
+            <span class="decision-entry__meta"><span data-i18n="decisions.entries.d6.date">2026</span> · <span data-i18n="decisions.entries.d6.category">Sourcing</span></span>
+            <strong data-i18n="decisions.entries.d6.title">Supplier approach: Prato first, Biella second</strong>
+            <small data-i18n="decisions.entries.d6.rationale">A practical reconnaissance route before higher-commitment supplier conversations.</small>
+            <span class="decision-status decision-status--active" data-i18n="decisions.status.active">Active direction</span>
+          </button>
+        </div>
+
+        <aside class="decision-rejected-panel" aria-label="Rejected decision preview">
+          <div class="decision-rejected-panel__copy">
+            <span class="panel-kicker" data-i18n="decisions.rejected.kicker">Rejected entries</span>
+            <p data-i18n="decisions.rejected.intro">Rejected ideas are kept separate so the house remembers what was refused without polluting the active register.</p>
+          </div>
+          <div class="decision-rejected-list">
+            <article class="decision-rejected-item">
+              <span data-i18n="decisions.rejected.items.r1.category">Packaging</span>
+              <strong data-i18n="decisions.rejected.items.r1.title">Oxblood primary box</strong>
+              <small data-i18n="decisions.rejected.items.r1.reason">Rejected for excessive theatrical weight.</small>
+            </article>
+            <article class="decision-rejected-item">
+              <span data-i18n="decisions.rejected.items.r2.category">Product finish</span>
+              <strong data-i18n="decisions.rejected.items.r2.title">Ornate hemstitch on first scarf</strong>
+              <small data-i18n="decisions.rejected.items.r2.reason">Rejected for decorative noise in Lotto I.</small>
+            </article>
+          </div>
+          <button class="decision-rejected-button is-detail-trigger" type="button" data-detail="rejectedArchive" data-i18n="decisions.rejected.button">View rejected archive</button>
+        </aside>
+
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
+      </div>
+    </section>
+
+    <section id="section-lotto" class="section" data-label-key="sections.lotto" data-index="06">
+      <div class="section-inner lotto-inner">
+        <div class="section-header lotto-header">
+          <span class="section-num">06</span>
+          <h2 data-i18n="lotto.title">Lotto (I - II - III)</h2>
+        </div>
+
+        <div class="lotto-intro">
+          <span class="panel-kicker" data-i18n="lotto.kicker">Product workspace</span>
+          <p data-i18n="lotto.intro">A first static workspace for the proof object. Lotto I is active; Lotto II and III remain reserved until the first product earns expansion.</p>
+        </div>
+
+        <div class="lotto-tabs" aria-label="Lotto workspaces">
+          <button class="lotto-tab is-active" type="button" aria-current="true">
+            <span data-i18n="lotto.tabs.one.label">I</span>
+            <small data-i18n="lotto.tabs.one.copy">Active</small>
+          </button>
+          <button class="lotto-tab is-locked" type="button" disabled aria-disabled="true">
+            <span data-i18n="lotto.tabs.two.label">II</span>
+            <small data-i18n="lotto.tabs.two.copy">Reserved</small>
+          </button>
+          <button class="lotto-tab is-locked" type="button" disabled aria-disabled="true">
+            <span data-i18n="lotto.tabs.three.label">III</span>
+            <small data-i18n="lotto.tabs.three.copy">Reserved</small>
+          </button>
+        </div>
+
+        <div class="lotto-product-panel">
+          <div class="lotto-product-title">
+            <span class="panel-kicker" data-i18n="lotto.product.kicker">Lotto I</span>
+            <h3 data-i18n="lotto.product.title">Lotto I Scarf</h3>
+            <p data-i18n="lotto.product.copy">The first Moscatelli proof object: narrow, disciplined, materially judged, and not allowed to expand before physical validation.</p>
+          </div>
+
+          <div class="lotto-spec-grid" aria-label="Lotto I technical direction">
+            <article class="lotto-spec-card">
+              <span class="lotto-spec-label" data-i18n="lotto.specs.dimensions.label">Dimensions</span>
+              <strong data-i18n="lotto.specs.dimensions.value">190 × 31 cm</strong>
+              <span class="lotto-status lotto-status--active" tabindex="0" data-status-detail="Working direction: keep this proportion unless mill standardisation improves consistency without weakening the object." data-i18n="lotto.status.active">Active direction</span>
+            </article>
+
+            <article class="lotto-spec-card">
+              <span class="lotto-spec-label" data-i18n="lotto.specs.material.label">Material</span>
+              <strong data-i18n="lotto.specs.material.value">Baby alpaca</strong>
+              <span class="lotto-status lotto-status--locked" tabindex="0" data-status-detail="Material direction is locked for the first proof object unless sampling exposes a serious quality or sourcing issue." data-i18n="lotto.status.locked">Locked</span>
+            </article>
+
+            <article class="lotto-spec-card">
+              <span class="lotto-spec-label" data-i18n="lotto.specs.yarn.label">Yarn direction</span>
+              <strong data-i18n="lotto.specs.yarn.value">Nm 2/40–2/48, two-ply</strong>
+              <span class="lotto-status lotto-status--active" tabindex="0" data-status-detail="Technical range to discuss with mills; final yarn choice must be proven by sample hand, drape, and surface compactness." data-i18n="lotto.status.active">Active direction</span>
+            </article>
+
+            <article class="lotto-spec-card">
+              <span class="lotto-spec-label" data-i18n="lotto.specs.gsm.label">GSM</span>
+              <strong data-i18n="lotto.specs.gsm.value">Pending sample validation</strong>
+              <span class="lotto-status lotto-status--pending" tabindex="0" data-status-detail="Weight cannot be approved by number alone; final GSM must survive touch, drape, compactness, warmth, and anti-blanket discipline." data-i18n="lotto.status.pending">Pending validation</span>
+            </article>
+
+            <article class="lotto-spec-card">
+              <span class="lotto-spec-label" data-i18n="lotto.specs.fringe.label">Fringe</span>
+              <strong data-i18n="lotto.specs.fringe.value">3.5 cm target</strong>
+              <span class="lotto-status lotto-status--pending" tabindex="0" data-status-detail="Target remains short and controlled; final approval waits for physical tests of density, splay, parallel fall, and edge discipline." data-i18n="lotto.status.pending">Pending validation</span>
+            </article>
+
+            <article class="lotto-spec-card">
+              <span class="lotto-spec-label" data-i18n="lotto.specs.finish.label">Finish</span>
+              <strong data-i18n="lotto.specs.finish.value">Compact, matte, minimal halo</strong>
+              <span class="lotto-status lotto-status--active" tabindex="0" data-status-detail="The surface must feel refined and architectural; excessive fuzz, blanket softness, or limp drape should trigger rejection." data-i18n="lotto.status.active">Active direction</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="lotto-support-grid">
+          <article class="lotto-support-card">
+            <span class="panel-kicker" data-i18n="lotto.colours.kicker">Colourways</span>
+            <ul class="lotto-list">
+              <li><span data-i18n="lotto.colours.one">Terra Bruna</span><span class="lotto-status lotto-status--active" tabindex="0" data-status-detail="Deep warm chocolate / mahogany-adjacent brown. Must avoid generic flat brown or visible red contamination." data-i18n="lotto.status.active">Active direction</span></li>
+              <li><span data-i18n="lotto.colours.two">Bianco Avorio</span><span class="lotto-status lotto-status--active" tabindex="0" data-status-detail="Warm ivory, not optical white, not bridal, not yellowed. Must read as calm stone warmed by light." data-i18n="lotto.status.active">Active direction</span></li>
+            </ul>
+          </article>
+
+          <article class="lotto-support-card">
+            <span class="panel-kicker" data-i18n="lotto.packaging.kicker">Packaging dependency</span>
+            <p data-i18n="lotto.packaging.copy">Ivory primary box; oxblood accent ritual. Final box dimensions wait for real folding tests with the approved scarf sample.</p>
+            <span class="lotto-status lotto-status--pending" tabindex="0" data-status-detail="Box dimensions should not be locked until the sample is folded, tested for compression, and photographed in the intended ritual sequence." data-i18n="lotto.status.pending">Pending validation</span>
+          </article>
+
+          <article class="lotto-support-card">
+            <span class="panel-kicker" data-i18n="lotto.sample.kicker">Sample validation</span>
+            <p data-i18n="lotto.sample.copy">No final approval by screen, theory, or supplier promise. The physical sample must prove hand, drape, colour, edge, fringe, and fold.</p>
+            <span class="lotto-status lotto-status--pending" tabindex="0" data-status-detail="Validation requires physical review and evidence worthy of archiving before any production commitment." data-i18n="lotto.status.pending">Pending validation</span>
+          </article>
+        </div>
+
+        <div class="lotto-questions">
+          <div>
+            <span class="panel-kicker" data-i18n="lotto.questions.kicker">Open technical questions</span>
+            <p data-i18n="lotto.questions.copy">These remain visible so the product does not drift into vague enthusiasm before evidence exists.</p>
+          </div>
+          <ol class="lotto-question-list">
+            <li><span data-i18n="lotto.questions.q1">Final GSM</span></li>
+            <li><span data-i18n="lotto.questions.q2">Final fringe length</span></li>
+            <li><span data-i18n="lotto.questions.q3">Exact box dimensions after folding test</span></li>
+            <li><span data-i18n="lotto.questions.q4">Mill-standard dimension tolerance</span></li>
+            <li><span data-i18n="lotto.questions.q5">Final hand-feel after sample review</span></li>
+          </ol>
+        </div>
+
+        <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
+      </div>
+    </section>
+
+    <section id="section-studio" class="section" data-label-key="sections.manufattura" data-index="07">
       <div class="section-inner">
         <div class="section-header">
-          <span class="section-num">05</span>
+          <span class="section-num">07</span>
           <h2 data-i18n="manu.title">Manufattura</h2>
         </div>
 
@@ -400,11 +720,17 @@
           <div class="studio-statement">
             <blockquote data-i18n-html="manu.quote">Quiet surfaces.<br />Exact edges.<br />Emotional authority at close range.</blockquote>
             <p class="studio-sub" data-i18n="manu.sub">Current workstreams: scarf sampling, label language, box proportions, launch imagery, and the invisible details that make the house feel inevitable.</p>
+
+            <button class="supplier-desk-toggle" type="button" data-action="toggle-supplier-desk" aria-controls="supplier-desk-panel" aria-expanded="false">
+              <span data-i18n="supplierDesk.buttonKicker">Internal module</span>
+              <strong data-i18n="supplierDesk.buttonTitle">Supplier Desk</strong>
+              <small data-i18n="supplierDesk.buttonCopy">Open supplier placeholders, risks, and future outreach structure.</small>
+            </button>
           </div>
 
           <div class="studio-side">
             <figure class="studio-figure">
-              <img src="assets/images/label-study.webp" alt="Moscatelli label study" loading="lazy" />
+              <img src="assets/images/label-study.webp" decoding="async" alt="Moscatelli label study" loading="lazy" />
               <figcaption class="studio-figure-copy">
                 <span class="panel-kicker" data-i18n="manu.figureKicker">Label study</span>
                 <p data-i18n="manu.figureP">Soft interior label logic. Quiet typography. &quot;Made in Italy&quot; held with dignity, never noise.</p>
@@ -431,14 +757,77 @@
           </div>
         </div>
 
+        <div id="supplier-desk-panel" class="supplier-desk-panel" aria-hidden="true" hidden>
+          <div class="supplier-desk-header">
+            <div>
+              <span class="panel-kicker" data-i18n="supplierDesk.kicker">Manufattura / sourcing structure</span>
+              <h3 data-i18n="supplierDesk.title">Supplier Desk</h3>
+              <p data-i18n="supplierDesk.intro">A reserved workspace for mills, packaging, labels, trims, and production support. Empty by design until real suppliers are verified.</p>
+            </div>
+            <button class="supplier-desk-close" type="button" data-action="toggle-supplier-desk" aria-controls="supplier-desk-panel" aria-expanded="true" data-i18n="supplierDesk.close">Close Supplier Desk</button>
+          </div>
+
+          <div class="supplier-category-strip" aria-label="Supplier categories">
+            <span class="panel-kicker" data-i18n="supplierDesk.categories.kicker">Categories</span>
+            <div class="supplier-category-list">
+              <span data-i18n="supplierDesk.categories.mills">Mills</span>
+              <span data-i18n="supplierDesk.categories.packaging">Packaging</span>
+              <span data-i18n="supplierDesk.categories.labels">Labels / trims</span>
+              <span data-i18n="supplierDesk.categories.production">Photography / production support</span>
+            </div>
+          </div>
+
+          <div class="supplier-desk-grid">
+            <article class="supplier-entry supplier-entry--template">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.example.kicker">Example only</span>
+                <span class="supplier-status supplier-status--template" tabindex="0" data-status-detail="This row exists only as a structural example. Do not treat it as a real supplier record." data-i18n="supplierDesk.status.template">Template</span>
+              </div>
+              <strong data-i18n="supplierDesk.example.title">Supplier entry template</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.example.categoryLabel">Category</dt><dd data-i18n="supplierDesk.example.categoryValue">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.example.locationLabel">Location</dt><dd data-i18n="supplierDesk.example.locationValue">To specify</dd></div>
+                <div><dt data-i18n="supplierDesk.example.statusLabel">Status</dt><dd data-i18n="supplierDesk.example.statusValue">To research</dd></div>
+                <div><dt data-i18n="supplierDesk.example.actionLabel">Next action</dt><dd data-i18n="supplierDesk.example.actionValue">Define first contact step</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.example.note">Template row only; replace later with verified supplier data.</p>
+            </article>
+
+            <article class="supplier-placeholder-card">
+              <span class="panel-kicker" data-i18n="supplierDesk.placeholders.kicker">Placeholder slots</span>
+              <p data-i18n="supplierDesk.placeholders.copy">These rows are intentionally empty. They exist to preserve the structure without inventing unverified supplier information.</p>
+              <div class="supplier-empty-grid">
+                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
+                <span><strong data-i18n="supplierDesk.categories.packaging">Packaging</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
+                <span><strong data-i18n="supplierDesk.categories.labels">Labels / trims</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
+                <span><strong data-i18n="supplierDesk.categories.production">Photography / production support</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
+              </div>
+            </article>
+          </div>
+
+          <div class="supplier-risk-panel">
+            <div>
+              <span class="panel-kicker" data-i18n="supplierDesk.risks.kicker">Supplier risks</span>
+              <p data-i18n="supplierDesk.risks.copy">A compact register of issues that can damage Lotto I before production even begins.</p>
+            </div>
+            <ul class="supplier-risk-list">
+              <li><span class="supplier-status supplier-status--research" tabindex="0" data-status-detail="Research status means no commitment, no contact, and no evidence yet." data-i18n="supplierDesk.status.research">To research</span><span data-i18n="supplierDesk.risks.r1">MOQ too high for proof-stage production</span></li>
+              <li><span data-i18n="supplierDesk.risks.r2">Prototype pricing too expensive for the launch budget</span></li>
+              <li><span data-i18n="supplierDesk.risks.r3">Finish too soft, fuzzy, or blanket-like</span></li>
+              <li><span data-i18n="supplierDesk.risks.r4">Supplier unwilling to support a low initial quantity</span></li>
+              <li><span data-i18n="supplierDesk.risks.r5">Packaging dimensions unresolved before sample folding tests</span></li>
+            </ul>
+          </div>
+        </div>
+
         <button class="btn-back" data-action="go-home" data-i18n="common.return">← Return</button>
       </div>
     </section>
 
-    <section id="section-signal" class="section" data-label-key="sections.circuit" data-index="06">
+    <section id="section-signal" class="section" data-label-key="sections.circuit" data-index="08">
       <div class="section-inner">
         <div class="section-header">
-          <span class="section-num">06</span>
+          <span class="section-num">08</span>
           <h2 data-i18n="circuit.title">Circuit</h2>
         </div>
 
@@ -483,61 +872,167 @@
       </div>
     </section>
 
-    <section id="section-links" class="section" data-label-key="sections.links" data-index="07">
-      <div class="section-inner links-inner">
+    <section id="section-links" class="section" data-label-key="sections.links" data-index="09">
+      <div class="section-inner links-inner directory-inner">
         <div class="section-header">
-          <span class="section-num">07</span>
+          <span class="section-num">09</span>
           <h2 data-i18n="links.title">Links</h2>
         </div>
 
-        <div class="links-layout">
-          <div class="links-intro">
-            <span class="panel-kicker" data-i18n="links.kicker">External house surfaces</span>
-            <p data-i18n="links.intro">Reserved placeholders for connected Moscatelli websites, archives, and working environments.</p>
+        <div class="directory-layout">
+          <div class="directory-intro">
+            <span class="panel-kicker" data-i18n="links.kicker">Internal directory</span>
+            <p data-i18n="links.intro">A structured index for Moscatelli surfaces, tools, materials, and future private destinations.</p>
+            <p class="directory-warning" data-i18n="links.warning">Private MOSCATELLI links shouldn't be shared with third parties outside of the business.</p>
           </div>
 
-          <div class="links-grid" aria-label="Moscatelli related websites">
-            <a class="link-card link-card--external" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser">
-              <div class="link-card__image link-card__image--thumb" aria-hidden="true">
-                <img src="assets/images/link-moscatelli-website.webp" alt="" loading="lazy" decoding="async" />
+          <div class="directory-grid" aria-label="MOSCATELLI internal links directory">
+            <section class="directory-category" aria-labelledby="directory-public-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.public.kicker">01</span>
+                <h3 id="directory-public-title" data-i18n="links.categories.public.title">Public Surfaces</h3>
               </div>
-              <div class="link-card__body">
-                <span class="link-card__kicker" data-i18n="links.card1.kicker">Surface I</span>
-                <strong data-i18n="links.card1.title">Moscatelli Website</strong>
-                <small data-i18n="links.card1.note">moscatelli-official.netlify.app</small>
+              <div class="directory-list">
+                <a class="directory-item directory-item--active" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser">
+                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
+                  <strong data-i18n="links.items.website.title">MOSCATELLI Website</strong>
+                  <small data-i18n="links.items.website.note">moscatelli-official.netlify.app</small>
+                  <em class="directory-hover" data-i18n="links.items.website.detail">Public-facing surface. Keep visible here because it is safe to open and share externally.</em>
+                </a>
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.checkout.title">Checkout / purchase path</strong>
+                  <small data-i18n="links.items.checkout.note">Public sales flow placeholder</small>
+                  <em class="directory-hover" data-i18n="links.items.checkout.detail">Reserved for the future public purchase or payment surface once it has been properly tested.</em>
+                </article>
               </div>
-            </a>
+            </section>
 
-            <a class="link-card link-card--external" href="https://gianmoska-prog.github.io/Moscatelli/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli pitch deck in browser">
-              <div class="link-card__image link-card__image--thumb" aria-hidden="true">
-                <img src="assets/images/link-pitch-deck.webp" alt="" loading="lazy" decoding="async" />
+            <section class="directory-category" aria-labelledby="directory-tools-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.tools.kicker">02</span>
+                <h3 id="directory-tools-title" data-i18n="links.categories.tools.title">Internal Tools</h3>
               </div>
-              <div class="link-card__body">
-                <span class="link-card__kicker" data-i18n="links.card2.kicker">Surface II</span>
-                <strong data-i18n="links.card2.title">Pitch Deck</strong>
-                <small data-i18n="links.card2.note">gianmoska-prog.github.io/Moscatelli</small>
+              <div class="directory-list">
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.studioTools.title">Studio tools vault</strong>
+                  <small data-i18n="links.items.studioTools.note">Internal utilities placeholder</small>
+                  <em class="directory-hover" data-i18n="links.items.studioTools.detail">Reserved for future internal utilities. It is intentionally not linked yet.</em>
+                </article>
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.notes.title">Founder notes</strong>
+                  <small data-i18n="links.items.notes.note">Private scratchpad placeholder</small>
+                  <em class="directory-hover" data-i18n="links.items.notes.detail">Reserved for a future notes module. It should not hold sensitive data until the app is protected.</em>
+                </article>
               </div>
-            </a>
+            </section>
 
-            <a class="link-card link-card--external" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser">
-              <div class="link-card__image link-card__image--thumb" aria-hidden="true">
-                <img src="assets/images/link-financial-suite.webp" alt="" loading="lazy" decoding="async" />
+            <section class="directory-category" aria-labelledby="directory-finance-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.finance.kicker">03</span>
+                <h3 id="directory-finance-title" data-i18n="links.categories.finance.title">Finance</h3>
               </div>
-              <div class="link-card__body">
-                <span class="link-card__kicker" data-i18n="links.card3.kicker">Surface III</span>
-                <strong data-i18n="links.card3.title">Financial Suite</strong>
-                <small data-i18n="links.card3.note">gianmoska-prog.github.io/Finance-Suite</small>
+              <div class="directory-list">
+                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser">
+                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
+                  <strong data-i18n="links.items.financeSuite.title">Financial Suite</strong>
+                  <small data-i18n="links.items.financeSuite.note">gianmoska-prog.github.io/Finance-Suite</small>
+                  <em class="directory-hover" data-i18n="links.items.financeSuite.detail">Live internal finance surface. It remains external to Studio for now.</em>
+                </a>
+                <article class="directory-item directory-item--unavailable" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--unavailable" data-i18n="links.status.unavailable">UNAVAILABLE</span>
+                  <strong data-i18n="links.items.financeAdmin.title">Private finance admin</strong>
+                  <small data-i18n="links.items.financeAdmin.note">Do not embed yet</small>
+                  <em class="directory-hover" data-i18n="links.items.financeAdmin.detail">Private finance/admin links should stay out of the static app until protected hosting exists.</em>
+                </article>
               </div>
-            </a>
+            </section>
 
-            <a class="link-card" href="#" data-placeholder-link aria-label="Website placeholder four">
-              <div class="link-card__image" aria-hidden="true"><span>TBC</span></div>
-              <div class="link-card__body">
-                <span class="link-card__kicker" data-i18n="links.card4.kicker">Surface IV</span>
-                <strong data-i18n="links.card4.title">Studio Tools</strong>
-                <small data-i18n="links.card4.note">Operational links and internal utilities</small>
+            <section class="directory-category" aria-labelledby="directory-investor-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.investor.kicker">04</span>
+                <h3 id="directory-investor-title" data-i18n="links.categories.investor.title">Investor Materials</h3>
               </div>
-            </a>
+              <div class="directory-list">
+                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Moscatelli/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli pitch deck in browser">
+                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
+                  <strong data-i18n="links.items.pitchDeck.title">Pitch Deck</strong>
+                  <small data-i18n="links.items.pitchDeck.note">gianmoska-prog.github.io/Moscatelli</small>
+                  <em class="directory-hover" data-i18n="links.items.pitchDeck.detail">Current investor-facing presentation surface. Keep version status under review.</em>
+                </a>
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.investorArchive.title">Investor archive</strong>
+                  <small data-i18n="links.items.investorArchive.note">Deck versions and evidence later</small>
+                  <em class="directory-hover" data-i18n="links.items.investorArchive.detail">Reserved for future deck versions, investor notes, proof material, and private documents.</em>
+                </article>
+              </div>
+            </section>
+
+            <section class="directory-category" aria-labelledby="directory-product-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.product.kicker">05</span>
+                <h3 id="directory-product-title" data-i18n="links.categories.product.title">Product / Manufattura</h3>
+              </div>
+              <div class="directory-list">
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.techPack.title">Lotto I technical file</strong>
+                  <small data-i18n="links.items.techPack.note">Specs, samples, QC evidence</small>
+                  <em class="directory-hover" data-i18n="links.items.techPack.detail">Reserved for the future technical file linked to Lotto I sample validation.</em>
+                </article>
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.packagingArchive.title">Packaging archive</strong>
+                  <small data-i18n="links.items.packagingArchive.note">Box, insert, wax, folding tests</small>
+                  <em class="directory-hover" data-i18n="links.items.packagingArchive.detail">Reserved for packaging references, physical tests, dimensions, and validation evidence.</em>
+                </article>
+              </div>
+            </section>
+
+            <section class="directory-category" aria-labelledby="directory-admin-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.admin.kicker">06</span>
+                <h3 id="directory-admin-title" data-i18n="links.categories.admin.title">Admin / Infrastructure</h3>
+              </div>
+              <div class="directory-list">
+                <article class="directory-item directory-item--unavailable" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--unavailable" data-i18n="links.status.unavailable">UNAVAILABLE</span>
+                  <strong data-i18n="links.items.hosting.title">Hosting dashboard</strong>
+                  <small data-i18n="links.items.hosting.note">Private admin link withheld</small>
+                  <em class="directory-hover" data-i18n="links.items.hosting.detail">Do not place hosting, domain, or deployment admin URLs here until access is protected.</em>
+                </article>
+                <article class="directory-item directory-item--unavailable" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--unavailable" data-i18n="links.status.unavailable">UNAVAILABLE</span>
+                  <strong data-i18n="links.items.payments.title">Payment dashboard</strong>
+                  <small data-i18n="links.items.payments.note">Private admin link withheld</small>
+                  <em class="directory-hover" data-i18n="links.items.payments.detail">Payment and admin links remain excluded from the static directory for safety.</em>
+                </article>
+              </div>
+            </section>
+
+            <section class="directory-category" aria-labelledby="directory-research-title">
+              <div class="directory-category__header">
+                <span data-i18n="links.categories.research.kicker">07</span>
+                <h3 id="directory-research-title" data-i18n="links.categories.research.title">Research</h3>
+              </div>
+              <div class="directory-list">
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.millResearch.title">Mill research board</strong>
+                  <small data-i18n="links.items.millResearch.note">Future research surface</small>
+                  <em class="directory-hover" data-i18n="links.items.millResearch.detail">Reserved for verified mill research, not invented supplier lists.</em>
+                </article>
+                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
+                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
+                  <strong data-i18n="links.items.referenceVault.title">Reference vault</strong>
+                  <small data-i18n="links.items.referenceVault.note">Visual and market references later</small>
+                  <em class="directory-hover" data-i18n="links.items.referenceVault.detail">Reserved for structured references once the archive system is built.</em>
+                </article>
+              </div>
+            </section>
           </div>
         </div>
 
@@ -547,10 +1042,12 @@
   </main>
 
   <nav class="mobile-nav-bar" aria-label="Mobile section navigation">
-    <button class="mobile-nav-item active" type="button" data-action="go-section" data-target="home"><span class="mobile-nav-dot"></span><span data-i18n="sections.threshold">Threshold</span></button>
+    <button class="mobile-nav-item active" type="button" data-action="go-section" data-target="home"><span class="mobile-nav-dot"></span><span data-i18n="sections.threshold">Dashboard</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="briefing"><span class="mobile-nav-dot"></span><span data-i18n="sections.mandate">Mandate</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="atlas"><span class="mobile-nav-dot"></span><span data-i18n="sections.atlas">Atlas</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="vault"><span class="mobile-nav-dot"></span><span data-i18n="sections.codex">Codex</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="decisions"><span class="mobile-nav-dot"></span><span data-i18n="sections.decisions">Decision Register</span></button>
+    <button class="mobile-nav-item" type="button" data-action="go-section" data-target="lotto"><span class="mobile-nav-dot"></span><span data-i18n="sections.lotto">Lotto</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="studio"><span class="mobile-nav-dot"></span><span data-i18n="sections.manufattura">Manufattura</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="signal"><span class="mobile-nav-dot"></span><span data-i18n="sections.circuit">Circuit</span></button>
     <button class="mobile-nav-item" type="button" data-action="go-section" data-target="links"><span class="mobile-nav-dot"></span><span data-i18n="sections.links">Links</span></button>
@@ -584,6 +1081,6 @@
     <span class="mc-pointer-line"></span>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=77"></script>
 </body>
 </html>

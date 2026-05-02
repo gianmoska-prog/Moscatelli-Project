@@ -1,0 +1,243 @@
+# MOSCATELLI Studio — AI Handoff Notes
+
+Version: v77  
+Last updated: 02 May 2026, 18:08 CEST  
+Status: Internal founder command surface / private operating archive
+
+---
+
+## 1. Purpose
+
+MOSCATELLI Studio is not a public website, portfolio, investor presentation, or decorative landing page.
+
+It is intended to become the internal command centre for MOSCATELLI: a controlled surface for doctrine, product development, launch readiness, decisions, supplier structure, financial access, visual references, and private operational links.
+
+The correct standard is not “more impressive UI”. The correct standard is controlled usefulness: sober navigation, founder clarity, disciplined structure, and no invented operational facts.
+
+---
+
+## 2. Current Architecture
+
+Core runtime files:
+
+- `index.html` — main document, section structure, PWA metadata links, visible content containers.
+- `style.css` — full visual system, responsive behaviour, dashboard modules, modals, directory layouts.
+- `script.js` — gate, navigation, language system, details, modals, cards, interactive behaviours.
+- `manifest.webmanifest` — PWA identity, app name, display mode, icons.
+- `sw.js` — service worker, cache version, offline shell and runtime asset caching.
+- `assets/` — icons, startup images, product/packaging/link imagery.
+- `docs/AI_HANDOFF.md` — internal continuity documentation for future AI/developer work.
+
+Current primary sections:
+
+1. Dashboard
+2. Mandate
+3. Atlas
+4. Codex
+5. Decision Register
+6. Lotto (I - II - III)
+7. Manufattura
+8. Circuit
+9. Links
+
+Important structural choices:
+
+- Supplier Desk lives inside Manufattura, not in the main navigation.
+- Launch Readiness lives inside Dashboard.
+- Private Links are grouped in the Links section.
+- Decision Register is visible as a core internal ledger.
+- Lotto I is active; Lotto II and Lotto III are deliberately reserved.
+- No visible Version History panel exists yet. Version history belongs in this documentation until the app becomes complex enough to justify a user-facing changelog.
+
+---
+
+## 3. Patch Sequence
+
+### v64 — App identity cleanup
+
+- Clarified MOSCATELLI Studio as an internal operating surface rather than a decorative public experience.
+- Reduced ambiguity around the app’s role and hierarchy.
+- Preserved the luxury tone without turning the interface into a public-facing theatre.
+
+### v65 — Fast access mode
+
+- Added a more direct route into the app’s working surfaces.
+- Reduced unnecessary friction once the access ritual has served its purpose.
+- Preserved the controlled threshold feeling while improving practical use.
+
+### v66 — Dashboard
+
+- Added the Dashboard as the first operational surface.
+- Established a compact command view for priorities, launch signals, and current state.
+- Positioned the app more clearly as a founder workflow tool rather than a static archive.
+
+### v67 — Decision Register
+
+- Added a static founder ledger for locked, active, pending, and rejected decisions.
+- Created a place to prevent repeated debate over already settled standards.
+- Preserved reasoning behind important choices such as ivory packaging and oxblood restraint.
+
+### v68 — Lotto workspace
+
+- Added a dedicated product workspace for Lotto I, II, and III.
+- Kept Lotto I active and Lotto II/III reserved until proof is earned.
+- Captured the scarf’s current technical logic, open questions, colours, and packaging dependency.
+
+### v69 — Supplier Desk
+
+- Added Supplier Desk as an internal Manufattura module rather than a main navigation item.
+- Created supplier placeholder structure without inventing supplier data.
+- Kept categories broad and practical: Mills, Packaging, Labels/Trims, Production Support.
+
+### v70 — Launch Readiness
+
+- Added a static Launch Readiness module inside Dashboard.
+- Introduced a practical checklist across product, suppliers, packaging, website, photography, finance, fulfilment, investor proof, and admin.
+- Kept the module sober and non-editable at this stage.
+
+### v71 — Links directory
+
+- Rebuilt Links into a structured internal directory.
+- Included current external/internal surfaces such as the MOSCATELLI website, pitch deck, Studio, Financial Suite, and reserved placeholders.
+- Added discreet caution around private MOSCATELLI links not being shared with third parties outside the business.
+
+### v72 — AI handoff documentation
+
+- Added `/docs/AI_HANDOFF.md` for continuity between AI models, developers, and future audits.
+- No new visible feature was added.
+- Version was still bumped because the delivered ZIP changed and the service worker cache must advance.
+
+### v73 — Desktop usability and performance weight audit
+
+- Removed non-essential image preloads from the initial document shell.
+- Reduced the oversized `ritual-oxblood.webp` image from 4608 px wide to 1920 px wide while preserving its visual role.
+- Slimmed service-worker pre-cache to the shell and essential icons; large visual assets now cache on demand.
+- Throttled spotlight updates through `requestAnimationFrame` and stopped duplicate pointer/mouse updates on desktop.
+- Reduced repeated pointer target classification by recalculating only when the hovered target changes.
+- Added discreet desktop scrollbars for scrollable sections so desktop users can see when a panel has more content.
+
+### v74 — Mobile performance and bottom navigation stability
+
+- Hardened mobile-only performance after the v73 desktop patch.
+- Removed live bottom-nav anticipation glow during fast swipes.
+- Disabled boundary-resistance transform during live film-strip scrolling.
+- Deferred loop correction until scroll settlement instead of correcting scroll position mid-gesture.
+- Reduced bottom-nav repaint and reflow cost by using fixed dot dimensions with transform-based scaling.
+- Removed live font-weight, letter-spacing, text-shadow, and backdrop-blur churn from the mobile bottom nav.
+- Disabled the fixed grain overlay on mobile to reduce compositing work.
+- Preserved active, near, far, and current-page states with a cheaper rendering model.
+
+### v75 — Typography scale audit
+
+- Rebalanced typography across desktop and mobile without changing the app structure.
+- Reduced oversized hero, dashboard, section, and panel titles so they feel institutional rather than theatrical.
+- Increased undersized micro-text, badges, statuses, navigation labels, and dense card copy for better legibility.
+- Added final typography tokens at the end of `style.css` so future AI/developer patches have a clear scale to preserve.
+- Kept the patch visual-only and static; no new UI features or content areas were introduced.
+
+
+### v77 — Translation accuracy and contextual language audit
+
+Patch XIV audited the in-app language system across English, Italian, and Portuguese/Brazilian. The patch corrected contextual translation issues without adding UI, assets, libraries, or runtime weight.
+
+Confirmed refinements:
+- Replaced misleading “locked/bloccato/bloqueado” wording with confirmed/fixed decision language where the meaning is approved, not blocked.
+- Replaced technical “sync” fragments with full synchronization language in Italian and Portuguese.
+- Improved sourcing vocabulary: mills became lanifici/tecelagens where context required textile producers rather than generic suppliers.
+- Reduced literal translations around route, production intelligence, proof before scale, pending statuses, and fulfilment.
+- Improved Portuguese/Brazilian accuracy around embalagem, toque, caimento, and spaces reserved/placeholders.
+- Improved Italian institutional tone around scatola rigida, evidenze, in sospeso, in corso, and espansione.
+- Preserved intentional MOSCATELLI terminology such as Lotto, Manufattura, Bianco Avorio, Terra Bruna, Rosso Essenza / oxblood, and Studio.
+
+No visual changes were intended beyond the version bump.
+
+### v76 — Interface polish and motion refinement
+
+- Refined section transition motion to reduce theatrical 3D movement and improve perceived speed.
+- Reduced hover lift, excessive media zoom, heavy shadows, and rough transition timing across cards, links, buttons, detail overlays, and menu preview states.
+- Reduced desktop blur/shadow intensity where it created visual weight without improving utility.
+- Stabilised mobile bottom navigation further by throttling live centre-item reclassification during fast touch swipes and allowing the film-strip to settle after the gesture.
+- Shifted mobile nav scroll snapping from strict mandatory behaviour to proximity snapping for less fighting against fast finger movement.
+- Kept the patch performance-neutral: no new assets, no new libraries, no new UI modules, and no heavier service-worker pre-cache.
+
+---
+
+## 4. Design Principles
+
+- Internal first. Do not optimise for public impressiveness unless asked.
+- Founder utility before visual spectacle.
+- Patch narrowly. Do not perform broad multi-area redesigns without explicit approval.
+- Preserve MOSCATELLI’s tone: institutional, restrained, severe, Roman, warm-ivory, quiet authority.
+- Do not overfill the app with invented content.
+- Do not invent supplier names, costs, private links, investor evidence, or operational progress.
+- Keep empty placeholders clearly marked as placeholders.
+- Prefer founder-controlled static structure now; editable systems can come later.
+- Keep oxblood as an accent or ritual colour, not a loud surface fill.
+- Avoid turning the app into a generic startup dashboard.
+
+---
+
+## 5. Known Constraints
+
+- This is a static front-end package with no backend.
+- Sensitive private links should not be added until protected hosting/access control exists.
+- Static placeholders must not be mistaken for verified operational records.
+- The service worker cache version must be bumped on every delivered ZIP to avoid stale deployments. Keep the pre-cache lean: shell first, heavy imagery on demand.
+- Translation integrity matters: English, Italian, and Portuguese content should remain aligned.
+- Mobile behaviour must remain a priority because the app is likely to be checked quickly, not only studied on desktop.
+- Runtime file references must be audited before every ZIP delivery.
+
+---
+
+## 6. Recommended Future Patches
+
+Only proceed one controlled patch at a time. Ask Gianluca targeted questions before changing scope.
+
+Near-term candidates:
+
+1. Product Stage Status System — add per-stage states later for product, packaging, and label workflows.
+2. Supplier Entry Detail Pattern — only once real supplier data exists.
+3. Financial Suite Integration Note — a clearer Dashboard card or status once manual financial KPIs are ready.
+4. Website / Checkout Readiness Checklist — dedicated review once public launch flow is being prepared.
+5. Founder Notes / Internal Doctrine Archive — only when it serves retrieval, not decoration.
+6. Version History UI — postpone until team usage or complexity justifies it.
+
+---
+
+## 7. Instructions for Future AI Models
+
+Before making changes:
+
+- Read this file first.
+- Inspect `index.html`, `style.css`, `script.js`, `manifest.webmanifest`, and `sw.js` before proposing patches.
+- Ask focused questions if the change affects visible structure, hierarchy, wording, privacy, or founder workflow.
+- Do not rush with a “nice idea” patch. Utility and discipline come first.
+
+When patching:
+
+- Patch one small scope at a time.
+- Avoid broad rewrites.
+- Preserve the visual system unless the requested patch requires CSS.
+- Keep new content multilingual if it appears in the UI.
+- Do not add a visible changelog unless Gianluca requests it again.
+- Do not add real private URLs, supplier records, financial numbers, or investor claims without explicit verified data from Gianluca.
+- Avoid over-polishing. This app must become useful, not merely more decorative.
+
+Before delivering a ZIP:
+
+- Bump the visible version label where relevant.
+- Bump the service worker cache version.
+- Run JavaScript syntax checks.
+- Validate JSON syntax for `manifest.webmanifest`.
+- Audit HTML, CSS, JS, manifest, and service worker runtime references.
+- Confirm no referenced runtime assets are missing.
+- Confirm ZIP integrity.
+- Mention the audit results in the delivery response.
+
+---
+
+## 8. Current Delivery Notes
+
+v77 is a translation accuracy and contextual language patch. It keeps the app visually and structurally unchanged while improving Italian and Portuguese/Brazilian wording so the language reflects approved decisions, sourcing context, launch discipline, and MOSCATELLI tone more accurately.
+
+The correct principle remains: polish must not add weight. Prefer fewer effects, shorter transitions, restrained shadows, and delayed settlement over live class churn during gestures.
