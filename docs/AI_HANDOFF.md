@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v78  
-Last updated: 02 May 2026, 18:58 CEST  
+Version: v80  
+Last updated: 02 May 2026, 21:42 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -251,6 +251,21 @@ Before delivering a ZIP:
 
 ## 8. Current Delivery Notes
 
-v78 is a translation coverage and pointer responsiveness patch. It keeps the app visually and structurally unchanged while correcting visible untranslated English fragments in Italian and Portuguese/Brazilian, localizing accessibility labels, and making the custom desktop pointer smoother through transform-based movement and throttled spotlight repainting.
+v80 adds the active MRHG website link to the Links directory under Public Surfaces. It is a narrow directory update with localized EN/IT/PT text and ARIA coverage, no new assets, no new libraries, and no visual redesign.
 
 The correct principle remains: polish must not add weight. Prefer fewer effects, shorter transitions, restrained shadows, and delayed settlement over live class churn during gestures.
+
+
+### v79 — Hard-coded Translation Sweep
+- Added localization for generated CSS attribute content, including dashboard card hover panels and status tooltips.
+- Replaced remaining English-only dashboard/detail/status tooltip text in Italian and Portuguese/Brazilian contexts.
+- Added translation hooks for `data-dashboard-detail`, `data-status-detail`, and the version hover label.
+- Corrected residual wording where “blocked/locked” could imply obstruction rather than founder-confirmed readiness.
+- No new assets, no new libraries, and no UI redesign.
+### v80 — Add MRHG Link
+
+- Added the active MRHG website link to the Links directory under Public Surfaces.
+- Added English, Italian, and Portuguese/Brazilian translation entries for the MRHG title, note, hover detail, and ARIA label.
+- Kept the change deliberately narrow: no layout redesign, no new assets, no new libraries, and no private/admin URLs added.
+- Bumped visible app version and service-worker cache to v80.
+
