@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v80  
-Last updated: 02 May 2026, 21:42 CEST  
+Version: v86  
+Last updated: 05 May 2026, 19:50 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -251,7 +251,7 @@ Before delivering a ZIP:
 
 ## 8. Current Delivery Notes
 
-v80 adds the active MRHG website link to the Links directory under Public Surfaces. It is a narrow directory update with localized EN/IT/PT text and ARIA coverage, no new assets, no new libraries, and no visual redesign.
+v85 makes the custom desktop cursor track pointer coordinates directly, without requestAnimationFrame smoothing or CSS transform transition on the outer cursor. Pointer position is now updated before ambient spotlight scheduling so visual tracking is immediate.
 
 The correct principle remains: polish must not add weight. Prefer fewer effects, shorter transitions, restrained shadows, and delayed settlement over live class churn during gestures.
 
@@ -268,4 +268,43 @@ The correct principle remains: polish must not add weight. Prefer fewer effects,
 - Added English, Italian, and Portuguese/Brazilian translation entries for the MRHG title, note, hover detail, and ARIA label.
 - Kept the change deliberately narrow: no layout redesign, no new assets, no new libraries, and no private/admin URLs added.
 - Bumped visible app version and service-worker cache to v80.
+
+### v82 — Links Card Backgrounds
+
+- Added image-backed link cards for the four active external destinations.
+- Added dedicated `link-card__bg` layers with dark overlays and subtle hover scale.
+- Introduced optimized WebP link-card preview assets.
+- Kept link-card styling self-contained in `index.html`.
+
+
+### v84 — Links Card Composition Refinement
+- Refined the four active Links cards after visual review.
+- Removed external arrows and card description text.
+- Anchored link text to the bottom of each card and increased card height to improve image breathing room.
+- Replaced diagonal overlay with bottom-up gradient to protect title/URL readability while keeping the upper image visible.
+- Tightened grid gap, reduced radius to 10px, and quieted URL text.
+- No new assets, no new libraries, and no broader interface changes.
+
+
+### v86 — Supplier Outreach Records
+- Added three real contacted mill records inside Supplier Desk: Locatex, MA.AL.BI., and MyLab.
+- Recorded supplier emails and first-contact status without treating any supplier as approved.
+- Updated Dashboard and Launch Readiness supplier copy to reflect first outreach while keeping sample cost, lead time, MOQ, yarn availability, and physical sample validation as pending.
+- Added contacted supplier status styling and email link treatment.
+- Bumped visible app version, script metadata, and service-worker cache to v86.
+
+### v85 — Direct Cursor Tracking
+- Removed requestAnimationFrame batching from custom cursor position updates.
+- The outer custom cursor now updates its transform immediately inside the pointermove handler.
+- Pointer positioning now runs before ambient spotlight scheduling.
+- Removed CSS transition from the outer `.mc-pointer` element so position and visibility are not eased.
+- No new assets, no new libraries, and no UI redesign.
+
+### v83 — Active Links Only / Image Mapping Correction
+
+- Corrected the swapped MOSCATELLI Website and Pitch Deck background images.
+- Replaced the full Links directory with a compact four-card active grid.
+- Removed visible placeholder categories and inactive/unavailable rows from the Links interface.
+- Kept the four active destinations: MOSCATELLI Website, MRHG Website, Financial Suite, and Pitch Deck.
+- Bumped visible app version, script metadata, and service-worker cache to v83.
 

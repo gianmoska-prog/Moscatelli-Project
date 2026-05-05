@@ -1837,7 +1837,7 @@ body.transition-backward .section.exiting {
   transform: translate3d(50vw, 50vh, 0) translate(-50%, -50%);
   transform-origin: center;
   will-change: transform, opacity;
-  transition: opacity 120ms ease;
+  transition: none;
   filter: blur(0.2px);
   contain: layout paint style;
 }
@@ -7758,6 +7758,28 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .supplier-status--research {
   border-color: rgba(154, 80, 60, 0.36);
   color: rgba(232, 178, 152, 0.9);
+}
+
+.supplier-status--contacted {
+  border-color: rgba(194, 164, 111, 0.36);
+  color: rgba(244, 238, 224, 0.86);
+}
+
+.supplier-entry--contacted {
+  border-color: rgba(194, 164, 111, 0.18);
+}
+
+.supplier-email-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244, 238, 224, 0.18);
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.supplier-email-link:hover,
+.supplier-email-link:focus-visible {
+  color: rgba(244, 238, 224, 0.95);
+  border-bottom-color: rgba(244, 238, 224, 0.48);
 }
 
 .supplier-status::after {

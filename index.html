@@ -10,16 +10,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MOSCATELLI Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=80" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=80" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=80" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=80" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=80" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=80" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=80" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=80" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=80" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=80" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="manifest" href="manifest.webmanifest?v=85" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=85" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=85" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=85" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=85" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=85" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=85" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=85" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=85" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=85" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <style>
     /* Critical launch/veil guards before stylesheet loads */
     html, body { background: #02050a; }
@@ -27,7 +27,148 @@
     #veil-emblem-stage { opacity: 0; visibility: hidden; transform: scale(0.972); }
     #veil-emblem-stage:not(.image-primed) img { opacity: 0; visibility: hidden; }
   </style>
-  <link rel="stylesheet" href="style.css?v=80" />
+  <link rel="stylesheet" href="style.css?v=85" />
+  <style>
+    /* ── Links section: active-only card grid (v86) ── */
+    #section-links .links-active-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    #section-links .link-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 7px;
+      min-height: 220px;
+      padding: 22px 24px 20px;
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      background: rgba(2, 5, 10, 0.34);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.035), 0 14px 38px rgba(0,0,0,0.18);
+      transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+
+    #section-links .link-card:hover,
+    #section-links .link-card:focus-visible {
+      border-color: rgba(160,60,36,0.45);
+      background: rgba(4, 8, 15, 0.50);
+      transform: translateY(-1px);
+    }
+
+    #section-links .link-card:active { transform: translateY(0); }
+
+    #section-links .link-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(2, 5, 10, 0.88) 0%,
+        rgba(2, 5, 10, 0.60) 45%,
+        rgba(2, 5, 10, 0.25) 100%
+      );
+      transition: background 0.28s ease;
+      z-index: 1;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    #section-links .link-card:hover::before,
+    #section-links .link-card:focus-visible::before {
+      background: linear-gradient(
+        to top,
+        rgba(2, 5, 10, 0.78) 0%,
+        rgba(2, 5, 10, 0.48) 45%,
+        rgba(2, 5, 10, 0.15) 100%
+      );
+    }
+
+    #section-links .link-card__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: inherit;
+      transform: scale(1);
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #section-links .link-card:hover .link-card__bg,
+    #section-links .link-card:focus-visible .link-card__bg {
+      transform: scale(1.045);
+    }
+
+    #section-links .link-card > *:not(.link-card__bg) {
+      position: relative;
+      z-index: 2;
+    }
+
+    #link-moscatelli .link-card__bg { background-image: url('assets/images/link-moscatelli.webp'); }
+    #link-mrhg      .link-card__bg { background-image: url('assets/images/link-mrhg.webp'); }
+    #link-finance   .link-card__bg { background-image: url('assets/images/link-finance.webp'); }
+    #link-pitch     .link-card__bg { background-image: url('assets/images/link-pitch.webp'); }
+
+    #section-links .link-card__category {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(185, 80, 50, 0.95);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      margin-bottom: 2px;
+    }
+
+    #section-links .link-card__title {
+      font-family: var(--font-ui);
+      font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+      font-weight: 500;
+      line-height: 1.24;
+      letter-spacing: 0.01em;
+      color: rgba(255, 248, 235, 0.97);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+
+    #section-links .link-card__url {
+      font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #section-links .links-inner .directory-intro {
+      max-width: 520px;
+    }
+
+    @media (max-width: 600px) {
+      #section-links .links-active-grid { grid-template-columns: 1fr; }
+      #section-links .link-card { min-height: 220px; padding: 20px 21px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #section-links .link-card,
+      #section-links .link-card::before,
+      #section-links .link-card__bg { transition: none; }
+      #section-links .link-card:hover .link-card__bg,
+      #section-links .link-card:focus-visible .link-card__bg { transform: none; }
+    }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
@@ -184,9 +325,9 @@
 
   <div
     class="studio-version-label"
-    data-last-change="Last changed: 02 May 2026, 18:17 CEST" data-i18n-last-change="generated.version.lastChanged"
-    aria-label="MOSCATELLI Studio version v80. Last changed: 02 May 2026, 21:42 CEST" data-i18n-aria-label="aria.version"
-  >v80</div>
+    data-last-change="Last changed: 05 May 2026, 19:50 CEST"
+    aria-label="MOSCATELLI Studio version v86. Last changed: 05 May 2026, 19:50 CEST"
+  >v86</div>
 
   <main id="stage">
     <section id="section-home" class="section active" data-label-key="sections.threshold" data-index="01">
@@ -216,10 +357,10 @@
             <p data-i18n="dashboard.cards.decisions.copy">Decision Register is now active; pending items will continue to be refined as evidence appears.</p>
           </article>
 
-          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now exists inside Manufattura. It is intentionally empty except for one example row until verified suppliers are added." data-i18n-dashboard-detail="generated.dashboardDetails.suppliers">
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now contains three contacted mill records: Locatex, MA.AL.BI., and MyLab. Awaiting replies on capability, sample cost, lead time, MOQ per colour, and yarn sourcing." data-i18n-dashboard-detail="generated.dashboardDetails.suppliers">
             <span class="dashboard-card__label" data-i18n="dashboard.cards.suppliers.label">Supplier outreach</span>
-            <strong data-i18n="dashboard.cards.suppliers.value">Not started in Studio</strong>
-            <p data-i18n="dashboard.cards.suppliers.copy">Supplier intelligence remains outside this dashboard for now.</p>
+            <strong data-i18n="dashboard.cards.suppliers.value">3 mills contacted</strong>
+            <p data-i18n="dashboard.cards.suppliers.copy">Locatex, MA.AL.BI., and MyLab are now recorded inside Manufattura’s Supplier Desk.</p>
           </article>
 
           <article class="dashboard-card" tabindex="0" data-dashboard-detail="Reserved for Finance Suite sync or manual KPI entry: budget, committed spend, remaining runway, and unit-economics warnings." data-i18n-dashboard-detail="generated.dashboardDetails.budget">
@@ -265,7 +406,7 @@
                 <span data-i18n="launchReadiness.areas.production.label">Supplier / production</span>
                 <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means the structure exists, but verified supplier records and outreach evidence are not yet present." data-i18n-status-detail="generated.statusDetails.launchProgressSuppliers" data-i18n="launchReadiness.status.progress">In progress</em>
               </div>
-              <p data-i18n="launchReadiness.areas.production.copy">Supplier Desk exists inside Manufattura; verified supplier entries remain empty by design.</p>
+              <p data-i18n="launchReadiness.areas.production.copy">Three mill outreach records are now logged; responses, sample costs, lead times, MOQs, and yarn availability remain pending.</p>
             </article>
 
             <article class="launch-readiness-item">
@@ -724,7 +865,7 @@
             <button class="supplier-desk-toggle" type="button" data-action="toggle-supplier-desk" aria-controls="supplier-desk-panel" aria-expanded="false">
               <span data-i18n="supplierDesk.buttonKicker">Internal module</span>
               <strong data-i18n="supplierDesk.buttonTitle">Supplier Desk</strong>
-              <small data-i18n="supplierDesk.buttonCopy">Open supplier placeholders, risks, and future outreach structure.</small>
+              <small data-i18n="supplierDesk.buttonCopy">Open contacted mills, pending replies, risks, and future supplier structure.</small>
             </button>
           </div>
 
@@ -762,7 +903,7 @@
             <div>
               <span class="panel-kicker" data-i18n="supplierDesk.kicker">Manufattura / sourcing structure</span>
               <h3 data-i18n="supplierDesk.title">Supplier Desk</h3>
-              <p data-i18n="supplierDesk.intro">A reserved workspace for mills, packaging, labels, trims, and production support. Empty by design until real suppliers are verified.</p>
+              <p data-i18n="supplierDesk.intro">A reserved workspace for mills, packaging, labels, trims, and production support. Current mill outreach is logged here without treating any supplier as approved.</p>
             </div>
             <button class="supplier-desk-close" type="button" data-action="toggle-supplier-desk" aria-controls="supplier-desk-panel" aria-expanded="true" data-i18n="supplierDesk.close">Close Supplier Desk</button>
           </div>
@@ -778,26 +919,56 @@
           </div>
 
           <div class="supplier-desk-grid">
-            <article class="supplier-entry supplier-entry--template">
+            <article class="supplier-entry supplier-entry--contacted">
               <div class="supplier-entry__topline">
-                <span class="panel-kicker" data-i18n="supplierDesk.example.kicker">Example only</span>
-                <span class="supplier-status supplier-status--template" tabindex="0" data-status-detail="This row exists only as a structural example. Do not treat it as a real supplier record." data-i18n-status-detail="generated.statusDetails.supplierTemplate" data-i18n="supplierDesk.status.template">Template</span>
+                <span class="panel-kicker" data-i18n="supplierDesk.contacted.kicker">Mills / contacted</span>
+                <span class="supplier-status supplier-status--contacted" tabindex="0" data-status-detail="Initial email sent. No supplier is approved until capability, sample cost, lead time, MOQ, yarn availability, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.supplierContacted" data-i18n="supplierDesk.status.contacted">Contacted</span>
               </div>
-              <strong data-i18n="supplierDesk.example.title">Supplier entry template</strong>
+              <strong data-i18n="supplierDesk.contacts.locatex.name">Locatex</strong>
               <dl class="supplier-entry__meta">
-                <div><dt data-i18n="supplierDesk.example.categoryLabel">Category</dt><dd data-i18n="supplierDesk.example.categoryValue">Mills</dd></div>
-                <div><dt data-i18n="supplierDesk.example.locationLabel">Location</dt><dd data-i18n="supplierDesk.example.locationValue">To specify</dd></div>
-                <div><dt data-i18n="supplierDesk.example.statusLabel">Status</dt><dd data-i18n="supplierDesk.example.statusValue">To research</dd></div>
-                <div><dt data-i18n="supplierDesk.example.actionLabel">Next action</dt><dd data-i18n="supplierDesk.example.actionValue">Define first contact step</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:fornarolocatex@gmail.com">fornarolocatex@gmail.com</a></dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacted.sentStatus">Contacted 05 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacted.nextAction">Await reply; follow up after 5–7 working days if silent.</dd></div>
               </dl>
-              <p data-i18n="supplierDesk.example.note">Template row only; replace later with verified supplier data.</p>
+              <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
+            </article>
+
+            <article class="supplier-entry supplier-entry--contacted">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.contacted.kicker">Mills / contacted</span>
+                <span class="supplier-status supplier-status--contacted" tabindex="0" data-status-detail="Initial email sent. No supplier is approved until capability, sample cost, lead time, MOQ, yarn availability, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.supplierContacted" data-i18n="supplierDesk.status.contacted">Contacted</span>
+              </div>
+              <strong data-i18n="supplierDesk.contacts.maalbi.name">MA.AL.BI.</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:info@maalbi.com">info@maalbi.com</a></dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacted.sentStatus">Contacted 05 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacted.nextAction">Await reply; follow up after 5–7 working days if silent.</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
+            </article>
+
+            <article class="supplier-entry supplier-entry--contacted">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.contacted.kicker">Mills / contacted</span>
+                <span class="supplier-status supplier-status--contacted" tabindex="0" data-status-detail="Initial email sent. No supplier is approved until capability, sample cost, lead time, MOQ, yarn availability, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.supplierContacted" data-i18n="supplierDesk.status.contacted">Contacted</span>
+              </div>
+              <strong data-i18n="supplierDesk.contacts.mylab.name">MyLab</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:info@mylab-srl.com">info@mylab-srl.com</a></dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacted.sentStatus">Contacted 05 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacted.nextAction">Await reply; follow up after 5–7 working days if silent.</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
             </article>
 
             <article class="supplier-placeholder-card">
-              <span class="panel-kicker" data-i18n="supplierDesk.placeholders.kicker">Placeholder slots</span>
-              <p data-i18n="supplierDesk.placeholders.copy">These rows are intentionally empty. They exist to preserve the structure without inventing unverified supplier information.</p>
+              <span class="panel-kicker" data-i18n="supplierDesk.placeholders.kicker">Future slots</span>
+              <p data-i18n="supplierDesk.placeholders.copy">Use this structure only for additional verified or contacted suppliers. Do not invent supplier records.</p>
               <div class="supplier-empty-grid">
-                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
+                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.millsNow">3 contacted records</em></span>
                 <span><strong data-i18n="supplierDesk.categories.packaging">Packaging</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
                 <span><strong data-i18n="supplierDesk.categories.labels">Labels / trims</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
                 <span><strong data-i18n="supplierDesk.categories.production">Photography / production support</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
@@ -886,159 +1057,34 @@
             <p class="directory-warning" data-i18n="links.warning">Private MOSCATELLI links shouldn't be shared with third parties outside of the business.</p>
           </div>
 
-          <div class="directory-grid" aria-label="MOSCATELLI internal links directory" data-i18n-aria-label="aria.linksDirectory">
-            <section class="directory-category" aria-labelledby="directory-public-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.public.kicker">01</span>
-                <h3 id="directory-public-title" data-i18n="links.categories.public.title">Public Surfaces</h3>
-              </div>
-              <div class="directory-list">
-                <a class="directory-item directory-item--active" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser" data-i18n-aria-label="aria.openWebsite">
-                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
-                  <strong data-i18n="links.items.website.title">MOSCATELLI Website</strong>
-                  <small data-i18n="links.items.website.note">moscatelli-official.netlify.app</small>
-                  <em class="directory-hover" data-i18n="links.items.website.detail">Public-facing surface. Keep visible here because it is safe to open and share externally.</em>
-                </a>
-                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/MRHG/" target="_blank" rel="noopener noreferrer external" aria-label="Open MRHG website in browser" data-i18n-aria-label="aria.openMRHG">
-                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
-                  <strong data-i18n="links.items.mrhg.title">MRHG Website</strong>
-                  <small data-i18n="links.items.mrhg.note">gianmoska-prog.github.io/MRHG</small>
-                  <em class="directory-hover" data-i18n="links.items.mrhg.detail">Public holding-group surface for Moscatelli Roza Holding Group. Keep visible because it is an active external reference.</em>
-                </a>
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.checkout.title">Checkout / purchase path</strong>
-                  <small data-i18n="links.items.checkout.note">Public sales flow placeholder</small>
-                  <em class="directory-hover" data-i18n="links.items.checkout.detail">Reserved for the future public purchase or payment surface once it has been properly tested.</em>
-                </article>
-              </div>
-            </section>
+          <div class="links-active-grid" aria-label="MOSCATELLI internal links directory" data-i18n-aria-label="aria.linksDirectory">
+            <a id="link-moscatelli" class="link-card" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser" data-i18n-aria-label="aria.openWebsite">
+              <div class="link-card__bg" aria-hidden="true"></div>
+              <span class="link-card__category" data-i18n="links.categories.public.title">Public Surfaces</span>
+              <span class="link-card__title" data-i18n="links.items.website.title">MOSCATELLI Website</span>
+              <span class="link-card__url" data-i18n="links.items.website.note">moscatelli-official.netlify.app</span>
+            </a>
 
-            <section class="directory-category" aria-labelledby="directory-tools-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.tools.kicker">02</span>
-                <h3 id="directory-tools-title" data-i18n="links.categories.tools.title">Internal Tools</h3>
-              </div>
-              <div class="directory-list">
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.studioTools.title">Studio tools vault</strong>
-                  <small data-i18n="links.items.studioTools.note">Internal utilities placeholder</small>
-                  <em class="directory-hover" data-i18n="links.items.studioTools.detail">Reserved for future internal utilities. It is intentionally not linked yet.</em>
-                </article>
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.notes.title">Founder notes</strong>
-                  <small data-i18n="links.items.notes.note">Private scratchpad placeholder</small>
-                  <em class="directory-hover" data-i18n="links.items.notes.detail">Reserved for a future notes module. It should not hold sensitive data until the app is protected.</em>
-                </article>
-              </div>
-            </section>
+            <a id="link-mrhg" class="link-card" href="https://gianmoska-prog.github.io/MRHG/" target="_blank" rel="noopener noreferrer external" aria-label="Open MRHG website in browser" data-i18n-aria-label="aria.openMRHG">
+              <div class="link-card__bg" aria-hidden="true"></div>
+              <span class="link-card__category" data-i18n="links.categories.public.title">Public Surfaces</span>
+              <span class="link-card__title" data-i18n="links.items.mrhg.title">MRHG Website</span>
+              <span class="link-card__url" data-i18n="links.items.mrhg.note">gianmoska-prog.github.io/MRHG</span>
+            </a>
 
-            <section class="directory-category" aria-labelledby="directory-finance-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.finance.kicker">03</span>
-                <h3 id="directory-finance-title" data-i18n="links.categories.finance.title">Finance</h3>
-              </div>
-              <div class="directory-list">
-                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser" data-i18n-aria-label="aria.openFinance">
-                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
-                  <strong data-i18n="links.items.financeSuite.title">Financial Suite</strong>
-                  <small data-i18n="links.items.financeSuite.note">gianmoska-prog.github.io/Finance-Suite</small>
-                  <em class="directory-hover" data-i18n="links.items.financeSuite.detail">Live internal finance surface. It remains external to Studio for now.</em>
-                </a>
-                <article class="directory-item directory-item--unavailable" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--unavailable" data-i18n="links.status.unavailable">UNAVAILABLE</span>
-                  <strong data-i18n="links.items.financeAdmin.title">Private finance admin</strong>
-                  <small data-i18n="links.items.financeAdmin.note">Do not embed yet</small>
-                  <em class="directory-hover" data-i18n="links.items.financeAdmin.detail">Private finance/admin links should stay out of the static app until protected hosting exists.</em>
-                </article>
-              </div>
-            </section>
+            <a id="link-finance" class="link-card" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser" data-i18n-aria-label="aria.openFinance">
+              <div class="link-card__bg" aria-hidden="true"></div>
+              <span class="link-card__category" data-i18n="links.categories.finance.title">Finance</span>
+              <span class="link-card__title" data-i18n="links.items.financeSuite.title">Financial Suite</span>
+              <span class="link-card__url" data-i18n="links.items.financeSuite.note">gianmoska-prog.github.io/Finance-Suite</span>
+            </a>
 
-            <section class="directory-category" aria-labelledby="directory-investor-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.investor.kicker">04</span>
-                <h3 id="directory-investor-title" data-i18n="links.categories.investor.title">Investor Materials</h3>
-              </div>
-              <div class="directory-list">
-                <a class="directory-item directory-item--active" href="https://gianmoska-prog.github.io/Moscatelli/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli pitch deck in browser" data-i18n-aria-label="aria.openPitch">
-                  <span class="directory-status directory-status--active" data-i18n="links.status.active">ACTIVE</span>
-                  <strong data-i18n="links.items.pitchDeck.title">Pitch Deck</strong>
-                  <small data-i18n="links.items.pitchDeck.note">gianmoska-prog.github.io/Moscatelli</small>
-                  <em class="directory-hover" data-i18n="links.items.pitchDeck.detail">Current investor-facing presentation surface. Keep version status under review.</em>
-                </a>
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.investorArchive.title">Investor archive</strong>
-                  <small data-i18n="links.items.investorArchive.note">Deck versions and evidence later</small>
-                  <em class="directory-hover" data-i18n="links.items.investorArchive.detail">Reserved for future deck versions, investor notes, proof material, and private documents.</em>
-                </article>
-              </div>
-            </section>
-
-            <section class="directory-category" aria-labelledby="directory-product-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.product.kicker">05</span>
-                <h3 id="directory-product-title" data-i18n="links.categories.product.title">Product / Manufattura</h3>
-              </div>
-              <div class="directory-list">
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.techPack.title">Lotto I technical file</strong>
-                  <small data-i18n="links.items.techPack.note">Specs, samples, QC evidence</small>
-                  <em class="directory-hover" data-i18n="links.items.techPack.detail">Reserved for the future technical file linked to Lotto I sample validation.</em>
-                </article>
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.packagingArchive.title">Packaging archive</strong>
-                  <small data-i18n="links.items.packagingArchive.note">Box, insert, wax, folding tests</small>
-                  <em class="directory-hover" data-i18n="links.items.packagingArchive.detail">Reserved for packaging references, physical tests, dimensions, and validation evidence.</em>
-                </article>
-              </div>
-            </section>
-
-            <section class="directory-category" aria-labelledby="directory-admin-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.admin.kicker">06</span>
-                <h3 id="directory-admin-title" data-i18n="links.categories.admin.title">Admin / Infrastructure</h3>
-              </div>
-              <div class="directory-list">
-                <article class="directory-item directory-item--unavailable" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--unavailable" data-i18n="links.status.unavailable">UNAVAILABLE</span>
-                  <strong data-i18n="links.items.hosting.title">Hosting dashboard</strong>
-                  <small data-i18n="links.items.hosting.note">Private admin link withheld</small>
-                  <em class="directory-hover" data-i18n="links.items.hosting.detail">Do not place hosting, domain, or deployment admin URLs here until access is protected.</em>
-                </article>
-                <article class="directory-item directory-item--unavailable" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--unavailable" data-i18n="links.status.unavailable">UNAVAILABLE</span>
-                  <strong data-i18n="links.items.payments.title">Payment dashboard</strong>
-                  <small data-i18n="links.items.payments.note">Private admin link withheld</small>
-                  <em class="directory-hover" data-i18n="links.items.payments.detail">Payment and admin links remain excluded from the static directory for safety.</em>
-                </article>
-              </div>
-            </section>
-
-            <section class="directory-category" aria-labelledby="directory-research-title">
-              <div class="directory-category__header">
-                <span data-i18n="links.categories.research.kicker">07</span>
-                <h3 id="directory-research-title" data-i18n="links.categories.research.title">Research</h3>
-              </div>
-              <div class="directory-list">
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.millResearch.title">Mill research board</strong>
-                  <small data-i18n="links.items.millResearch.note">Future research surface</small>
-                  <em class="directory-hover" data-i18n="links.items.millResearch.detail">Reserved for verified mill research, not invented supplier lists.</em>
-                </article>
-                <article class="directory-item directory-item--construction" tabindex="0" aria-disabled="true">
-                  <span class="directory-status directory-status--construction" data-i18n="links.status.construction">IN CONSTRUCTION</span>
-                  <strong data-i18n="links.items.referenceVault.title">Reference vault</strong>
-                  <small data-i18n="links.items.referenceVault.note">Visual and market references later</small>
-                  <em class="directory-hover" data-i18n="links.items.referenceVault.detail">Reserved for structured references once the archive system is built.</em>
-                </article>
-              </div>
-            </section>
+            <a id="link-pitch" class="link-card" href="https://gianmoska-prog.github.io/Moscatelli/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli pitch deck in browser" data-i18n-aria-label="aria.openPitch">
+              <div class="link-card__bg" aria-hidden="true"></div>
+              <span class="link-card__category" data-i18n="links.categories.investor.title">Investor Materials</span>
+              <span class="link-card__title" data-i18n="links.items.pitchDeck.title">Pitch Deck</span>
+              <span class="link-card__url" data-i18n="links.items.pitchDeck.note">gianmoska-prog.github.io/Moscatelli</span>
+            </a>
           </div>
         </div>
 
@@ -1087,6 +1133,6 @@
     <span class="mc-pointer-line"></span>
   </div>
 
-  <script src="script.js?v=80"></script>
+  <script src="script.js?v=85"></script>
 </body>
 </html>
