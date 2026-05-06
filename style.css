@@ -7779,6 +7779,16 @@ body.menu-open .menu-toggle span:nth-child(3) {
   background: linear-gradient(180deg, rgba(168, 126, 85, 0.075), rgba(236, 228, 214, 0.035));
 }
 
+.supplier-status--archived {
+  border-color: rgba(154, 132, 102, 0.42);
+  color: rgba(232, 220, 202, 0.82);
+}
+
+.supplier-entry--archived {
+  border-color: rgba(154, 132, 102, 0.18);
+  background: linear-gradient(180deg, rgba(154, 132, 102, 0.055), rgba(236, 228, 214, 0.025));
+}
+
 .supplier-email-link {
   color: inherit;
   text-decoration: none;

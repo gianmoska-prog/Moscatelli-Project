@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v87  
-Last updated: 06 May 2026, 09:15 CEST  
+Version: v88  
+Last updated: 06 May 2026, 12:30 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -285,6 +285,15 @@ The correct principle remains: polish must not add weight. Prefer fewer effects,
 - Tightened grid gap, reduced radius to 10px, and quieted URL text.
 - No new assets, no new libraries, and no broader interface changes.
 
+
+### v88 — MA.AL.BI. Archived for Lotto I
+- Updated Supplier Desk with MA.AL.BI.'s second reply on 06 May 2026.
+- Recorded that MA.AL.BI. does not currently hold the requested baby alpaca article or routinely treat the requested baby alpaca yarn.
+- Recorded their custom-development constraint: from-zero development would require testing finishes, yields, yarn sourcing, and several hundred pieces as sampling.
+- Marked MA.AL.BI. as archived for Lotto I and retained only as a possible future wool/cashmere contact.
+- Updated Dashboard and Launch Readiness supplier copy to show 1 archived mill and 2 pending replies.
+- Added archived supplier status styling and translated keys across EN, IT, and PT.
+- Bumped visible app version and service-worker cache to v88.
 
 ### v87 — MA.AL.BI. Reply Logged
 - Updated Supplier Desk to record MA.AL.BI.'s first reply on 06 May 2026.
