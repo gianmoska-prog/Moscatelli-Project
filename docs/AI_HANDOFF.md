@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v86  
-Last updated: 05 May 2026, 19:50 CEST  
+Version: v87  
+Last updated: 06 May 2026, 09:15 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -285,6 +285,14 @@ The correct principle remains: polish must not add weight. Prefer fewer effects,
 - Tightened grid gap, reduced radius to 10px, and quieted URL text.
 - No new assets, no new libraries, and no broader interface changes.
 
+
+### v87 — MA.AL.BI. Reply Logged
+- Updated Supplier Desk to record MA.AL.BI.'s first reply on 06 May 2026.
+- Marked their supplied A/W catalogue article as a product mismatch: 80% alpaca / 20% polyamide, raised fluffy surface, stripe design, and long twisted fringe.
+- Kept MA.AL.BI. open only as a possible bespoke-development route pending custom MOQ, sample cost, sample timing, and 100% baby alpaca yarn capability.
+- Updated Dashboard and Launch Readiness supplier copy to show 1 reply / 3 contacted mills.
+- Added responded supplier status styling and translated keys across EN, IT, and PT.
+- Bumped visible app version and service-worker cache to v87.
 
 ### v86 — Supplier Outreach Records
 - Added three real contacted mill records inside Supplier Desk: Locatex, MA.AL.BI., and MyLab.

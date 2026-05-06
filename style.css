@@ -7769,6 +7769,16 @@ body.menu-open .menu-toggle span:nth-child(3) {
   border-color: rgba(194, 164, 111, 0.18);
 }
 
+.supplier-status--responded {
+  border-color: rgba(168, 126, 85, 0.42);
+  color: rgba(245, 226, 196, 0.9);
+}
+
+.supplier-entry--responded {
+  border-color: rgba(168, 126, 85, 0.22);
+  background: linear-gradient(180deg, rgba(168, 126, 85, 0.075), rgba(236, 228, 214, 0.035));
+}
+
 .supplier-email-link {
   color: inherit;
   text-decoration: none;

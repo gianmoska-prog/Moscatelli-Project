@@ -325,9 +325,9 @@
 
   <div
     class="studio-version-label"
-    data-last-change="Last changed: 05 May 2026, 19:50 CEST"
-    aria-label="MOSCATELLI Studio version v86. Last changed: 05 May 2026, 19:50 CEST"
-  >v86</div>
+    data-last-change="Last changed: 06 May 2026, 09:15 CEST"
+    aria-label="MOSCATELLI Studio version v87. Last changed: 06 May 2026, 09:15 CEST"
+  >v87</div>
 
   <main id="stage">
     <section id="section-home" class="section active" data-label-key="sections.threshold" data-index="01">
@@ -357,10 +357,10 @@
             <p data-i18n="dashboard.cards.decisions.copy">Decision Register is now active; pending items will continue to be refined as evidence appears.</p>
           </article>
 
-          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now contains three contacted mill records: Locatex, MA.AL.BI., and MyLab. Awaiting replies on capability, sample cost, lead time, MOQ per colour, and yarn sourcing." data-i18n-dashboard-detail="generated.dashboardDetails.suppliers">
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now records three contacted mills and one reply from MA.AL.BI. Their catalogue article is marked as a mismatch; custom MOQ and sample terms remain pending." data-i18n-dashboard-detail="generated.dashboardDetails.suppliers">
             <span class="dashboard-card__label" data-i18n="dashboard.cards.suppliers.label">Supplier outreach</span>
             <strong data-i18n="dashboard.cards.suppliers.value">3 mills contacted</strong>
-            <p data-i18n="dashboard.cards.suppliers.copy">Locatex, MA.AL.BI., and MyLab are now recorded inside Manufattura’s Supplier Desk.</p>
+            <p data-i18n="dashboard.cards.suppliers.copy">MA.AL.BI. replied with catalogue options; bespoke terms remain pending.</p>
           </article>
 
           <article class="dashboard-card" tabindex="0" data-dashboard-detail="Reserved for Finance Suite sync or manual KPI entry: budget, committed spend, remaining runway, and unit-economics warnings." data-i18n-dashboard-detail="generated.dashboardDetails.budget">
@@ -404,7 +404,7 @@
             <article class="launch-readiness-item">
               <div class="launch-readiness-item__topline">
                 <span data-i18n="launchReadiness.areas.production.label">Supplier / production</span>
-                <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means the structure exists, but verified supplier records and outreach evidence are not yet present." data-i18n-status-detail="generated.statusDetails.launchProgressSuppliers" data-i18n="launchReadiness.status.progress">In progress</em>
+                <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means supplier outreach has begun and one response has arrived, but custom capability, costs, lead times, MOQs, yarn availability, and physical sample quality remain unconfirmed." data-i18n-status-detail="generated.statusDetails.launchProgressSuppliers" data-i18n="launchReadiness.status.progress">In progress</em>
               </div>
               <p data-i18n="launchReadiness.areas.production.copy">Three mill outreach records are now logged; responses, sample costs, lead times, MOQs, and yarn availability remain pending.</p>
             </article>
@@ -934,19 +934,19 @@
               <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
             </article>
 
-            <article class="supplier-entry supplier-entry--contacted">
+            <article class="supplier-entry supplier-entry--responded">
               <div class="supplier-entry__topline">
-                <span class="panel-kicker" data-i18n="supplierDesk.contacted.kicker">Mills / contacted</span>
-                <span class="supplier-status supplier-status--contacted" tabindex="0" data-status-detail="Initial email sent. No supplier is approved until capability, sample cost, lead time, MOQ, yarn availability, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.supplierContacted" data-i18n="supplierDesk.status.contacted">Contacted</span>
+                <span class="panel-kicker" data-i18n="supplierDesk.responded.kicker">Mills / reply received</span>
+                <span class="supplier-status supplier-status--responded" tabindex="0" data-status-detail="MA.AL.BI. replied with existing mixed-alpaca catalogue articles. These do not match the Moscatelli brief; bespoke MOQ, sample cost, lead time, and yarn capability remain pending." data-i18n-status-detail="generated.statusDetails.supplierResponded" data-i18n="supplierDesk.status.responded">Reply received</span>
               </div>
               <strong data-i18n="supplierDesk.contacts.maalbi.name">MA.AL.BI.</strong>
               <dl class="supplier-entry__meta">
                 <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
                 <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:info@maalbi.com">info@maalbi.com</a></dd></div>
-                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacted.sentStatus">Contacted 05 May 2026</dd></div>
-                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacted.nextAction">Await reply; follow up after 5–7 working days if silent.</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.responded.sentStatus">Reply received 06 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.responded.nextAction">Ask for bespoke MOQ, sample cost, sample timing, and 100% baby alpaca yarn capability.</dd></div>
               </dl>
-              <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
+              <p data-i18n="supplierDesk.responded.note">Existing A/W catalogue article reviewed: 80% alpaca / 20% polyamide, raised fluffy surface, stripe design, and long twisted fringe. Useful as commercial reference only; not a Moscatelli product match.</p>
             </article>
 
             <article class="supplier-entry supplier-entry--contacted">
@@ -968,7 +968,7 @@
               <span class="panel-kicker" data-i18n="supplierDesk.placeholders.kicker">Future slots</span>
               <p data-i18n="supplierDesk.placeholders.copy">Use this structure only for additional verified or contacted suppliers. Do not invent supplier records.</p>
               <div class="supplier-empty-grid">
-                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.millsNow">3 contacted records</em></span>
+                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.millsNow">3 mill records / 1 reply</em></span>
                 <span><strong data-i18n="supplierDesk.categories.packaging">Packaging</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
                 <span><strong data-i18n="supplierDesk.categories.labels">Labels / trims</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
                 <span><strong data-i18n="supplierDesk.categories.production">Photography / production support</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
