@@ -10,16 +10,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MOSCATELLI Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=85" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=85" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=85" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=85" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=85" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=85" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=85" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=85" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=85" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=85" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="manifest" href="manifest.webmanifest?v=89" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=89" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=89" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=89" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=89" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=89" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=89" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=89" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=89" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=89" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <style>
     /* Critical launch/veil guards before stylesheet loads */
     html, body { background: #02050a; }
@@ -27,12 +27,12 @@
     #veil-emblem-stage { opacity: 0; visibility: hidden; transform: scale(0.972); }
     #veil-emblem-stage:not(.image-primed) img { opacity: 0; visibility: hidden; }
   </style>
-  <link rel="stylesheet" href="style.css?v=85" />
+  <link rel="stylesheet" href="style.css?v=89" />
   <style>
-    /* ── Links section: active-only card grid (v86) ── */
+    /* ── Links section: active-only card grid (v90) ── */
     #section-links .links-active-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
       gap: 10px;
       margin-top: 32px;
     }
@@ -119,6 +119,8 @@
     #link-mrhg      .link-card__bg { background-image: url('assets/images/link-mrhg.webp'); }
     #link-finance   .link-card__bg { background-image: url('assets/images/link-finance.webp'); }
     #link-pitch     .link-card__bg { background-image: url('assets/images/link-pitch.webp'); }
+    #link-storyboard .link-card__bg { background-image: url('assets/images/link-storyboard.webp'); }
+    #link-coming-soon .link-card__bg { background-image: url('assets/images/link-coming-soon.webp'); }
 
     #section-links .link-card__category {
       font-family: var(--font-display);
@@ -325,9 +327,11 @@
 
   <div
     class="studio-version-label"
-    data-last-change="Last changed: 06 May 2026, 12:30 CEST"
-    aria-label="MOSCATELLI Studio version v88. Last changed: 06 May 2026, 12:30 CEST"
-  >v88</div>
+    data-last-change="Last changed: 25 May 2026, 11:49 CEST"
+    data-i18n-last-change="generated.version.lastChanged"
+    aria-label="MOSCATELLI Studio version v90. Last changed: 25 May 2026, 11:49 CEST"
+    data-i18n-aria-label="aria.version"
+  >v90</div>
 
   <main id="stage">
     <section id="section-home" class="section active" data-label-key="sections.threshold" data-index="01">
@@ -357,10 +361,10 @@
             <p data-i18n="dashboard.cards.decisions.copy">Decision Register is now active; pending items will continue to be refined as evidence appears.</p>
           </article>
 
-          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now records three contacted mills. MA.AL.BI. is archived for Lotto I after confirming that a from-zero baby alpaca development would require several hundred pieces as sampling; Locatex and MyLab remain pending." data-i18n-dashboard-detail="generated.dashboardDetails.suppliers">
+          <article class="dashboard-card" tabindex="0" data-dashboard-detail="Supplier Desk now records seven mill records: five active contact routes pending reply, MA.AL.BI. archived for Lotto I, and Kaleidos queued for second-wave research. The Sasso route remains indirect through Artknit until factory-confirmed." data-i18n-dashboard-detail="generated.dashboardDetails.suppliers">
             <span class="dashboard-card__label" data-i18n="dashboard.cards.suppliers.label">Supplier outreach</span>
-            <strong data-i18n="dashboard.cards.suppliers.value">1 archived / 2 pending</strong>
-            <p data-i18n="dashboard.cards.suppliers.copy">MA.AL.BI. closed for Lotto I; Locatex and MyLab remain pending.</p>
+            <strong data-i18n="dashboard.cards.suppliers.value">5 pending / 1 archived / 1 queued</strong>
+            <p data-i18n="dashboard.cards.suppliers.copy">Five active contact routes are pending; MA.AL.BI. is archived and Kaleidos remains queued.</p>
           </article>
 
           <article class="dashboard-card" tabindex="0" data-dashboard-detail="Reserved for Finance Suite sync or manual KPI entry: budget, committed spend, remaining runway, and unit-economics warnings." data-i18n-dashboard-detail="generated.dashboardDetails.budget">
@@ -404,9 +408,9 @@
             <article class="launch-readiness-item">
               <div class="launch-readiness-item__topline">
                 <span data-i18n="launchReadiness.areas.production.label">Supplier / production</span>
-                <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means supplier outreach has begun; MA.AL.BI. is no longer active for Lotto I, while remaining supplier capability, costs, lead times, MOQs, yarn availability, and physical sample quality are still unconfirmed." data-i18n-status-detail="generated.statusDetails.launchProgressSuppliers" data-i18n="launchReadiness.status.progress">In progress</em>
+                <em class="launch-status launch-status--progress" tabindex="0" data-status-detail="In progress means supplier outreach is now broader, but no mill is approved until capability, sample cost, lead time, MOQ, yarn availability, fringe discipline, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.launchProgressSuppliers" data-i18n="launchReadiness.status.progress">In progress</em>
               </div>
-              <p data-i18n="launchReadiness.areas.production.copy">Three mill records are logged. MA.AL.BI. is archived for Lotto I; Locatex and MyLab remain pending for capability, sample cost, lead time, MOQ, and yarn availability.</p>
+              <p data-i18n="launchReadiness.areas.production.copy">Seven mill records are logged: five active contact routes pending reply, one archived for Lotto I, and one second-wave lead still not approached.</p>
             </article>
 
             <article class="launch-readiness-item">
@@ -934,7 +938,6 @@
               <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
             </article>
 
-
             <article class="supplier-entry supplier-entry--archived">
               <div class="supplier-entry__topline">
                 <span class="panel-kicker" data-i18n="supplierDesk.archived.kicker">Mills / archived for Lotto I</span>
@@ -965,11 +968,71 @@
               <p data-i18n="supplierDesk.contacted.note">Initial scarf sample outreach sent. Await capability, sample cost, lead time, MOQ per colour, indicative unit price, and yarn-sourcing answer.</p>
             </article>
 
+            <article class="supplier-entry supplier-entry--contacted">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.contacted.kicker">Mills / contacted</span>
+                <span class="supplier-status supplier-status--contacted" tabindex="0" data-status-detail="Initial email sent. No supplier is approved until capability, sample cost, lead time, MOQ, yarn availability, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.supplierContacted" data-i18n="supplierDesk.status.contacted">Contacted</span>
+              </div>
+              <strong data-i18n="supplierDesk.contacts.manifatturabig.name">Manifattura BIG</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:info@manifatturabig.it">info@manifatturabig.it</a></dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacts.manifatturabig.sentStatus">Contacted 25 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacts.manifatturabig.nextAction">Await reply; request technical confirmation before treating as active development route.</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.contacts.manifatturabig.note">Second-wave outreach sent for the 100% baby alpaca scarf. Strong Prato accessory-production candidate; await capability, sample cost, lead time, MOQ, and yarn availability.</p>
+            </article>
+
+            <article class="supplier-entry supplier-entry--indirect">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.indirect.kicker">Mills / indirect route</span>
+                <span class="supplier-status supplier-status--responded" tabindex="0" data-status-detail="Outreach has gone through an intermediary route. Treat as pending intelligence, not direct factory confirmation, until the actual mill or a reliable representative answers with technical capability." data-i18n-status-detail="generated.statusDetails.supplierIndirect" data-i18n="supplierDesk.status.indirect">Indirect contact</span>
+              </div>
+              <strong data-i18n="supplierDesk.contacts.sasso.name">Sciarpificio dei Fratelli Sasso / Artknit route</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:hello@artknit-studios.com">hello@artknit-studios.com</a></dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacts.sasso.sentStatus">Contacted via Artknit 25 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacts.sasso.nextAction">Await Artknit reply or direct Sasso introduction; do not treat as factory-confirmed yet.</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.contacts.sasso.note">Biella scarf-maker lead currently approached through Artknit. Capability must still be verified directly before any sample route is trusted.</p>
+            </article>
+
+            <article class="supplier-entry supplier-entry--contacted">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.contacted.kicker">Mills / contacted</span>
+                <span class="supplier-status supplier-status--contacted" tabindex="0" data-status-detail="Initial email sent. No supplier is approved until capability, sample cost, lead time, MOQ, yarn availability, and physical sample quality are confirmed." data-i18n-status-detail="generated.statusDetails.supplierContacted" data-i18n="supplierDesk.status.contacted">Contacted</span>
+              </div>
+              <strong data-i18n="supplierDesk.contacts.gammatex.name">Gammatex</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd><a class="supplier-email-link" href="mailto:gammatex@gammatex.it">gammatex@gammatex.it</a></dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacts.gammatex.sentStatus">Contacted 25 May 2026</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacts.gammatex.nextAction">Await reply; verify whether their alpaca and scarf capability can meet Lotto I discipline.</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.contacts.gammatex.note">Second-wave outreach sent. Public fit is plausible for scarves, stoles and alpaca, but Lotto I requires direct confirmation of fibre, surface, GSM, fringe and MOQ.</p>
+            </article>
+
+            <article class="supplier-entry supplier-entry--research">
+              <div class="supplier-entry__topline">
+                <span class="panel-kicker" data-i18n="supplierDesk.queued.kicker">Mills / second wave</span>
+                <span class="supplier-status supplier-status--research" tabindex="0" data-status-detail="Queued means the lead is recognised but not yet contacted. No assumptions should be made about capability, MOQ, pricing, sample route, or willingness to work with Moscatelli." data-i18n-status-detail="generated.statusDetails.supplierQueued" data-i18n="supplierDesk.status.queued">Queued</span>
+              </div>
+              <strong data-i18n="supplierDesk.contacts.kaleidos.name">Kaleidos</strong>
+              <dl class="supplier-entry__meta">
+                <div><dt data-i18n="supplierDesk.placeholders.category">Category</dt><dd data-i18n="supplierDesk.categories.mills">Mills</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.email">Email</dt><dd data-i18n="supplierDesk.contacts.kaleidos.email">To confirm</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.status">Status</dt><dd data-i18n="supplierDesk.contacts.kaleidos.sentStatus">Second-wave lead; not contacted</dd></div>
+                <div><dt data-i18n="supplierDesk.placeholders.action">Next action</dt><dd data-i18n="supplierDesk.contacts.kaleidos.nextAction">Research correct contact route before outreach.</dd></div>
+              </dl>
+              <p data-i18n="supplierDesk.contacts.kaleidos.note">Held as a second-wave lead only. Do not advance to contacted status until the correct route is confirmed and the first email is actually sent.</p>
+            </article>
+
             <article class="supplier-placeholder-card">
               <span class="panel-kicker" data-i18n="supplierDesk.placeholders.kicker">Future slots</span>
               <p data-i18n="supplierDesk.placeholders.copy">Use this structure only for additional verified or contacted suppliers. Do not invent supplier records.</p>
               <div class="supplier-empty-grid">
-                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.millsNow">3 mill records / 1 archived</em></span>
+                <span><strong data-i18n="supplierDesk.categories.mills">Mills</strong><em data-i18n="supplierDesk.placeholders.millsNow">7 mill records / 5 pending / 1 archived / 1 queued</em></span>
                 <span><strong data-i18n="supplierDesk.categories.packaging">Packaging</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
                 <span><strong data-i18n="supplierDesk.categories.labels">Labels / trims</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
                 <span><strong data-i18n="supplierDesk.categories.production">Photography / production support</strong><em data-i18n="supplierDesk.placeholders.empty">Empty slot</em></span>
@@ -1059,6 +1122,13 @@
           </div>
 
           <div class="links-active-grid" aria-label="MOSCATELLI internal links directory" data-i18n-aria-label="aria.linksDirectory">
+            <a id="link-coming-soon" class="link-card" href="https://www.moscatelli.co/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Coming Soon page in browser" data-i18n-aria-label="aria.openComingSoon">
+              <div class="link-card__bg" aria-hidden="true"></div>
+              <span class="link-card__category" data-i18n="links.categories.public.title">Public Surfaces</span>
+              <span class="link-card__title" data-i18n="links.items.comingSoon.title">Coming Soon Page</span>
+              <span class="link-card__url" data-i18n="links.items.comingSoon.note">moscatelli.co</span>
+            </a>
+
             <a id="link-moscatelli" class="link-card" href="https://moscatelli-official.netlify.app/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli website in browser" data-i18n-aria-label="aria.openWebsite">
               <div class="link-card__bg" aria-hidden="true"></div>
               <span class="link-card__category" data-i18n="links.categories.public.title">Public Surfaces</span>
@@ -1071,6 +1141,13 @@
               <span class="link-card__category" data-i18n="links.categories.public.title">Public Surfaces</span>
               <span class="link-card__title" data-i18n="links.items.mrhg.title">MRHG Website</span>
               <span class="link-card__url" data-i18n="links.items.mrhg.note">gianmoska-prog.github.io/MRHG</span>
+            </a>
+
+            <a id="link-storyboard" class="link-card" href="https://gianmoska-prog.github.io/Lotto1Storyboard/" target="_blank" rel="noopener noreferrer external" aria-label="Open Lotto I Storyboard in browser" data-i18n-aria-label="aria.openStoryboard">
+              <div class="link-card__bg" aria-hidden="true"></div>
+              <span class="link-card__category" data-i18n="links.categories.product.title">Product / Manufattura</span>
+              <span class="link-card__title" data-i18n="links.items.storyboard.title">Lotto I Storyboard</span>
+              <span class="link-card__url" data-i18n="links.items.storyboard.note">gianmoska-prog.github.io/Lotto1Storyboard</span>
             </a>
 
             <a id="link-finance" class="link-card" href="https://gianmoska-prog.github.io/Finance-Suite/" target="_blank" rel="noopener noreferrer external" aria-label="Open Moscatelli Financial Suite in browser" data-i18n-aria-label="aria.openFinance">
@@ -1134,6 +1211,6 @@
     <span class="mc-pointer-line"></span>
   </div>
 
-  <script src="script.js?v=85"></script>
+  <script src="script.js?v=89"></script>
 </body>
 </html>

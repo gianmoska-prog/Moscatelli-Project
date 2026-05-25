@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'moscatelli-studio-v88';
+const CACHE_VERSION = 'moscatelli-studio-v90';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -12,7 +12,9 @@ const CORE_ASSETS = [
   './assets/icons/icon-192-launch-mark.png',
   './assets/icons/icon-512-launch-mark.png',
   './assets/icons/icon-192-launch-mark-maskable.png',
-  './assets/icons/icon-512-launch-mark-maskable.png'
+  './assets/icons/icon-512-launch-mark-maskable.png',
+  './assets/images/link-storyboard.webp',
+  './assets/images/link-coming-soon.webp'
 ];
 const GOOGLE_FONT_HOSTS = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
 const SHELL_SUFFIXES = ['/','/index.html','/style.css','/script.js','/manifest.webmanifest'];

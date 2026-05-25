@@ -7769,6 +7769,11 @@ body.menu-open .menu-toggle span:nth-child(3) {
   border-color: rgba(194, 164, 111, 0.18);
 }
 
+.supplier-entry--research {
+  border-color: rgba(154, 80, 60, 0.18);
+  background: linear-gradient(180deg, rgba(154, 80, 60, 0.045), rgba(236, 228, 214, 0.02));
+}
+
 .supplier-status--responded {
   border-color: rgba(168, 126, 85, 0.42);
   color: rgba(245, 226, 196, 0.9);
@@ -7777,6 +7782,11 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .supplier-entry--responded {
   border-color: rgba(168, 126, 85, 0.22);
   background: linear-gradient(180deg, rgba(168, 126, 85, 0.075), rgba(236, 228, 214, 0.035));
+}
+
+.supplier-entry--indirect {
+  border-color: rgba(168, 126, 85, 0.22);
+  background: linear-gradient(180deg, rgba(168, 126, 85, 0.06), rgba(236, 228, 214, 0.03));
 }
 
 .supplier-status--archived {

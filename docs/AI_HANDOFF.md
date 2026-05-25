@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v88  
-Last updated: 06 May 2026, 12:30 CEST  
+Version: v90  
+Last updated: 25 May 2026, 11:49 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -52,6 +52,24 @@ Important structural choices:
 ---
 
 ## 3. Patch Sequence
+
+### v90 — Supplier Desk mill-outreach update
+
+- Updated Supplier Desk with the current mill outreach state after the second-wave contacts.
+- Added Manifattura BIG as contacted via `info@manifatturabig.it`.
+- Added Gammatex as contacted via `gammatex@gammatex.it`.
+- Added Sciarpificio dei Fratelli Sasso as an indirect route through Artknit via `hello@artknit-studios.com`; not yet treated as factory-confirmed.
+- Added Kaleidos as a second-wave queued lead, not contacted yet.
+- Updated Dashboard and Launch Readiness supplier counts to 7 records: 5 pending contact routes, 1 archived for Lotto I, and 1 queued.
+- Added supplier status detail for indirect contact and queued leads.
+- Bumped visible version label, script metadata, and service-worker cache to v90.
+
+### v89 — Links directory update
+
+- Added the public `moscatelli.co` Coming Soon page to the Links section.
+- Added the Lotto I Storyboard page to the Links section.
+- Added restrained placeholder thumbnails for both new cards, pending final screenshots if desired.
+- Advanced cache/version references to v89 to reduce stale GitHub Pages/PWA service-worker behaviour.
 
 ### v64 — App identity cleanup
 
