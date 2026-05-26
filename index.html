@@ -10,16 +10,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="MOSCATELLI Studio" />
-  <link rel="manifest" href="manifest.webmanifest?v=89" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=89" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=89" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=89" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png?v=89" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png?v=89" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png?v=89" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png?v=89" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png?v=89" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png?v=89" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <style>
     /* Critical launch/veil guards before stylesheet loads */
     html, body { background: #02050a; }
@@ -27,153 +30,7 @@
     #veil-emblem-stage { opacity: 0; visibility: hidden; transform: scale(0.972); }
     #veil-emblem-stage:not(.image-primed) img { opacity: 0; visibility: hidden; }
   </style>
-  <link rel="stylesheet" href="style.css?v=89" />
-  <style>
-    /* ── Links section: active-only card grid (v91) ── */
-    #section-links .links-active-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-      gap: 10px;
-      margin-top: 32px;
-    }
-
-    #section-links .link-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 7px;
-      min-height: 220px;
-      padding: 22px 24px 20px;
-      overflow: hidden;
-      isolation: isolate;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 10px;
-      background: rgba(2, 5, 10, 0.34);
-      color: inherit;
-      text-decoration: none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.035), 0 14px 38px rgba(0,0,0,0.18);
-      transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
-      cursor: pointer;
-    }
-
-    #section-links .link-card:hover,
-    #section-links .link-card:focus-visible {
-      border-color: rgba(160,60,36,0.45);
-      background: rgba(4, 8, 15, 0.50);
-      transform: translateY(-1px);
-    }
-
-    #section-links .link-card:active { transform: translateY(0); }
-
-    #section-links .link-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(2, 5, 10, 0.88) 0%,
-        rgba(2, 5, 10, 0.60) 45%,
-        rgba(2, 5, 10, 0.25) 100%
-      );
-      transition: background 0.28s ease;
-      z-index: 1;
-      border-radius: inherit;
-      pointer-events: none;
-    }
-
-    #section-links .link-card:hover::before,
-    #section-links .link-card:focus-visible::before {
-      background: linear-gradient(
-        to top,
-        rgba(2, 5, 10, 0.78) 0%,
-        rgba(2, 5, 10, 0.48) 45%,
-        rgba(2, 5, 10, 0.15) 100%
-      );
-    }
-
-    #section-links .link-card__bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: inherit;
-      transform: scale(1);
-      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    #section-links .link-card:hover .link-card__bg,
-    #section-links .link-card:focus-visible .link-card__bg {
-      transform: scale(1.045);
-    }
-
-    #section-links .link-card > *:not(.link-card__bg) {
-      position: relative;
-      z-index: 2;
-    }
-
-    #link-moscatelli .link-card__bg { background-image: url('assets/images/link-moscatelli.webp'); }
-    #link-mrhg      .link-card__bg { background-image: url('assets/images/link-mrhg.webp'); }
-    #link-finance   .link-card__bg { background-image: url('assets/images/link-finance.webp'); }
-    #link-pitch     .link-card__bg { background-image: url('assets/images/link-pitch.webp'); }
-    #link-storyboard .link-card__bg { background-image: url('assets/images/link-storyboard.webp'); }
-    #link-coming-soon .link-card__bg { background-image: url('assets/images/link-coming-soon.webp'); }
-
-    #section-links .link-card__category {
-      font-family: var(--font-display);
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(185, 80, 50, 0.95);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-      margin-bottom: 2px;
-    }
-
-    #section-links .link-card__title {
-      font-family: var(--font-ui);
-      font-size: clamp(1.02rem, 1.25vw, 1.18rem);
-      font-weight: 500;
-      line-height: 1.24;
-      letter-spacing: 0.01em;
-      color: rgba(255, 248, 235, 0.97);
-      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
-    }
-
-    #section-links .link-card__url {
-      font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
-      font-size: 0.72rem;
-      line-height: 1.35;
-      color: rgba(255,255,255,0.28);
-      letter-spacing: 0.02em;
-      margin-top: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    #section-links .links-inner .directory-intro {
-      max-width: 520px;
-    }
-
-    @media (max-width: 600px) {
-      #section-links .links-active-grid { grid-template-columns: 1fr; }
-      #section-links .link-card { min-height: 220px; padding: 20px 21px 18px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #section-links .link-card,
-      #section-links .link-card::before,
-      #section-links .link-card__bg { transition: none; }
-      #section-links .link-card:hover .link-card__bg,
-      #section-links .link-card:focus-visible .link-card__bg { transform: none; }
-    }
-  </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body data-section="home" data-lang="en" class="preload gate-active">
 
@@ -187,7 +44,7 @@
     </div>
 
     <div id="veil-emblem-stage" class="veil-emblem-stage" aria-hidden="true" style="opacity:0;visibility:hidden;transform:scale(0.972)">
-      <img data-src="assets/icons/monogram-veil.png" alt="" decoding="async" />
+      <img data-src="assets/icons/monogram-veil.webp" width="1199" height="1199" alt="" decoding="async" />
     </div>
 
     <div class="veil-panel">
@@ -538,7 +395,7 @@
           <div class="gallery-wrap">
             <div class="gallery-grid" id="gallery-grid">
               <figure class="gallery-cell tall emphasis is-detail-trigger" data-detail="atlas1" tabindex="0" role="button" aria-label="Open Atlas item one">
-                <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" decoding="async" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
+                <img class="gallery-media" src="assets/images/atlas-bianco-avorio.webp" width="2048" height="2048" decoding="async" alt="Moscatelli scarf in Bianco Avorio" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">I</span>
                   <strong data-i18n="atlas.card1.title">Scarf / Bianco Avorio</strong>
@@ -547,7 +404,7 @@
               </figure>
 
               <figure class="gallery-cell is-detail-trigger" data-detail="atlas2" tabindex="0" role="button" aria-label="Open Atlas item two">
-                <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" decoding="async" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
+                <img class="gallery-media" src="assets/images/atlas-terra-bruna.webp" width="2048" height="2048" decoding="async" alt="Moscatelli scarf in Terra Bruna" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">II</span>
                   <strong data-i18n="atlas.card2.title">Scarf / Terra Bruna</strong>
@@ -556,7 +413,7 @@
               </figure>
 
               <figure class="gallery-cell is-detail-trigger" data-detail="atlas3" tabindex="0" role="button" aria-label="Open Atlas item three">
-                <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" decoding="async" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
+                <img class="gallery-media" src="assets/images/packaging-bianco-avorio.webp" width="1536" height="1024" decoding="async" alt="Moscatelli packaging in Bianco Avorio" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">III</span>
                   <strong data-i18n="atlas.card3.title">Packaging / Bianco Avorio</strong>
@@ -565,7 +422,7 @@
               </figure>
 
               <figure class="gallery-cell wide is-detail-trigger" data-detail="atlas4" tabindex="0" role="button" aria-label="Open Atlas item four">
-                <img class="gallery-media" src="assets/images/ritual-oxblood.webp" decoding="async" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
+                <img class="gallery-media" src="assets/images/ritual-oxblood.webp" width="1920" height="1280" decoding="async" alt="Moscatelli ritual packaging in oxblood" loading="lazy" />
                 <figcaption class="gallery-meta">
                   <span class="cell-label">IV</span>
                   <strong data-i18n="atlas.card4.title">Ritual / Oxblood reserve</strong>
@@ -875,7 +732,7 @@
 
           <div class="studio-side">
             <figure class="studio-figure">
-              <img src="assets/images/label-study.webp" decoding="async" alt="Moscatelli label study" loading="lazy" />
+              <img src="assets/images/label-study.webp" width="1536" height="1024" decoding="async" alt="Moscatelli label study" loading="lazy" />
               <figcaption class="studio-figure-copy">
                 <span class="panel-kicker" data-i18n="manu.figureKicker">Label study</span>
                 <p data-i18n="manu.figureP">Soft interior label logic. Quiet typography. &quot;Made in Italy&quot; held with dignity, never noise.</p>
@@ -1194,7 +1051,7 @@
       </button>
 
       <div class="detail-media-shell">
-        <img id="detail-image" class="detail-image" alt="" />
+        <img id="detail-image" class="detail-image" alt="" decoding="async" />
       </div>
 
       <div class="detail-copy-shell">
@@ -1211,6 +1068,6 @@
     <span class="mc-pointer-line"></span>
   </div>
 
-  <script src="script.js?v=89"></script>
+  <script src="script.js"></script>
 </body>
 </html>

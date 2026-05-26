@@ -584,7 +584,6 @@ body.pin-focused .veil-pin-slots,
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.34;
-  will-change: transform;
 }
 
 .orb-blue {
@@ -594,7 +593,6 @@ body.pin-focused .veil-pin-slots,
   top: -26vmax;
   right: -18vmax;
   background: radial-gradient(circle, rgba(20, 42, 88, 0.72) 0%, transparent 70%);
-  animation: orb-drift-a 28s ease-in-out infinite;
 }
 
 .orb-brown {
@@ -604,7 +602,6 @@ body.pin-focused .veil-pin-slots,
   bottom: -16vmax;
   left: -14vmax;
   background: radial-gradient(circle, rgba(88, 39, 18, 0.68) 0%, transparent 72%);
-  animation: orb-drift-b 34s ease-in-out infinite;
 }
 
 .orb-ash {
@@ -614,26 +611,8 @@ body.pin-focused .veil-pin-slots,
   left: 36%;
   top: 44%;
   background: radial-gradient(circle, rgba(98, 107, 145, 0.16) 0%, transparent 76%);
-  animation: orb-drift-c 22s ease-in-out infinite;
 }
 
-@keyframes orb-drift-a {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(22px, -18px); }
-  66% { transform: translate(-14px, 12px); }
-}
-
-@keyframes orb-drift-b {
-  0%, 100% { transform: translate(0, 0); }
-  40% { transform: translate(-20px, 16px); }
-  75% { transform: translate(18px, -10px); }
-}
-
-@keyframes orb-drift-c {
-  0%, 100% { transform: translate(0, 0); }
-  30% { transform: translate(14px, 20px); }
-  70% { transform: translate(-18px, -14px); }
-}
 
 #site-header {
   position: fixed;
@@ -643,7 +622,7 @@ body.pin-focused .veil-pin-slots,
   align-items: center;
   justify-content: space-between;
   padding: 24px 34px;
-  transition: padding var(--dur-med) var(--ease-luxury), background var(--dur-med) var(--ease-luxury), border-color var(--dur-med) var(--ease-luxury), backdrop-filter var(--dur-med) var(--ease-luxury);
+  transition: padding var(--dur-med) var(--ease-luxury), background var(--dur-med) var(--ease-luxury), border-color var(--dur-med) var(--ease-luxury);
 }
 
 #site-header.scrolled,
@@ -2066,7 +2045,6 @@ body.transition-backward .section.exiting {
   }
 
   *, *::before, *::after {
-    animation: none !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
@@ -2753,7 +2731,6 @@ body.detail-open #bg-ambient {
   .orb {
     filter: blur(72px);
     opacity: 0.24;
-    animation: none !important;
   }
 
   .veil-backdrop,
@@ -4217,7 +4194,6 @@ body {
   .orb {
     filter: blur(72px);
     opacity: 0.22;
-    animation: none !important;
   }
 
   #site-header {
@@ -8894,4 +8870,231 @@ body:not(.lang-switching) .nav-preview-meta span {
   .nav-overlay.open {
     transform: none !important;
   }
+}
+
+/* ── Links section: active-only card grid (v91, moved from index head in Patch 2 of 8) ── */
+#section-links .links-active-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 10px;
+  margin-top: 32px;
+}
+
+#section-links .link-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 7px;
+  min-height: 220px;
+  padding: 22px 24px 20px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  background: rgba(2, 5, 10, 0.34);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.035), 0 14px 38px rgba(0,0,0,0.18);
+  transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+}
+
+#section-links .link-card:hover,
+#section-links .link-card:focus-visible {
+  border-color: rgba(160,60,36,0.45);
+  background: rgba(4, 8, 15, 0.50);
+  transform: translateY(-1px);
+}
+
+#section-links .link-card:active { transform: translateY(0); }
+
+#section-links .link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(2, 5, 10, 0.88) 0%,
+    rgba(2, 5, 10, 0.60) 45%,
+    rgba(2, 5, 10, 0.25) 100%
+  );
+  transition: background 0.28s ease;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+#section-links .link-card:hover::before,
+#section-links .link-card:focus-visible::before {
+  background: linear-gradient(
+    to top,
+    rgba(2, 5, 10, 0.78) 0%,
+    rgba(2, 5, 10, 0.48) 45%,
+    rgba(2, 5, 10, 0.15) 100%
+  );
+}
+
+#section-links .link-card__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+  transform: scale(1);
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+  pointer-events: none;
+}
+
+#section-links .link-card:hover .link-card__bg,
+#section-links .link-card:focus-visible .link-card__bg {
+  transform: scale(1.045);
+}
+
+#section-links .link-card > *:not(.link-card__bg) {
+  position: relative;
+  z-index: 2;
+}
+
+#link-moscatelli .link-card__bg { background-image: url('assets/images/link-moscatelli.webp'); }
+#link-mrhg      .link-card__bg { background-image: url('assets/images/link-mrhg.webp'); }
+#link-finance   .link-card__bg { background-image: url('assets/images/link-finance.webp'); }
+#link-pitch     .link-card__bg { background-image: url('assets/images/link-pitch.webp'); }
+#link-storyboard .link-card__bg { background-image: url('assets/images/link-storyboard.webp'); }
+#link-coming-soon .link-card__bg { background-image: url('assets/images/link-coming-soon.webp'); }
+
+#section-links .link-card__category {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(185, 80, 50, 0.95);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  margin-bottom: 2px;
+}
+
+#section-links .link-card__title {
+  font-family: var(--font-ui);
+  font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: 0.01em;
+  color: rgba(255, 248, 235, 0.97);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
+#section-links .link-card__url {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#section-links .links-inner .directory-intro {
+  max-width: 520px;
+}
+
+@media (max-width: 600px) {
+  #section-links .links-active-grid { grid-template-columns: 1fr; }
+  #section-links .link-card { min-height: 220px; padding: 20px 21px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #section-links .link-card,
+  #section-links .link-card::before,
+  #section-links .link-card__bg { transition: none; }
+  #section-links .link-card:hover .link-card__bg,
+  #section-links .link-card:focus-visible .link-card__bg { transform: none; }
+}
+
+/* Patch 5 of 8 — Backdrop Filter Reduction
+   Reduces low-value glass blur layers while preserving the ceremonial veil,
+   primary section panels, and detail-view depth. */
+#site-header.scrolled,
+body.menu-open #site-header {
+  background: rgba(8, 9, 12, 0.78);
+  backdrop-filter: blur(8px) saturate(104%);
+  -webkit-backdrop-filter: blur(8px) saturate(104%);
+}
+
+.nav-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.030), rgba(255,255,255,0.018)), rgba(4, 7, 12, 0.86);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.lang-switcher {
+  background: rgba(255,255,255,0.060);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.studio-version-label::after {
+  background: rgba(8, 9, 12, 0.94);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-bar {
+    background: rgba(4, 7, 16, 0.97);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+
+
+/* Patch 6 of 8 — Supplier Desk Visual Hierarchy
+   Adds restrained status rails so supplier records can be scanned without
+   turning the Desk into a colourful dashboard. */
+.supplier-entry {
+  --supplier-rail: rgba(236, 228, 214, 0.14);
+  --supplier-rail-glow: rgba(236, 228, 214, 0.035);
+  position: relative;
+  border-left-width: 2px;
+  border-left-color: var(--supplier-rail);
+  background: linear-gradient(90deg, var(--supplier-rail-glow), transparent 34%), rgba(3, 5, 8, 0.26);
+}
+
+.supplier-entry--contacted {
+  --supplier-rail: rgba(194, 164, 111, 0.48);
+  --supplier-rail-glow: rgba(194, 164, 111, 0.055);
+}
+
+.supplier-entry--archived {
+  --supplier-rail: rgba(154, 132, 102, 0.24);
+  --supplier-rail-glow: rgba(154, 132, 102, 0.035);
+}
+
+.supplier-entry--indirect,
+.supplier-entry--responded {
+  --supplier-rail: rgba(168, 126, 85, 0.42);
+  --supplier-rail-glow: rgba(168, 126, 85, 0.055);
+}
+
+.supplier-entry--research {
+  --supplier-rail: rgba(96, 104, 132, 0.42);
+  --supplier-rail-glow: rgba(96, 104, 132, 0.045);
+}
+
+.supplier-entry--archived strong,
+.supplier-entry--archived .supplier-entry__meta dd {
+  color: rgba(232, 220, 202, 0.74);
+}
+
+.supplier-entry__topline {
+  align-items: flex-start;
+}
+
+.supplier-status {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }

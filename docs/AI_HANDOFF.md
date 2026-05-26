@@ -350,3 +350,23 @@ The correct principle remains: polish must not add weight. Prefer fewer effects,
 - Kept the four active destinations: MOSCATELLI Website, MRHG Website, Financial Suite, and Pitch Deck.
 - Bumped visible app version, script metadata, and service-worker cache to v83.
 
+
+
+### v91 Patch 6 of 8 — Supplier Desk Visual Hierarchy
+- Added restrained status rails to Supplier Desk records for faster scanning: contacted, archived, indirect/responded, and queued/research states.
+- Kept the treatment deliberately quiet: no bright dashboard colours, no new assets, no layout redesign, and no JavaScript changes.
+- Slightly muted archived supplier text so closed Lotto I routes recede while remaining readable.
+- Bumped service-worker cache to `moscatelli-studio-v91-patch6`.
+
+### v91 Patch 7 of 8 — Image Weight Optimisation
+- Replaced the 112 KB raster veil monogram PNG with a 40 KB lossless WebP while preserving the same rendered dimensions and transparent mark behaviour.
+- Recompressed the main Atlas, packaging, ritual, and label-study WebP assets at conservative quality settings, preserving original dimensions and avoiding aggressive colour-shift risk on Bianco Avorio and Rosso Essenza references.
+- Kept `label-study.webp` lazy-loaded rather than pre-cached, because it remains a below-the-fold content image and should not burden first install.
+- Bumped service-worker cache to `moscatelli-studio-v91-patch7`.
+
+### v91 Patch 8 of 8 — Translation Extraction
+- Extracted the formerly inlined EN/IT/PT translation dictionary from `script.js` into `lang/en.json`, `lang/it.json`, and `lang/pt.json`.
+- Reduced the main `script.js` payload from roughly 165 KB to roughly 52 KB, shifting language content out of the critical JavaScript parse path.
+- Added conservative async translation loading: English loads first as fallback, and the stored/detected active language loads before the Studio startup sequence is allowed to reveal the veil.
+- Preserved the existing language switcher behaviour while making language switching load the requested dictionary on demand.
+- Added the three translation JSON files to the service-worker core cache and bumped cache to `moscatelli-studio-v91-patch8`.

@@ -1,23 +1,34 @@
-const CACHE_VERSION = 'moscatelli-studio-v91';
+const CACHE_VERSION = 'moscatelli-studio-v91-patch8';
 const CORE_ASSETS = [
   './',
   './index.html',
   './style.css',
   './script.js',
+  './lang/en.json',
+  './lang/it.json',
+  './lang/pt.json',
   './manifest.webmanifest',
   './assets/icons/favicon-16.png',
   './assets/icons/favicon-32.png',
   './assets/icons/apple-touch-icon.png',
-  './assets/icons/monogram-veil.png',
+  './assets/icons/monogram-veil.webp',
   './assets/icons/icon-192-launch-mark.png',
   './assets/icons/icon-512-launch-mark.png',
   './assets/icons/icon-192-launch-mark-maskable.png',
   './assets/icons/icon-512-launch-mark-maskable.png',
+  './assets/images/atlas-bianco-avorio.webp',
+  './assets/images/atlas-terra-bruna.webp',
+  './assets/images/packaging-bianco-avorio.webp',
+  './assets/images/ritual-oxblood.webp',
+  './assets/images/link-moscatelli.webp',
+  './assets/images/link-mrhg.webp',
+  './assets/images/link-finance.webp',
+  './assets/images/link-pitch.webp',
   './assets/images/link-storyboard.webp',
   './assets/images/link-coming-soon.webp'
 ];
 const GOOGLE_FONT_HOSTS = new Set(['fonts.googleapis.com', 'fonts.gstatic.com']);
-const SHELL_SUFFIXES = ['/','/index.html','/style.css','/script.js','/manifest.webmanifest'];
+const SHELL_SUFFIXES = ['/', '/index.html', '/style.css', '/script.js', '/manifest.webmanifest'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(CORE_ASSETS)));
