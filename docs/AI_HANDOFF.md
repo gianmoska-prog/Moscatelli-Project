@@ -1,7 +1,7 @@
 # MOSCATELLI Studio — AI Handoff Notes
 
-Version: v90  
-Last updated: 25 May 2026, 11:49 CEST  
+Version: v91  
+Last updated: 26 May 2026, 20:00 CEST  
 Status: Internal founder command surface / private operating archive
 
 ---
@@ -52,6 +52,13 @@ Important structural choices:
 ---
 
 ## 3. Patch Sequence
+
+### v91 — Manifattura BIG Archived for Lotto I
+- Reclassified Manifattura BIG from contacted/pending to archived for Lotto I after the compatibility review.
+- Recorded the incompatibility reasons: article construction/spec direction outside Lotto I, yarn/title and finished-weight direction too heavy versus target, and MOQ of 300 pcs/colour.
+- Rebalanced supplier counts to 4 pending / 2 archived / 1 queued across Dashboard, Launch Readiness, Supplier Desk, and EN/IT/PT translations.
+- Retained Manifattura BIG politely as a future higher-volume or heavier-article contact only.
+- Bumped visible version label, script metadata, and service-worker cache to v91.
 
 ### v90 — Supplier Desk mill-outreach update
 
