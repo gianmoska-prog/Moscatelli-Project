@@ -10164,3 +10164,172 @@ body.background-revealed .studio-version-label {
     transform: none !important;
   }
 }
+
+/* PATCH J — HQ PERFORMANCE RELIEF + LINKFIX
+   Performance-focused override after the Noir Command redesign.
+   Keeps the new Moscatelli visual language but removes the expensive effects
+   causing lag: animated background-position, backdrop filters, persistent grain
+   overlays, blur/filter-heavy entry animations, and excessive paint shadows. */
+
+:root {
+  --shadow-deep: 0 22px 64px rgba(0, 0, 0, 0.42) !important;
+  --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* Stop constant full-page repainting. */
+body.background-revealed,
+body.gate-cleared {
+  animation: none !important;
+  background-position: 50% 50%, 17% 54%, 84% 60%, 50% 50% !important;
+}
+
+/* Remove persistent grain/star overlay, which sits above the app and repaints. */
+body::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Keep ambience, but make it static and cheap. */
+body::before {
+  opacity: .62 !important;
+  mix-blend-mode: normal !important;
+  transform: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+/* Remove costly glass effects from large fixed/scrolling surfaces. */
+#site-header,
+#site-header.scrolled,
+body.menu-open #site-header,
+.section-inner,
+.section-rail,
+.nav-overlay,
+.detail-dialog,
+.nav-panel,
+.nav-preview-shell,
+.mobile-nav-bar,
+.hq-entry-veil {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Cheaper but still elegant surfaces. */
+.section-inner {
+  box-shadow:
+    0 24px 76px rgba(0,0,0,.44),
+    inset 0 1px 0 rgba(244,238,231,.035) !important;
+  contain: layout paint;
+}
+
+.overview-card,
+.metric-card,
+.team-card,
+.archive-row,
+.gallery-cell,
+.value-card,
+.principle-card,
+.dashboard-card,
+.dashboard-state,
+.dashboard-priorities,
+.supplier-entry,
+.link-card,
+.nav-panel,
+.detail-dialog,
+.studio-metric {
+  box-shadow:
+    0 16px 42px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(244,238,231,.028) !important;
+  contain: layout paint;
+}
+
+/* Avoid filter-driven entry animations. Opacity/transform remain. */
+body.gate-cleared:not(.background-revealed) #site-header,
+body.gate-cleared:not(.background-revealed) .section-rail,
+body.gate-cleared:not(.background-revealed) #stage,
+body.gate-cleared:not(.background-revealed) .mobile-nav-bar,
+body.gate-cleared:not(.background-revealed) .studio-version-label {
+  filter: none !important;
+}
+
+body.background-revealed #site-header,
+body.background-revealed .section-rail,
+body.background-revealed #stage,
+body.background-revealed .mobile-nav-bar,
+body.background-revealed .studio-version-label {
+  animation-duration: 620ms !important;
+}
+
+/* Override filter-heavy keyframes. */
+@keyframes hqEntryVeilOut {
+  0% { opacity: 1; }
+  72% { opacity: .12; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes hqEntryGlowOpen {
+  0% { opacity: .62; transform: translate(-50%, -50%) scale(.92); filter: none; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.18); filter: none; }
+}
+
+@keyframes hqEntryLineOpen {
+  0% { opacity: .56; transform: translate(-50%, -50%) scaleX(.50); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scaleX(1.18); }
+}
+
+@keyframes hqHeaderEnter {
+  0% { opacity: 0; transform: translate3d(0, -10px, 0); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); filter: none; }
+}
+
+@keyframes hqRailEnter {
+  0% { opacity: 0; transform: translate3d(-10px, 6px, 0) scale(.98); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+
+@keyframes hqStageEnter {
+  0% { opacity: 0; transform: translate3d(0, 14px, 0) scale(.994); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+
+@keyframes hqMobileNavEnter {
+  0% { opacity: 0; transform: translate3d(0, 12px, 0); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); filter: none; }
+}
+
+@keyframes hqVersionEnter {
+  0% { opacity: 0; transform: translate3d(0, 8px, 0); filter: none; }
+  100% { opacity: .56; transform: translate3d(0, 0, 0); filter: none; }
+}
+
+@keyframes hqPanelAuthority {
+  0% { opacity: .92; transform: translate3d(0, 5px, 0) scale(.997); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+
+/* Reduce hover repaint intensity. */
+.overview-card:hover,
+.metric-card:hover,
+.team-card:hover,
+.archive-row:hover,
+.gallery-cell:hover,
+.value-card:hover,
+.principle-card:hover,
+.dashboard-card:hover,
+.supplier-entry:hover,
+.link-card:hover {
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 18px 46px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(244,238,231,.034) !important;
+}
+
+/* Remove any accidental expensive filters/will-change from old layers. */
+#stage,
+.section,
+.section-inner,
+.hq-entry-veil,
+.studio-version-label,
+.section-rail {
+  will-change: auto !important;
+}
