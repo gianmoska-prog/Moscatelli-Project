@@ -5,15 +5,6 @@
 const EXIT_DURATION = 360;
 const ENTER_DELAY = 140;
 const TRANSITION_LOCK = 560;
-const GATE_SUCCESS_DELAY = 1080;
-const PANEL_REVEAL_DELAY = 1750;
-const BACKGROUND_REVEAL_DELAY = 120;
-const EMBLEM_REVEAL_DELAY = 1180;
-const WORDMARK_REVEAL_DELAY = 4740;
-const SUBMARK_REVEAL_DELAY = 4940;
-const FORM_REVEAL_DELAY = 5360;
-const EMBLEM_FADE_DELAY = 3320;
-const THRESHOLD_REVEAL_DELAY = 4480;
 const LANG_FADE_OUT = 720;
 const LANG_FADE_IN_DELAY = 120;
 const LANGUAGE_STORAGE_KEY = 'moscatelli-studio-lang';
@@ -127,12 +118,12 @@ const previewIndex = document.getElementById('nav-preview-index');
 const previewTitle = document.getElementById('nav-preview-title');
 const previewCopy = document.getElementById('nav-preview-copy');
 const navPreviewShell = document.querySelector('.nav-preview-shell');
-const introVeil = document.getElementById('intro-veil');
-const veilForm = document.getElementById('veil-form');
-const veilPanel = document.querySelector('.veil-panel');
-const veilInput = document.getElementById('veil-input');
-const veilLabel = document.getElementById('veil-label');
-const veilPinSlots = Array.from(document.querySelectorAll('.veil-pin-slot'));
+const introVeil = null; /* PATCH 4 OF 6: old PIN threshold DOM removed. */
+const veilForm = null;
+const veilPanel = null;
+const veilInput = null;
+const veilLabel = null;
+const veilPinSlots = [];
 const pointer = document.querySelector('.mc-pointer');
 const langSwitchers = Array.from(document.querySelectorAll('[data-lang-switcher]'));
 const langChoices = Array.from(document.querySelectorAll('.lang-choice'));
@@ -211,11 +202,12 @@ function syncLanguageSwitchers() {
 }
 
 function updateStaticTranslations() {
-  document.querySelectorAll('[data-i18n]').forEach(node => {
+  /* PATCH 3 OF 6 — use cached i18n lists for the main text/html passes. */
+  textNodes.forEach(node => {
     node.textContent = t(node.dataset.i18n);
   });
 
-  document.querySelectorAll('[data-i18n-html]').forEach(node => {
+  htmlNodes.forEach(node => {
     node.innerHTML = t(node.dataset.i18nHtml);
   });
 
@@ -236,14 +228,6 @@ function updateStaticTranslations() {
   });
 
   document.title = t('page.title');
-  if (veilInput) veilInput.setAttribute('aria-label', t('veil.pin'));
-  detailCloseButtons.forEach(button => {
-    if (button.tagName === 'BUTTON') button.setAttribute('aria-label', t('detail.close'));
-  });
-  detailTriggers.forEach(trigger => {
-    const detail = t(`details.${trigger.dataset.detail}`);
-    if (detail?.title) trigger.setAttribute('aria-label', `${t('detail.openPrefix')} ${detail.title}`);
-  });
 }
 
 function updateHeaderMeta(section) {
@@ -266,86 +250,27 @@ function setBodySection(id) {
 }
 
 
+
 function initializeMobileNavLoop() {
-  if (!mobileNavBar || mobileNavBar.dataset.loopReady === 'true') return;
-  const originals = Array.from(mobileNavBar.querySelectorAll('.mobile-nav-item'));
-  if (!originals.length) return;
-
-  mobileNavBaseCount = originals.length;
-  const fragment = document.createDocumentFragment();
-  const sets = ['prev', 'base', 'next'];
-
-  sets.forEach(setName => {
-    originals.forEach((item, index) => {
-      const node = setName === 'base' ? item : item.cloneNode(true);
-      node.dataset.loopSet = setName;
-      node.dataset.loopIndex = String(index);
-      node.classList.remove('active', 'near-active', 'far-active', 'current-page', 'anticipating');
-      if (setName !== 'base') node.setAttribute('tabindex', '-1');
-      fragment.appendChild(node);
-    });
-  });
-
-  mobileNavBar.innerHTML = '';
-  mobileNavBar.appendChild(fragment);
-  mobileNavBar.dataset.loopReady = 'true';
+  /* PATCH 3 OF 6 — simplified mobile navigation.
+     The old version cloned the mobile nav into prev/base/next sets, then
+     constantly measured offsetLeft/offsetWidth during scroll. This single-set
+     version keeps the same navigation behaviour without the infinite-loop cost. */
+  if (!mobileNavBar) return;
   mobileNavItems = Array.from(mobileNavBar.querySelectorAll('.mobile-nav-item'));
-  bindMobileNavLoopScroll();
+  mobileNavBaseCount = mobileNavItems.length;
+  mobileNavBar.dataset.loopReady = 'single';
+  mobileNavBar.dataset.loopScrollReady = 'single';
+  updateMobileNavFocusByTarget(state.currentSection || 'home');
 }
 
-function getMobileNavLoopMetrics() {
-  if (!mobileNavBar || mobileNavBaseCount <= 0) return null;
-  const firstBase = mobileNavBar.querySelector('.mobile-nav-item[data-loop-set="base"]');
-  const firstNext = mobileNavBar.querySelector('.mobile-nav-item[data-loop-set="next"]');
-  if (!firstBase || !firstNext) return null;
-
-  const setWidth = firstNext.offsetLeft - firstBase.offsetLeft;
-  if (!Number.isFinite(setWidth) || setWidth <= 0) return null;
-
-  return {
-    setWidth,
-    lowerLimit: setWidth,
-    upperLimit: setWidth * 2
-  };
-}
-
+function getMobileNavLoopMetrics() { return null; }
 function setMobileNavLoopResistance(active) {
   if (!mobileNavBar) return;
   mobileNavBar.classList.toggle('is-loop-resisting', Boolean(active));
 }
-
-function normalizeMobileNavLoopScroll() {
-  if (!mobileNavBar || mobileNavLoopJumping) return;
-  const metrics = getMobileNavLoopMetrics();
-  if (!metrics) return;
-
-  const current = mobileNavBar.scrollLeft;
-  let next = current;
-
-  if (current < metrics.lowerLimit) {
-    next = current + metrics.setWidth;
-  } else if (current >= metrics.upperLimit) {
-    next = current - metrics.setWidth;
-  }
-
-  if (Math.abs(next - current) < 1) return;
-
-  mobileNavLoopJumping = true;
-  setMobileNavLoopResistance(true);
-  mobileNavBar.scrollLeft = next;
-  requestAnimationFrame(() => {
-    mobileNavLoopJumping = false;
-    setMobileNavLoopResistance(false);
-  });
-}
-
-function updateMobileNavLoopResistance() {
-  /* v74: disabled during live mobile scrolling.
-     The old boundary-resistance class changed transforms during fast gestures,
-     which could create visible bottom-nav judder on mobile browsers. */
-  setMobileNavLoopResistance(false);
-}
-
+function normalizeMobileNavLoopScroll() {}
+function updateMobileNavLoopResistance() {}
 function clearMobileNavAnticipation() {
   if (mobileNavAnticipationTimer) {
     window.clearTimeout(mobileNavAnticipationTimer);
@@ -353,40 +278,22 @@ function clearMobileNavAnticipation() {
   }
   mobileNavItems.forEach(item => item.classList.remove('anticipating'));
 }
-
 function getCenteredMobileNavItem() {
   if (!mobileNavBar || !mobileNavItems.length) return null;
   const center = mobileNavBar.scrollLeft + (mobileNavBar.clientWidth / 2);
-  let selected = null;
-  let selectedDistance = Infinity;
-
-  mobileNavItems.forEach(item => {
+  return mobileNavItems.reduce((best, item) => {
+    if (!best) return item;
     const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
-    const distance = Math.abs(itemCenter - center);
-    if (distance < selectedDistance) {
-      selected = item;
-      selectedDistance = distance;
-    }
-  });
-
-  return selected;
+    const bestCenter = best.offsetLeft + (best.offsetWidth / 2);
+    return Math.abs(itemCenter - center) < Math.abs(bestCenter - center) ? item : best;
+  }, null);
 }
-
-function updateMobileNavAnticipation() {
-  /* v74: removed live anticipation glow. It looked elegant when moved slowly,
-     but on fast swipes it created unnecessary class churn and perceived glitching. */
-  clearMobileNavAnticipation();
-}
-
+function updateMobileNavAnticipation() { clearMobileNavAnticipation(); }
 function settleMobileNavAfterScroll() {
   if (!mobileNavBar) return;
   clearMobileNavAnticipation();
-  setMobileNavLoopResistance(false);
-  normalizeMobileNavLoopScroll();
-  updateMobileNavFocusFromCenter({ force: true });
-  mobileNavLastFocusUpdate = performance.now();
+  updateMobileNavFocusByTarget(state.currentSection);
 }
-
 function scheduleMobileNavSettle() {
   if (mobileNavSettleTimer) window.clearTimeout(mobileNavSettleTimer);
   mobileNavSettleTimer = window.setTimeout(() => {
@@ -394,34 +301,10 @@ function scheduleMobileNavSettle() {
     settleMobileNavAfterScroll();
   }, 140);
 }
-
-function handleMobileNavScrollMotion() {
-  if (!mobileNavBar) return;
-  const previous = mobileNavLastScrollLeft;
-  const current = mobileNavBar.scrollLeft;
-  const now = performance.now();
-  const delta = Math.abs(current - previous);
-
-  mobileNavLastScrollLeft = current;
-  mobileNavLastScrollTime = now;
-
-  /* v76: during fast touch swipes, do not keep reclassifying every centred
-     nav item. Slow drags may still update discreetly; fast gestures settle
-     once scrolling ends, which removes the visible film-strip shimmer. */
-  if (!mobileNavSmoothScrolling && delta <= MOBILE_NAV_FAST_SCROLL_DELTA && now - mobileNavLastFocusUpdate >= MOBILE_NAV_LIVE_FOCUS_INTERVAL) {
-    updateMobileNavFocusFromCenter();
-    mobileNavLastFocusUpdate = now;
-  }
-
-  scheduleMobileNavSettle();
-}
-
+function handleMobileNavScrollMotion() { scheduleMobileNavSettle(); }
 function bindMobileNavLoopScroll() {
   if (!mobileNavBar || mobileNavBar.dataset.loopScrollReady === 'true') return;
   mobileNavBar.dataset.loopScrollReady = 'true';
-  mobileNavLastScrollLeft = mobileNavBar.scrollLeft;
-  mobileNavLastScrollTime = performance.now();
-
   mobileNavBar.addEventListener('scroll', () => {
     if (mobileNavLoopRaf) return;
     mobileNavLoopRaf = requestAnimationFrame(() => {
@@ -429,23 +312,12 @@ function bindMobileNavLoopScroll() {
       handleMobileNavScrollMotion();
     });
   }, { passive: true });
-
-  if ('onscrollend' in window) {
-    mobileNavBar.addEventListener('scrollend', () => {
-      if (mobileNavSettleTimer) {
-        window.clearTimeout(mobileNavSettleTimer);
-        mobileNavSettleTimer = 0;
-      }
-      settleMobileNavAfterScroll();
-    }, { passive: true });
-  }
 }
 function getCircularNavDistance(indexA, indexB, total) {
   if (indexA < 0 || indexB < 0 || total <= 0) return Infinity;
   const direct = Math.abs(indexA - indexB);
   return Math.min(direct, total - direct);
 }
-
 function updateMobileNavFocusByTarget(targetId) {
   if (!targetId || !mobileNavItems.length) return;
   const focusIndex = sectionIds.indexOf(targetId);
@@ -455,7 +327,7 @@ function updateMobileNavFocusByTarget(targetId) {
   mobileNavFocusedTargetId = targetId;
   mobileNavItems.forEach(item => {
     const itemIndex = sectionIds.indexOf(item.dataset.target);
-    const distance = getCircularNavDistance(itemIndex, focusIndex, total);
+    const distance = Math.abs(itemIndex - focusIndex);
     const isFocused = item.dataset.target === targetId;
     const isCurrentPage = item.dataset.target === state.currentSection;
     item.classList.toggle('active', isFocused);
@@ -464,87 +336,32 @@ function updateMobileNavFocusByTarget(targetId) {
     item.classList.toggle('current-page', isCurrentPage);
   });
 }
-
 function updateMobileNavFocusFromCenter(options = {}) {
-  const centered = getCenteredMobileNavItem();
-  if (!centered?.dataset?.target) return;
-  const targetId = centered.dataset.target;
-  if (!options.force && mobileNavFocusedTargetId === targetId) return;
-  updateMobileNavFocusByTarget(targetId);
+  if (options.force) updateMobileNavFocusByTarget(state.currentSection);
 }
-
-function easeOutCubic(t) {
-  return 1 - Math.pow(1 - t, 3);
-}
-
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 function getMobileNavTargetScroll(item) {
   if (!mobileNavBar || !item) return null;
   return item.offsetLeft - ((mobileNavBar.clientWidth - item.offsetWidth) / 2);
 }
-
 function getBestMobileNavItemForTarget(targetId) {
-  if (!mobileNavBar || !targetId) return null;
-  const candidates = mobileNavItems.filter(item => item.dataset.target === targetId);
-  if (!candidates.length) return null;
-
-  const center = mobileNavBar.scrollLeft + (mobileNavBar.clientWidth / 2);
-  return candidates.reduce((best, item) => {
-    const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
-    const bestCenter = best.offsetLeft + (best.offsetWidth / 2);
-    return Math.abs(itemCenter - center) < Math.abs(bestCenter - center) ? item : best;
-  }, candidates[0]);
+  if (!targetId) return null;
+  return mobileNavItems.find(item => item.dataset.target === targetId) || null;
 }
-
 function scrollMobileNavToTarget(targetId) {
   if (!mobileNavBar || !mobileNavItems.length || !targetId) return;
   const targetItem = getBestMobileNavItemForTarget(targetId);
   if (!targetItem) return;
 
-  requestAnimationFrame(() => {
-    normalizeMobileNavLoopScroll();
+  updateMobileNavFocusByTarget(targetId);
 
-    const refreshedTarget = getBestMobileNavItemForTarget(targetId) || targetItem;
-    const target = getMobileNavTargetScroll(refreshedTarget);
-    if (!Number.isFinite(target)) return;
-
-    if (mobileNavSmoothRaf) cancelAnimationFrame(mobileNavSmoothRaf);
-
-    const start = mobileNavBar.scrollLeft;
-    const distance = target - start;
-    const duration = 280;
-    const startTime = performance.now();
-
-    if (Math.abs(distance) < 1) {
-      updateMobileNavFocusByTarget(targetId);
-      normalizeMobileNavLoopScroll();
-      return;
-    }
-
-    mobileNavSmoothScrolling = true;
-    clearMobileNavAnticipation();
-
-    const step = now => {
-      const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / duration);
-      const eased = easeOutCubic(progress);
-      mobileNavBar.scrollLeft = start + (distance * eased);
-      updateMobileNavFocusFromCenter();
-
-      if (progress < 1) {
-        mobileNavSmoothRaf = requestAnimationFrame(step);
-      } else {
-        mobileNavSmoothRaf = 0;
-        mobileNavSmoothScrolling = false;
-        normalizeMobileNavLoopScroll();
-        updateMobileNavFocusByTarget(targetId);
-        setMobileNavLoopResistance(false);
-      }
-    };
-
-    mobileNavSmoothRaf = requestAnimationFrame(step);
-  });
+  if (typeof targetItem.scrollIntoView === 'function') {
+    targetItem.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  } else {
+    const target = getMobileNavTargetScroll(targetItem);
+    if (Number.isFinite(target)) mobileNavBar.scrollLeft = target;
+  }
 }
-
 function scrollMobileNavToActive() {
   scrollMobileNavToTarget(state.currentSection);
 }
@@ -700,6 +517,7 @@ function bindGalleryTracking() {
   syncGalleryDots();
 }
 
+
 function getViewportHeight() {
   return window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight || 0;
 }
@@ -711,52 +529,48 @@ function getSectionAvailableHeight(section) {
   return Math.max(0, getViewportHeight() - paddingTop - paddingBottom);
 }
 
-function measureNaturalSectionHeight(inner) {
-  const previousMaxHeight = inner.style.maxHeight;
-  const previousOverflow = inner.style.overflow;
-
-  inner.style.maxHeight = 'none';
-  inner.style.overflow = 'visible';
-
-  const naturalHeight = Math.ceil(Math.max(
-    inner.scrollHeight || 0,
-    inner.offsetHeight || 0,
-    inner.getBoundingClientRect().height || 0
-  ));
-
-  inner.style.maxHeight = previousMaxHeight;
-  inner.style.overflow = previousOverflow;
-
-  return naturalHeight;
-}
-
+/* PATCH 3 OF 6 — JAVASCRIPT PERFORMANCE REPAIR
+   Measure only the active section. The previous version iterated through every
+   hidden section, wrote inline styles, and then read scrollHeight/offsetHeight/
+   getBoundingClientRect, which caused unnecessary layout recalculation. */
 function updateSectionSizing() {
+  const activeSection = getActiveSection();
+  if (!activeSection) {
+    updateHeaderScrolled();
+    return;
+  }
+
   const mobile = isMobileLayout();
 
   sections.forEach(section => {
+    if (section !== activeSection) {
+      section.classList.remove('is-scrollable');
+      return;
+    }
+
     const inner = section.querySelector('.section-inner');
     if (!inner) return;
 
-    const isActive = section.classList.contains('active');
-
-    if (mobile && isActive) {
+    if (mobile) {
       inner.style.maxHeight = 'none';
       inner.style.height = 'auto';
       inner.style.overflow = 'visible';
-    } else {
-      inner.style.maxHeight = '';
-      inner.style.height = '';
-      inner.style.overflow = '';
+      section.classList.add('is-scrollable');
+      updateHeaderScrolled();
+      return;
     }
 
+    inner.style.maxHeight = '';
+    inner.style.height = '';
+    inner.style.overflow = '';
+
     const availableHeight = getSectionAvailableHeight(section);
-    const naturalHeight = measureNaturalSectionHeight(inner);
-    const clippedByFrame = inner.scrollHeight > inner.clientHeight + 2;
-    const needsScroll = (mobile && isActive) ? true : (naturalHeight > availableHeight - 2 || clippedByFrame);
+    const needsScroll = inner.scrollHeight > availableHeight - 2 || inner.clientHeight > availableHeight - 2;
 
     section.classList.toggle('is-scrollable', needsScroll);
     if (!needsScroll) section.scrollTop = 0;
   });
+
   updateHeaderScrolled();
 }
 
@@ -766,33 +580,15 @@ function updateHeaderScrolled() {
   header.classList.toggle('scrolled', activeSection.scrollTop > 24 || body.classList.contains('detail-open'));
 }
 
-function sanitizePinValue(value) {
-  return String(value || '').replace(/\D+/g, '').slice(0, 6);
-}
-
-function updatePinSlots(value = '') {
-  const clean = sanitizePinValue(value);
-  veilPinSlots.forEach((slot, index) => {
-    const filled = index < clean.length;
-    slot.classList.toggle('is-filled', filled);
-    slot.classList.toggle('is-current', clean.length < 6 && index === clean.length);
-    slot.setAttribute('data-pin-bullet', filled ? '•' : '');
-  });
-}
-
-
-/* HQ direct-entry mode: former PIN threshold helpers are now inert.
-   The visual veil remains in the HTML for historical compatibility, but no access code,
-   session unlock key, PIN comparison, keyboard capture, or gate threshold is active. */
+/* PATCH 4 OF 6 — old PIN threshold helpers removed/neutralised.
+   HQ is direct-entry only; Studio Index will eventually carry PWA/threshold duties. */
 function focusPinInput() {}
 function requestPinKeyboard() {}
 function bindVeilFocusInteractions() {}
 function resetPinFeedback() {}
 function flashVeilError() {}
 function updatePinSlots() {}
-function sanitizePinValue(value = '') {
-  return String(value || '').replace(/\D/g, '').slice(0, 6);
-}
+function sanitizePinValue(value = '') { return String(value || '').replace(/\D/g, '').slice(0, 6); }
 function rememberGateSession() {}
 function hasGateSession() { return true; }
 
@@ -848,6 +644,7 @@ function goToSection(targetId) {
 
   state.currentSection = targetId;
   state.currentIndex = toIndex;
+  window.__moscatelliObserveActiveSection?.();
   updateHeaderMeta(next);
   syncActiveNav(targetId);
   setBodySection(targetId);
@@ -923,39 +720,13 @@ function closeMenu() {
 }
 
 
-function updateSpotlight(x, y) {
-  body.style.setProperty('--spot-x', `${x}px`);
-  body.style.setProperty('--spot-y', `${y}px`);
-}
+function updateSpotlight() { /* Patch 1/6: live spotlight disabled for performance. */ }
 
-function commitSpotlightUpdate() {
-  spotlightFrame = 0;
-  spotlightLastCommit = performance.now();
-  updateSpotlight(pendingSpotlightX, pendingSpotlightY);
-}
+function commitSpotlightUpdate() { spotlightFrame = 0; spotlightTimer = 0; }
 
-function scheduleSpotlightUpdate(x, y) {
-  pendingSpotlightX = x;
-  pendingSpotlightY = y;
-  if (spotlightFrame || spotlightTimer) return;
+function scheduleSpotlightUpdate() { /* Patch 1/6: no per-pointer full-page repaint. */ }
 
-  const elapsed = performance.now() - spotlightLastCommit;
-  const delay = Math.max(0, SPOTLIGHT_UPDATE_INTERVAL - elapsed);
-
-  const queueFrame = () => {
-    spotlightTimer = 0;
-    spotlightFrame = requestAnimationFrame(commitSpotlightUpdate);
-  };
-
-  if (delay > 0) {
-    spotlightTimer = window.setTimeout(queueFrame, delay);
-    return;
-  }
-
-  queueFrame();
-}
-
-function enableCustomPointer() { if (!pointer || !pointerQuery.matches) return; pointerState.enabled = true; root.classList.add('has-mc-pointer'); }
+function enableCustomPointer() { disableCustomPointer(); }
 function disableCustomPointer() {
   pointerState.enabled = false;
   pointerState.visible = false;
@@ -976,12 +747,7 @@ function hidePointer() {
   if (!pointer) return;
   pointer.classList.remove('is-visible', 'is-pressed');
 }
-function movePointer(x, y) {
-  if (!pointerState.enabled || !pointer) return;
-  pointerState.x = x;
-  pointerState.y = y;
-  pointer.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-}
+function movePointer() { /* Patch 1/6: custom cursor disabled. */ }
 
 function classifyPointerTarget(target) {
   if (!pointer) return;
@@ -1011,12 +777,22 @@ function scheduleSectionSizing() {
 }
 
 function bindSectionSizingObservers() {
-  const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(scheduleSectionSizing) : null;
+  /* PATCH 3 OF 6 — observe the active section only. */
+  let observedInner = null;
+  const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(() => scheduleSectionSizing()) : null;
 
-  sections.forEach(section => {
-    const inner = section.querySelector('.section-inner');
-    if (inner && resizeObserver) resizeObserver.observe(inner);
-  });
+  function observeActiveInner() {
+    if (!resizeObserver) return;
+    const activeInner = getActiveSection()?.querySelector('.section-inner') || null;
+    if (activeInner === observedInner) return;
+
+    if (observedInner) resizeObserver.unobserve(observedInner);
+    observedInner = activeInner;
+    if (observedInner) resizeObserver.observe(observedInner);
+  }
+
+  window.__moscatelliObserveActiveSection = observeActiveInner;
+  observeActiveInner();
 
   document.querySelectorAll('img').forEach(image => {
     if (!image.complete) image.addEventListener('load', scheduleSectionSizing, { once: true });
@@ -1240,29 +1016,13 @@ document.addEventListener('keydown', event => {
   if (event.key.toLowerCase() === 'h') { event.preventDefault(); goHome(); }
 });
 
-window.addEventListener('pointermove', event => {
-  if (pointerState.enabled) {
-    movePointer(event.clientX, event.clientY);
-    showPointer();
-
-    if (event.target !== lastPointerTarget) {
-      lastPointerTarget = event.target;
-      classifyPointerTarget(event.target);
-    }
-  }
-
-  scheduleSpotlightUpdate(event.clientX, event.clientY);
-}, { passive: true });
-window.addEventListener('mousemove', event => {
-  if (pointerState.enabled) return;
-  scheduleSpotlightUpdate(event.clientX, event.clientY);
-}, { passive: true });
+/* Patch 1/6: pointermove/mousemove spotlight and custom cursor handlers removed for performance. */
 window.addEventListener('pointerdown', () => { if (!pointerState.enabled || !pointer) return; pointer.classList.add('is-pressed'); }, { passive: true });
 window.addEventListener('pointerup', () => pointer?.classList.remove('is-pressed'), { passive: true });
 window.addEventListener('pointerleave', hidePointer, { passive: true });
 window.addEventListener('blur', hidePointer, { passive: true });
 
-pointerQuery.addEventListener('change', event => { event.matches ? enableCustomPointer() : disableCustomPointer(); });
+pointerQuery.addEventListener('change', disableCustomPointer);
 
 window.addEventListener('load', () => {
   pageLoaded = true;
@@ -1276,7 +1036,7 @@ window.addEventListener('resize', () => { scheduleSectionSizing(); syncGalleryDo
   state.currentLang = await resolveInitialLanguage(preferredLang);
   const homeSection = getSection('home');
   if (homeSection) { homeSection.classList.add('active'); state.currentSection = 'home'; state.currentIndex = 0; }
-  enableCustomPointer();
+  disableCustomPointer();
   initializeMobileNavLoop();
   bindSectionScrolls();
   bindSectionSizingObservers();
@@ -1307,10 +1067,11 @@ window.addEventListener('appinstalled', () => {
   window.deferredInstallPrompt = null;
 });
 if ('serviceWorker' in navigator) {
+  /* PATCH 4 OF 6 — PWA removed from HQ. Unregister old service workers so stale heavy shells do not control testing/deployment. */
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').then(registration => {
-      registration.update().catch(() => {});
-    }).catch(() => {});
+    navigator.serviceWorker.getRegistrations?.()
+      .then(registrations => registrations.forEach(registration => registration.unregister()))
+      .catch(() => {});
   });
 }
 

@@ -12,23 +12,18 @@
   <meta name="moscatelli-hq-entry-patch" content="patch-10-room-entry-transition" />
   <meta name="moscatelli-hq-final-build" content="patch-14-final-integration-20260603-i" />
   <meta name="moscatelli-hq-performance-patch" content="performance-linkfix-20260603-j" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MOSCATELLI Studio" />
+    <meta name="moscatelli-hq-performance-refactor" content="patch-1-of-6-emergency-cut" />
+  <meta name="moscatelli-hq-performance-refactor-4" content="remove-pwa-and-old-threshold" />
+  <meta name="moscatelli-hq-performance-refactor-final" content="patch-6-of-6-final-audit-20260603-k" />
+  <meta name="moscatelli-hq-performance-refactor-5" content="visual-recovery-lite" />
+  <meta name="moscatelli-hq-performance-refactor-js" content="patch-3-of-6-js-runtime-repair" />
+  <meta name="moscatelli-hq-performance-refactor-2" content="patch-2-of-6-css-surface-simplification" />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2796x1290.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2532x1170.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-1080x2340.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
-  <link rel="apple-touch-startup-image" href="assets/startup/apple-splash-2340x1080.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" />
   <style>
     /* Critical launch/veil guards before stylesheet loads */
     html, body { background: #02050a; }
@@ -40,53 +35,6 @@
 </head>
 <body data-section="home" data-lang="en" class="preload gate-cleared">
   <div class="hq-entry-veil" aria-hidden="true"></div>
-
-
-  <div id="intro-veil" aria-hidden="true" style="display:none;pointer-events:none;">
-    <div class="veil-backdrop"></div>
-
-    <div class="lang-switcher lang-switcher--veil" data-lang-switcher aria-label="Language selector" data-i18n-aria-label="aria.languageSelector">
-      <button type="button" class="lang-choice" data-lang="en">EN</button>
-      <button type="button" class="lang-choice" data-lang="it">IT</button>
-      <button type="button" class="lang-choice" data-lang="pt">PT</button>
-    </div>
-
-    <div id="veil-emblem-stage" class="veil-emblem-stage" aria-hidden="true" style="opacity:0;visibility:hidden;transform:scale(0.972)">
-      <img data-src="assets/icons/monogram-veil.webp" width="1199" height="1199" alt="" decoding="async" />
-    </div>
-
-    <div class="veil-panel">
-      <span id="veil-mark" class="veil-mark">MOSCATELLI</span>
-      <span id="veil-submark" class="veil-submark">STUDIO</span>
-      <form id="veil-form" class="veil-form veil-pin-form" autocomplete="off">
-        <div class="veil-pin-shell">
-          <input
-            id="veil-input"
-            class="veil-input veil-pin-input"
-            type="tel"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            maxlength="6"
-            autocapitalize="off"
-            autocomplete="off"
-            autocorrect="off"
-            spellcheck="false"
-            enterkeyhint="done"
-            aria-label="Access code"
-          />
-          <div class="veil-pin-slots" aria-hidden="true">
-            <span class="veil-pin-slot" data-pin-slot="0"></span>
-            <span class="veil-pin-slot" data-pin-slot="1"></span>
-            <span class="veil-pin-slot" data-pin-slot="2"></span>
-            <span class="veil-pin-slot" data-pin-slot="3"></span>
-            <span class="veil-pin-slot" data-pin-slot="4"></span>
-            <span class="veil-pin-slot" data-pin-slot="5"></span>
-          </div>
-          <span id="veil-label" class="veil-label" data-i18n="veil.pin">Access code</span>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <div id="bg-ambient" aria-hidden="true">
     <div class="ambient-noise"></div>

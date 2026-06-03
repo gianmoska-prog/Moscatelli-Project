@@ -10333,3 +10333,897 @@ body.background-revealed .studio-version-label {
 .section-rail {
   will-change: auto !important;
 }
+
+/* PATCH 1 OF 6 — EMERGENCY PERFORMANCE CUT
+   Removes the worst runtime costs: live spotlight, custom cursor, blurred orbs,
+   modal-wide blur, full-page grain overlay, remaining glass blur, and filter-heavy entry. */
+
+html.has-mc-pointer,
+html.has-mc-pointer * {
+  cursor: auto !important;
+}
+
+.mc-pointer,
+.mc-pointer *,
+.ambient-spotlight,
+.orb,
+.orb-blue,
+.orb-brown,
+.orb-ash {
+  display: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 58% 42% at 50% 44%, rgba(72,29,25,.30) 0%, rgba(52,19,16,.16) 38%, transparent 72%),
+    radial-gradient(ellipse 38% 30% at 18% 68%, rgba(95,43,36,.12) 0%, transparent 72%),
+    linear-gradient(112deg, #170b09 0%, #090403 42%, #1d0a08 72%, #090403 100%) !important;
+  background-size: 120% 120%, 130% 130%, 100% 100% !important;
+  background-position: 50% 50%, 18% 68%, 50% 50% !important;
+}
+
+body.background-revealed,
+body.gate-cleared {
+  animation: none !important;
+}
+
+body::after {
+  content: none !important;
+  display: none !important;
+}
+
+body::before {
+  opacity: .56 !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  animation: none !important;
+  transform: none !important;
+  transition: opacity 180ms ease !important;
+}
+
+/* Disable whole-app blur on detail open. Keep a simple dimmed hierarchy instead. */
+body.detail-open #site-header,
+body.detail-open .section-rail,
+body.detail-open #stage {
+  filter: none !important;
+  transform: none !important;
+  opacity: .24 !important;
+  pointer-events: none;
+}
+
+/* Remove costly glass blur across large surfaces. */
+#site-header,
+#site-header.scrolled,
+body.menu-open #site-header,
+.section-inner,
+.section-rail,
+.nav-overlay,
+.nav-panel,
+.nav-preview-shell,
+.detail-dialog,
+.detail-overlay-backdrop,
+.mobile-nav-bar,
+.hq-entry-veil,
+.lang-switcher,
+.studio-version-label::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Simplify the entry veil: preserve the ritual, remove blur/compositing weight. */
+.hq-entry-veil {
+  background: #090403 !important;
+  filter: none !important;
+}
+
+.hq-entry-veil::before {
+  content: none !important;
+}
+
+.hq-entry-veil::after {
+  opacity: .42 !important;
+}
+
+/* Remove filter-driven entrance work. */
+body.gate-cleared:not(.background-revealed) #site-header,
+body.gate-cleared:not(.background-revealed) .section-rail,
+body.gate-cleared:not(.background-revealed) #stage,
+body.gate-cleared:not(.background-revealed) .mobile-nav-bar,
+body.gate-cleared:not(.background-revealed) .studio-version-label {
+  filter: none !important;
+}
+
+body.background-revealed #site-header,
+body.background-revealed .section-rail,
+body.background-revealed #stage,
+body.background-revealed .mobile-nav-bar,
+body.background-revealed .studio-version-label {
+  animation-duration: 520ms !important;
+}
+
+/* Override expensive keyframes from earlier patches. */
+@keyframes hqEntryVeilOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes hqEntryGlowOpen {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(1); filter: none; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); filter: none; }
+}
+
+@keyframes hqHeaderEnter {
+  0% { opacity: 0; transform: translate3d(0, -8px, 0); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); filter: none; }
+}
+
+@keyframes hqRailEnter {
+  0% { opacity: 0; transform: translate3d(-8px, 4px, 0) scale(.985); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+
+@keyframes hqStageEnter {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0) scale(.996); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+
+@keyframes hqMobileNavEnter {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); filter: none; }
+}
+
+@keyframes hqVersionEnter {
+  0% { opacity: 0; transform: translate3d(0, 6px, 0); filter: none; }
+  100% { opacity: .54; transform: translate3d(0, 0, 0); filter: none; }
+}
+
+@keyframes hqPanelAuthority {
+  0% { opacity: .96; transform: translate3d(0, 3px, 0) scale(.998); filter: none; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: none; }
+}
+
+/* Remove old endless cursor animation if any cursor markup remains. */
+@keyframes mcHaloBreath {
+  0%, 100% { transform: none; opacity: 0; }
+}
+
+/* PATCH 2 OF 6 — CSS SURFACE SIMPLIFICATION
+   Consolidates the visual system into cheap static surfaces. The noir identity remains,
+   but repeated pseudo-gradients, multi-layer shadows, panel authority animation, grid/noise
+   ambient layers, and heavy hover treatments are removed or reduced. */
+
+#bg-ambient {
+  display: none !important;
+}
+
+.ambient-noise,
+.ambient-grid,
+.ambient-vignette {
+  display: none !important;
+}
+
+/* One static page atmosphere, carried by body/background rather than extra fixed DOM layers. */
+body {
+  background:
+    radial-gradient(ellipse 62% 46% at 50% 44%, rgba(72,29,25,.28) 0%, rgba(52,19,16,.14) 38%, transparent 72%),
+    radial-gradient(ellipse 36% 30% at 16% 70%, rgba(95,43,36,.10) 0%, transparent 72%),
+    linear-gradient(112deg, #170b09 0%, #090403 42%, #1d0a08 72%, #090403 100%) !important;
+}
+
+/* Main room surface: simpler, more severe, much less paint-heavy. */
+.section-inner {
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.028), rgba(244,238,231,.010)),
+    rgba(12, 5, 4, .91) !important;
+  border-color: rgba(244,238,231,.125) !important;
+  box-shadow:
+    0 18px 52px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(244,238,231,.030) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  contain: layout paint;
+}
+
+.section-inner::before,
+.section-inner::after {
+  content: none !important;
+  display: none !important;
+}
+
+.section.active .section-inner {
+  animation: none !important;
+}
+
+/* Remove glossy pseudo-layering from cards/panels. */
+.overview-card::before,
+.overview-card::after,
+.metric-card::before,
+.metric-card::after,
+.team-card::before,
+.team-card::after,
+.archive-row::before,
+.archive-row::after,
+.gallery-cell::before,
+.gallery-cell::after,
+.value-card::before,
+.value-card::after,
+.principle-card::before,
+.principle-card::after,
+.dashboard-card::before,
+.dashboard-card::after,
+.dashboard-state::before,
+.dashboard-state::after,
+.dashboard-priorities::before,
+.dashboard-priorities::after,
+.supplier-entry::before,
+.supplier-entry::after,
+.link-card::before,
+.link-card::after,
+.studio-metric::before,
+.studio-metric::after,
+.nav-panel::before,
+.nav-panel::after,
+.detail-dialog::before,
+.detail-dialog::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Unified cheap surface treatment. */
+.overview-card,
+.metric-card,
+.team-card,
+.archive-row,
+.gallery-cell,
+.value-card,
+.principle-card,
+.dashboard-card,
+.dashboard-state,
+.dashboard-priorities,
+.supplier-entry,
+.link-card,
+.studio-metric,
+.nav-panel,
+.nav-preview-shell,
+.detail-dialog,
+.circuit-note,
+.focus-panel,
+.side-note,
+.directory-item,
+.vault-filter {
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.024), rgba(244,238,231,.008)),
+    rgba(14, 6, 5, .82) !important;
+  border-color: rgba(244,238,231,.115) !important;
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(244,238,231,.024) !important;
+  contain: paint;
+}
+
+/* Keep hover recognition, remove theatrical lift/repaint. */
+.overview-card:hover,
+.metric-card:hover,
+.team-card:hover,
+.archive-row:hover,
+.gallery-cell:hover,
+.value-card:hover,
+.principle-card:hover,
+.dashboard-card:hover,
+.dashboard-state:hover,
+.dashboard-priorities:hover,
+.supplier-entry:hover,
+.link-card:hover,
+.studio-metric:hover,
+.directory-item:hover,
+.vault-filter:hover,
+.overview-card:focus-visible,
+.metric-card:focus-visible,
+.team-card:focus-visible,
+.archive-row:focus-visible,
+.gallery-cell:focus-visible,
+.value-card:focus-visible,
+.principle-card:focus-visible,
+.dashboard-card:focus-visible,
+.supplier-entry:focus-visible,
+.link-card:focus-visible,
+.studio-metric:focus-visible,
+.directory-item:focus-visible,
+.vault-filter:focus-visible {
+  transform: translateY(-1px) !important;
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.032), rgba(244,238,231,.010)),
+    rgba(17, 7, 6, .86) !important;
+  border-color: rgba(244,238,231,.20) !important;
+  box-shadow:
+    0 12px 32px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(244,238,231,.030) !important;
+}
+
+/* Link-card imagery can stay, but hover scale is restrained. */
+.link-card__bg,
+.gallery-image,
+.detail-image {
+  filter: none !important;
+  transition:
+    opacity 260ms var(--ease-luxury),
+    transform 260ms var(--ease-luxury) !important;
+}
+
+.link-card:hover .link-card__bg,
+.link-card:focus-visible .link-card__bg {
+  transform: scale(1.018) !important;
+}
+
+/* Simplify section transitions: no 3D, no filter, shorter timing. */
+.section {
+  transform: translate3d(24px, 8px, 0) !important;
+  transition:
+    opacity 320ms cubic-bezier(.16,1,.3,1),
+    visibility 320ms cubic-bezier(.16,1,.3,1),
+    transform 320ms cubic-bezier(.16,1,.3,1) !important;
+  filter: none !important;
+}
+
+body.transition-backward .section:not(.active):not(.exiting) {
+  transform: translate3d(-24px, 8px, 0) !important;
+}
+
+.section.active {
+  transform: translate3d(0, 0, 0) !important;
+  filter: none !important;
+}
+
+.section.exiting {
+  transform: translate3d(0, -6px, 0) !important;
+  filter: none !important;
+  transition:
+    opacity 260ms cubic-bezier(.4,0,1,1),
+    visibility 260ms cubic-bezier(.4,0,1,1),
+    transform 260ms cubic-bezier(.4,0,1,1) !important;
+}
+
+/* Navigation overlay and detail overlay become dark, static, and cheap. */
+.nav-overlay {
+  background: rgba(9,4,3,.82) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.nav-bg-texture {
+  background:
+    radial-gradient(ellipse 56% 46% at 50% 44%, rgba(72,29,25,.24), transparent 70%),
+    rgba(9,4,3,.95) !important;
+}
+
+.detail-overlay-backdrop,
+.detail-overlay::before {
+  background:
+    radial-gradient(ellipse 58% 42% at 50% 44%, rgba(91,36,32,.16), transparent 70%),
+    rgba(5,2,2,.88) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.detail-dialog {
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.026), rgba(244,238,231,.010)),
+    rgba(10,4,3,.96) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,.44) !important;
+}
+
+/* Header, rail, version and mobile nav get simpler shadows and backgrounds. */
+#site-header.scrolled,
+body.menu-open #site-header {
+  background: rgba(13,6,5,.92) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,.22) !important;
+}
+
+.section-rail {
+  background: rgba(9,4,3,.74) !important;
+  box-shadow: 0 12px 34px rgba(0,0,0,.25) !important;
+  contain: paint;
+}
+
+.mobile-nav-bar {
+  background: rgba(9,4,3,.96) !important;
+  box-shadow: 0 -12px 34px rgba(0,0,0,.30) !important;
+}
+
+.studio-version-label::after {
+  background: rgba(9,4,3,.96) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.24) !important;
+}
+
+/* Buttons remain tactile but cheaper. */
+.btn-primary,
+.btn-ghost,
+.btn-back,
+.studio-return-link,
+.lang-choice,
+.menu-toggle,
+.detail-close,
+.nav-close {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.btn-primary:hover,
+.btn-ghost:hover,
+.btn-back:hover,
+.studio-return-link:hover,
+.lang-choice:hover,
+.menu-toggle:hover,
+.detail-close:hover,
+.nav-close:hover,
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible,
+.btn-back:focus-visible,
+.studio-return-link:focus-visible,
+.lang-choice:focus-visible,
+.menu-toggle:focus-visible,
+.detail-close:focus-visible,
+.nav-close:focus-visible {
+  box-shadow: 0 8px 24px rgba(0,0,0,.22) !important;
+  filter: none !important;
+}
+
+/* Remove broad will-change habits. */
+* {
+  will-change: auto !important;
+}
+
+/* PATCH 3 OF 6 — JS PERFORMANCE SUPPORT CSS
+   Supports the simplified single-set mobile nav and lighter section sizing. */
+.mobile-nav-bar[data-loop-ready="single"] {
+  scroll-snap-type: x proximity;
+}
+
+.mobile-nav-bar[data-loop-ready="single"] .mobile-nav-item {
+  scroll-snap-align: center;
+}
+
+.section {
+  transition:
+    opacity 280ms cubic-bezier(.22,.61,.36,1),
+    visibility 280ms cubic-bezier(.22,.61,.36,1),
+    transform 280ms cubic-bezier(.22,.61,.36,1) !important;
+}
+
+/* PATCH 4 OF 6 — REMOVE PWA AND OLD THRESHOLD
+   The HQ is no longer a PWA and no longer owns the PIN threshold.
+   Studio Index will eventually carry the PWA/threshold role. Old veil/PIN UI is removed from HTML;
+   these rules neutralise any leftover historical CSS selectors safely. */
+
+#intro-veil,
+.veil-backdrop,
+.veil-panel,
+.veil-mark,
+.veil-submark,
+.veil-form,
+.veil-pin-shell,
+.veil-pin-input,
+.veil-pin-slots,
+.veil-pin-slot,
+#veil-emblem-stage,
+.lang-switcher--veil {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.panel-revealed,
+body.wordmark-revealed,
+body.submark-revealed,
+body.form-revealed,
+body.threshold-revealed,
+body.pin-focused,
+body.session-returning {
+  --legacy-threshold-disabled: 1;
+}
+
+@keyframes pin-slot-fill {
+  from { opacity: 0; }
+  to { opacity: 0; }
+}
+
+@keyframes panel-recoil {
+  from { transform: none; }
+  to { transform: none; }
+}
+
+/* PATCH 5 OF 6 — VISUAL RECOVERY LITE
+   Restores Moscatelli depth through cheap static art direction:
+   colour, typography, borders, restrained shadows, and hierarchy.
+   No live spotlight, no custom cursor, no giant blurred orbs, no backdrop filters,
+   no full-page moving gradients, and no filter-heavy animations. */
+
+:root {
+  --mc-black: #090403;
+  --mc-black-2: #0d0504;
+  --mc-espresso: #170b09;
+  --mc-espresso-2: #1d0a08;
+  --mc-oxblood: #401816;
+  --mc-oxblood-soft: rgba(91, 36, 32, .22);
+  --mc-ivory: #f4eee7;
+  --mc-ivory-soft: rgba(244,238,231,.72);
+  --mc-ivory-muted: rgba(244,238,231,.48);
+  --mc-line: rgba(244,238,231,.125);
+  --mc-line-strong: rgba(244,238,231,.24);
+  --surface: rgba(14, 6, 5, .84) !important;
+  --surface-strong: rgba(16, 7, 6, .92) !important;
+  --surface-hover: rgba(23, 10, 8, .92) !important;
+  --line: var(--mc-line) !important;
+  --line-strong: var(--mc-line-strong) !important;
+  --ivory: var(--mc-ivory) !important;
+  --ivory-soft: var(--mc-ivory-soft) !important;
+  --ivory-faint: var(--mc-ivory-muted) !important;
+  --shadow-deep: 0 18px 54px rgba(0,0,0,.40) !important;
+  --shadow-soft: 0 10px 26px rgba(0,0,0,.28) !important;
+}
+
+html,
+body {
+  background-color: var(--mc-black) !important;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 62% 44% at 50% 42%, rgba(91,36,32,.28) 0%, rgba(72,29,25,.16) 38%, transparent 70%),
+    radial-gradient(ellipse 42% 28% at 16% 72%, rgba(55,22,19,.18) 0%, transparent 72%),
+    radial-gradient(ellipse 38% 30% at 86% 66%, rgba(64,24,22,.14) 0%, transparent 74%),
+    linear-gradient(112deg, #170b09 0%, #090403 42%, #1d0a08 72%, #090403 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* A single cheap static ambience layer. */
+body::before {
+  content: "" !important;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .42 !important;
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.040), transparent 18%, transparent 82%, rgba(0,0,0,.24)),
+    radial-gradient(ellipse 74% 52% at 50% 0%, rgba(244,238,231,.030), transparent 62%) !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Keep all retired ambience systems off. */
+#bg-ambient,
+.ambient-noise,
+.ambient-grid,
+.ambient-vignette,
+.ambient-spotlight,
+.orb,
+.mc-pointer {
+  display: none !important;
+}
+
+/* Severe fixed header; no glass blur. */
+#site-header,
+#site-header.scrolled,
+body.menu-open #site-header {
+  background:
+    linear-gradient(180deg, rgba(9,4,3,.94), rgba(9,4,3,.78)) !important;
+  border-bottom: 1px solid rgba(244,238,231,.10) !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.24) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#site-header::after {
+  opacity: .54 !important;
+  background: linear-gradient(90deg, transparent, rgba(244,238,231,.20), transparent) !important;
+}
+
+.logo-wordmark {
+  color: rgba(244,238,231,.94) !important;
+  text-shadow: none !important;
+}
+
+.logo-state,
+.section-label,
+.section-index {
+  color: rgba(244,238,231,.62) !important;
+}
+
+.header-meta,
+.lang-switcher,
+.studio-return-link,
+.menu-toggle {
+  background: rgba(244,238,231,.035) !important;
+  border-color: rgba(244,238,231,.12) !important;
+  box-shadow: inset 0 1px 0 rgba(244,238,231,.030) !important;
+}
+
+.studio-return-link:hover,
+.studio-return-link:focus-visible,
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background: rgba(244,238,231,.065) !important;
+  border-color: rgba(244,238,231,.26) !important;
+  color: rgba(255,250,244,.94) !important;
+}
+
+/* Main command room surface. */
+.section-inner {
+  border: 1px solid rgba(244,238,231,.13) !important;
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.026), rgba(244,238,231,.010)),
+    rgba(12, 5, 4, .92) !important;
+  box-shadow:
+    0 18px 52px rgba(0,0,0,.40),
+    inset 0 1px 0 rgba(244,238,231,.032) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  contain: layout paint;
+}
+
+.section-inner::before,
+.section-inner::after {
+  content: none !important;
+}
+
+/* Section transitions: fast, clean, non-theatrical. */
+.section,
+.section.active,
+.section.exiting {
+  filter: none !important;
+  transition:
+    opacity 240ms cubic-bezier(.2,.8,.2,1),
+    visibility 240ms cubic-bezier(.2,.8,.2,1),
+    transform 240ms cubic-bezier(.2,.8,.2,1) !important;
+}
+
+.section.active .section-inner {
+  animation: none !important;
+}
+
+/* Surface system: cheap luxury. */
+.overview-card,
+.metric-card,
+.team-card,
+.archive-row,
+.gallery-cell,
+.value-card,
+.principle-card,
+.dashboard-card,
+.dashboard-state,
+.dashboard-priorities,
+.supplier-entry,
+.link-card,
+.nav-panel,
+.detail-dialog,
+.studio-metric,
+.focus-panel,
+.side-note,
+.contact-panel,
+.material-card,
+.packaging-card,
+.circuit-note,
+.decision-card {
+  border: 1px solid rgba(244,238,231,.12) !important;
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.022), rgba(244,238,231,.008)),
+    rgba(14, 6, 5, .84) !important;
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(244,238,231,.024) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  contain: paint;
+}
+
+.overview-card::before,
+.metric-card::before,
+.team-card::before,
+.archive-row::before,
+.gallery-cell::before,
+.value-card::before,
+.principle-card::before,
+.dashboard-card::before,
+.dashboard-state::before,
+.dashboard-priorities::before,
+.supplier-entry::before,
+.link-card::before,
+.studio-metric::before,
+.focus-panel::before,
+.side-note::before,
+.contact-panel::before,
+.material-card::before,
+.packaging-card::before,
+.circuit-note::before,
+.decision-card::before {
+  content: none !important;
+}
+
+.overview-card:hover,
+.metric-card:hover,
+.team-card:hover,
+.archive-row:hover,
+.gallery-cell:hover,
+.value-card:hover,
+.principle-card:hover,
+.dashboard-card:hover,
+.supplier-entry:hover,
+.link-card:hover,
+.nav-item:hover,
+.nav-item:focus-visible {
+  transform: translateY(-1px) !important;
+  border-color: rgba(244,238,231,.20) !important;
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.032), rgba(244,238,231,.010)),
+    rgba(18, 8, 7, .88) !important;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(244,238,231,.030) !important;
+}
+
+/* Data hierarchy and typography. */
+.home-headline h1,
+.dashboard-header h1,
+.section-title,
+.panel-title,
+.detail-title,
+.nav-title {
+  color: rgba(244,238,231,.94) !important;
+  text-shadow: none !important;
+}
+
+.sub,
+.panel-copy,
+.dashboard-header p,
+.dashboard-card p,
+.archive-row p,
+.team-card p,
+.metric-card p,
+.detail-body,
+.nav-preview-copy {
+  color: rgba(244,238,231,.68) !important;
+}
+
+.eyebrow,
+.panel-kicker,
+.card-index,
+.section-num,
+.cell-label,
+.metric-label,
+.archive-year,
+.dashboard-kicker,
+.dashboard-card__label,
+.dashboard-priorities__heading span,
+.dashboard-state span {
+  color: rgba(244,238,231,.46) !important;
+}
+
+/* Rail and navigation: ceremonial but light. */
+.section-rail {
+  background: rgba(9,4,3,.72) !important;
+  border-color: rgba(244,238,231,.12) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.24) !important;
+}
+
+.rail-dot {
+  background: rgba(244,238,231,.035) !important;
+  border-color: rgba(244,238,231,.16) !important;
+  box-shadow: none !important;
+}
+
+.rail-dot.active,
+.rail-dot:hover,
+.rail-dot:focus-visible {
+  background: rgba(244,238,231,.11) !important;
+  border-color: rgba(244,238,231,.36) !important;
+  box-shadow: 0 0 0 3px rgba(244,238,231,.035) !important;
+}
+
+.nav-overlay,
+.detail-overlay-backdrop {
+  background:
+    radial-gradient(ellipse 64% 46% at 50% 42%, rgba(91,36,32,.16), transparent 70%),
+    rgba(5, 2, 2, .88) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.nav-panel,
+.detail-dialog {
+  background:
+    linear-gradient(180deg, rgba(244,238,231,.030), rgba(244,238,231,.010)),
+    rgba(10,4,3,.96) !important;
+  box-shadow: 0 18px 46px rgba(0,0,0,.42) !important;
+}
+
+/* Modal depth without blurring the app. */
+body.detail-open #site-header,
+body.detail-open .section-rail,
+body.detail-open #stage {
+  opacity: .22 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* Buttons and chips. */
+.btn-primary,
+.btn-ghost,
+.btn-back,
+.vault-filter,
+.lang-choice {
+  background: rgba(244,238,231,.035) !important;
+  border-color: rgba(244,238,231,.12) !important;
+  color: rgba(244,238,231,.72) !important;
+  box-shadow: none !important;
+}
+
+.btn-primary:hover,
+.btn-ghost:hover,
+.btn-back:hover,
+.vault-filter:hover,
+.vault-filter.active,
+.lang-choice:hover,
+.lang-choice.active {
+  background: rgba(244,238,231,.070) !important;
+  border-color: rgba(244,238,231,.24) !important;
+  color: rgba(255,250,244,.94) !important;
+  transform: translateY(-1px);
+}
+
+/* Mobile remains clear and still. */
+.mobile-nav-bar {
+  background: rgba(9,4,3,.96) !important;
+  border-top: 1px solid rgba(244,238,231,.11) !important;
+  box-shadow: 0 -10px 28px rgba(0,0,0,.28) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mobile-nav-item {
+  color: rgba(244,238,231,.50) !important;
+}
+
+.mobile-nav-item.active,
+.mobile-nav-item.current-page {
+  color: rgba(244,238,231,.94) !important;
+}
+
+/* Entry veil: retain a brief black opening, no expensive glow. */
+.hq-entry-veil {
+  background: #090403 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.hq-entry-veil::before,
+.hq-entry-veil::after {
+  content: none !important;
+}
+
+/* Keep future accidental animations cheap. */
+* {
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
