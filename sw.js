@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'moscatelli-studio-v91-patch8';
+/* Patch 6: HQ cache version bumped for no-PIN noir-command rebuild. */
+const CACHE_VERSION = 'moscatelli-hq-noir-command-final-20260603-i';
 const CORE_ASSETS = [
   './',
   './index.html',

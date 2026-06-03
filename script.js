@@ -17,10 +17,6 @@ const THRESHOLD_REVEAL_DELAY = 4480;
 const LANG_FADE_OUT = 720;
 const LANG_FADE_IN_DELAY = 120;
 const LANGUAGE_STORAGE_KEY = 'moscatelli-studio-lang';
-const SESSION_UNLOCK_KEY = 'moscatelli-studio-session-unlocked';
-const MINI_THRESHOLD_ENTER_DELAY = 180;
-const MINI_THRESHOLD_EXIT_DELAY = 1100;
-const ACCESS_PIN = '062026';
 
 const SUPPORTED_LANGUAGES = ['en', 'it', 'pt'];
 const TRANSLATION_PATHS = Object.freeze({
@@ -62,13 +58,16 @@ async function resolveInitialLanguage(preferredLang) {
 
 function runStartupSequence() {
   if (!appInitialized || !pageLoaded) return;
-  body.classList.remove('preload');
-  updateSectionSizing();
-  if (hasGateSession()) {
-    revealReturningSessionMiniThreshold();
-  } else {
-    revealVeilSequence();
+  body.classList.remove('preload', 'gate-active', 'session-returning');
+  body.classList.add('gate-cleared', 'background-revealed');
+  if (introVeil) {
+    introVeil.setAttribute('aria-hidden', 'true');
+    introVeil.style.display = 'none';
+    introVeil.style.pointerEvents = 'none';
   }
+  try { veilInput?.blur(); } catch (_) {}
+  updateSectionSizing();
+  requestAnimationFrame(() => scrollMobileNavToActive());
 }
 
 
@@ -781,70 +780,21 @@ function updatePinSlots(value = '') {
   });
 }
 
-function focusPinInput() {
-  if (!veilInput || !body.classList.contains('gate-active')) return;
-  try { veilInput.removeAttribute('readonly'); } catch (error) {}
-  try { veilInput.focus({ preventScroll: true }); } catch (error) { try { veilInput.focus(); } catch (error2) {} }
-  try {
-    const len = veilInput.value.length;
-    if (typeof veilInput.setSelectionRange === 'function') veilInput.setSelectionRange(len, len);
-  } catch (error) {}
+
+/* HQ direct-entry mode: former PIN threshold helpers are now inert.
+   The visual veil remains in the HTML for historical compatibility, but no access code,
+   session unlock key, PIN comparison, keyboard capture, or gate threshold is active. */
+function focusPinInput() {}
+function requestPinKeyboard() {}
+function bindVeilFocusInteractions() {}
+function resetPinFeedback() {}
+function flashVeilError() {}
+function updatePinSlots() {}
+function sanitizePinValue(value = '') {
+  return String(value || '').replace(/\D/g, '').slice(0, 6);
 }
-
-
-function requestPinKeyboard() {
-  focusPinInput();
-}
-
-
-
-function bindVeilFocusInteractions() {
-  const focusHandler = () => {
-    if (!body.classList.contains('gate-active')) return;
-    focusPinInput();
-  };
-  [introVeil, veilForm, document.querySelector('.veil-panel'), document.querySelector('.veil-pin-shell'), document.querySelector('.veil-pin-slots')].forEach(node => {
-    if (!node) return;
-    node.addEventListener('click', focusHandler);
-    node.addEventListener('touchend', focusHandler);
-    node.addEventListener('touchstart', focusHandler, { passive: true });
-    node.addEventListener('pointerdown', focusHandler);
-    node.addEventListener('pointerup', focusHandler);
-  });
-}
-
-function resetPinFeedback() {
-  veilForm?.classList.remove('is-error', 'is-success');
-  veilLabel?.classList.remove('is-error');
-}
-
-function flashVeilError() {
-  veilForm?.classList.remove('is-error');
-  veilPanel?.classList.remove('is-error');
-  if (veilForm) void veilForm.offsetWidth;
-  if (veilPanel) void veilPanel.offsetWidth;
-  veilForm?.classList.add('is-error');
-  veilPanel?.classList.add('is-error');
-  window.setTimeout(() => {
-    veilLabel?.classList.remove('is-error');
-    veilForm?.classList.remove('is-error');
-    veilPanel?.classList.remove('is-error');
-  }, 1200);
-}
-
-function rememberGateSession() {
-  try {
-    window.sessionStorage?.setItem(SESSION_UNLOCK_KEY, '1');
-  } catch (_) {}
-}
-
-function hasGateSession() {
-  try {
-    return window.sessionStorage?.getItem(SESSION_UNLOCK_KEY) === '1';
-  } catch (_) {
-    return false;
-  }
-}
+function rememberGateSession() {}
+function hasGateSession() { return true; }
 
 function completeGateClear() {
   body.classList.add('gate-cleared');
@@ -852,79 +802,27 @@ function completeGateClear() {
   requestAnimationFrame(() => scrollMobileNavToActive());
   introVeil?.setAttribute('aria-hidden', 'true');
   veilInput?.blur();
-  window.setTimeout(() => { if (introVeil) introVeil.style.pointerEvents = 'none'; }, 1200);
+  if (introVeil) {
+    introVeil.style.pointerEvents = 'none';
+    introVeil.style.display = 'none';
+  }
 }
 
-function unlockGate(options = {}) {
-  const {
-    rememberSession = true,
-    delay = GATE_SUCCESS_DELAY,
-    markSuccess = true
-  } = options;
-
-  if (rememberSession) rememberGateSession();
-  if (markSuccess && veilForm) veilForm.classList.add('is-success');
-  window.setTimeout(completeGateClear, delay);
+function unlockGate() {
+  completeGateClear();
 }
-
 
 function handleVeilSubmit(event) {
-  event.preventDefault();
-  if (!veilInput) return;
-  const value = sanitizePinValue(veilInput.value);
-  if (value.length < 6) return;
-  if (value === ACCESS_PIN) {
-    unlockGate();
-    return;
-  }
-  veilInput.value = '';
-  updatePinSlots('');
-  flashVeilError();
-  requestPinKeyboard();
+  event?.preventDefault?.();
+  completeGateClear();
 }
-
-
 
 function revealVeilSequence() {
-  const emblemStage = document.getElementById('veil-emblem-stage');
-  const emblemImage = emblemStage?.querySelector('img[data-src]');
-  const primeEmblemImage = () => {
-    if (!emblemStage || !emblemImage) return;
-    if (!emblemImage.getAttribute('src')) {
-      emblemImage.setAttribute('src', emblemImage.dataset.src);
-    }
-    emblemStage.classList.add('image-primed');
-  };
-
-  window.setTimeout(() => body.classList.add('background-revealed'), BACKGROUND_REVEAL_DELAY);
-  window.setTimeout(primeEmblemImage, Math.max(0, EMBLEM_REVEAL_DELAY - 280));
-  window.setTimeout(() => {
-    primeEmblemImage();
-    if (emblemStage) emblemStage.removeAttribute('style');
-    body.classList.add('emblem-revealed');
-  }, EMBLEM_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('emblem-fading'), EMBLEM_FADE_DELAY);
-  window.setTimeout(() => body.classList.add('threshold-revealed', 'panel-revealed'), THRESHOLD_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('wordmark-revealed'), WORDMARK_REVEAL_DELAY);
-  window.setTimeout(() => body.classList.add('submark-revealed'), SUBMARK_REVEAL_DELAY);
-  window.setTimeout(() => {
-    body.classList.add('form-revealed');
-    focusPinInput();
-  }, FORM_REVEAL_DELAY);
+  completeGateClear();
 }
 
-
 function revealReturningSessionMiniThreshold() {
-  body.classList.add('session-returning');
-  introVeil?.setAttribute('aria-hidden', 'false');
-
-  window.setTimeout(() => body.classList.add('background-revealed'), BACKGROUND_REVEAL_DELAY);
-  window.setTimeout(() => {
-    body.classList.add('threshold-revealed', 'panel-revealed', 'wordmark-revealed', 'submark-revealed');
-  }, MINI_THRESHOLD_ENTER_DELAY);
-  window.setTimeout(() => {
-    unlockGate({ rememberSession: false, delay: 0, markSuccess: false });
-  }, MINI_THRESHOLD_EXIT_DELAY);
+  completeGateClear();
 }
 
 
@@ -1316,40 +1214,12 @@ document.addEventListener('click', event => {
   }
 });
 
-veilForm?.addEventListener('submit', handleVeilSubmit);
-introVeil?.addEventListener('pointerdown', () => { if (body.classList.contains('gate-active') && !body.classList.contains('session-returning')) requestPinKeyboard(); }, { passive: true });
-introVeil?.addEventListener('touchstart', () => { if (body.classList.contains('gate-active') && !body.classList.contains('session-returning')) requestPinKeyboard(); }, { passive: true });
-veilInput?.addEventListener('input', () => {
-  if (!veilInput) return;
-  const clean = sanitizePinValue(veilInput.value);
-  if (veilInput.value !== clean) veilInput.value = clean;
-  resetPinFeedback();
-  updatePinSlots(clean);
-  if (clean.length === 6) {
-    window.setTimeout(() => {
-      if (sanitizePinValue(veilInput.value).length === 6) {
-        handleVeilSubmit({ preventDefault: () => {} });
-      }
-    }, 120);
-  }
-});
-veilInput?.addEventListener('focus', () => {
-  document.body.classList.add('pin-focused');
-  window.setTimeout(() => window.scrollTo(0, 0), 0);
-});
-veilInput?.addEventListener('blur', () => document.body.classList.remove('pin-focused'));
-veilInput?.addEventListener('keydown', event => { if (event.key === 'Escape') event.stopPropagation(); });
-
+/* Former PIN form submit disabled in HQ direct-entry mode. */
+/* Former PIN pointer focus disabled. */
+/* Former PIN touch focus disabled. */
+/* Former PIN input listeners disabled. */
 document.addEventListener('keydown', event => {
   const isLanguageControl = !!event.target.closest('.lang-switcher');
-
-  if (body.classList.contains('gate-active') && !body.classList.contains('session-returning') && event.target !== veilInput && !isLanguageControl) {
-    if (event.key === 'Tab') return;
-    event.preventDefault();
-    requestPinKeyboard();
-    return;
-  }
-
   if (event.key === 'Escape') {
     if (state.openDetailKey) { closeDetail(); return; }
     if (state.menuOpen) { closeMenu(); return; }

@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual" />
-  <title>MOSCATELLI Studio</title>
-  <meta name="description" content="MOSCATELLI Studio — private internal archive and operating surface." />
-  <meta name="theme-color" content="#02050a" />
+  <title>MOSCATELLI HQ — Noir Command</title>
+  <meta name="description" content="MOSCATELLI HQ — private internal archive and operating surface." />
+  <meta name="theme-color" content="#090403" />
+  <meta name="moscatelli-hq-build" content="noir-command-20260603-p06-cache-bump" />
+  <meta name="moscatelli-hq-visual-patch" content="patch-08-noir-command-foundation" />
+  <meta name="moscatelli-hq-detail-patch" content="patch-09-noir-command-detail-system" />
+  <meta name="moscatelli-hq-entry-patch" content="patch-10-room-entry-transition" />
+  <meta name="moscatelli-hq-final-build" content="patch-14-final-integration-20260603-i" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -32,9 +37,11 @@
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-section="home" data-lang="en" class="preload gate-active">
+<body data-section="home" data-lang="en" class="preload gate-cleared">
+  <div class="hq-entry-veil" aria-hidden="true"></div>
 
-  <div id="intro-veil" aria-hidden="false">
+
+  <div id="intro-veil" aria-hidden="true" style="display:none;pointer-events:none;">
     <div class="veil-backdrop"></div>
 
     <div class="lang-switcher lang-switcher--veil" data-lang-switcher aria-label="Language selector" data-i18n-aria-label="aria.languageSelector">
@@ -65,7 +72,6 @@
             spellcheck="false"
             enterkeyhint="done"
             aria-label="Access code"
-            autofocus
           />
           <div class="veil-pin-slots" aria-hidden="true">
             <span class="veil-pin-slot" data-pin-slot="0"></span>
@@ -92,11 +98,18 @@
   </div>
 
   <header id="site-header">
-    <button class="header-logo" data-action="go-home" aria-label="Return to threshold" data-i18n-aria-label="aria.returnThreshold">
-      <span class="logo-wordmark">MOSCATELLI</span>
-      <span class="logo-rule"></span>
-      <span class="logo-state">Studio</span>
-    </button>
+    <div class="header-left">
+      <button class="header-logo" data-action="go-home" aria-label="Return to threshold" data-i18n-aria-label="aria.returnThreshold">
+        <span class="logo-wordmark">MOSCATELLI</span>
+        <span class="logo-rule"></span>
+        <span class="logo-state">HQ</span>
+      </button>
+
+      <a class="studio-return-link" href="../moscatelli-studio-threshold-final-20260603-i.html" aria-label="Return to Moscatelli Studio index">
+        <span aria-hidden="true">←</span>
+        <span>STUDIO</span>
+      </a>
+    </div>
 
     <div class="header-right">
       <div class="lang-switcher lang-switcher--header" data-lang-switcher aria-label="Language selector" data-i18n-aria-label="aria.languageSelector">
